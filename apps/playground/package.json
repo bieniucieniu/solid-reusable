@@ -13,6 +13,8 @@
     "solid-js": "^1.9.14"
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@zag-js/solid": "^1.42.0",
     "@tailwindcss/vite": "^4.1.4",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",

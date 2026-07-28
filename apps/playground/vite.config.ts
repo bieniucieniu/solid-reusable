@@ -1,21 +1,21 @@
 import { defineConfig } from "vite"
 import solid from "vite-plugin-solid"
 import tailwindcss from "@tailwindcss/vite"
-import { resolve } from "node:path"
+import { dirname, resolve } from "node:path"
+import { fileURLToPath } from "node:url"
+
+const root = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [solid(), tailwindcss()],
   resolve: {
     alias: {
-      "@/registry": resolve(__dirname, "../../registry"),
-      "@components": resolve(__dirname, "../../registry/warsaw"),
-      "@solid-reusable/ui": resolve(__dirname, "../../packages/ui/src"),
-      "@solid-reusable/core": resolve(__dirname, "../../packages/core/src"),
-      "@solid-reusable/provider": resolve(__dirname, "../../packages/provider/src"),
-      "@solid-reusable/provider-zag": resolve(
-        __dirname,
-        "../../packages/provider-zag/src",
-      ),
+      "@/registry": resolve(root, "../../registry"),
+      "@components": resolve(root, "../../registry/warsaw"),
+      "@solid-reusable/ui": resolve(root, "../../packages/ui/src"),
+      "@solid-reusable/core": resolve(root, "../../packages/core/src"),
+      "@solid-reusable/provider": resolve(root, "../../packages/provider/src"),
+      "@solid-reusable/provider-zag": resolve(root, "../../packages/provider-zag/src"),
     },
   },
   server: {
