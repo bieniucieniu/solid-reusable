@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-group",
+  "type": "registry:ui",
+  "title": "Rating Group",
+  "description": "Zag compound createRatingGroup() — https://zagjs.com/components/solid/rating-group",
+  "dependencies": [
+    "@zag-js/rating-group",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/rating-group.tsx",
+      "content": "import * as machine from \"@zag-js/rating-group\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — rating-group.\n * @see https://zagjs.com/components/solid/rating-group\n *\n * Usage:\n * ```tsx\n * const ratingGroup = createRatingGroup()\n * return (\n *   <ratingGroup.Root>\n *     ...\n *   </ratingGroup.Root>\n * )\n * ```\n */\nexport const createRatingGroup = createMachineCompound(machine as never, {\n  scope: \"rating-group\",\n  parts: [\"root\",\"label\",\"item\",\"control\"] as const,\n  rootPart: \"root\",\n})\n\nexport type RatingGroupCompound = ReturnType<typeof createRatingGroup>\n",
+      "type": "registry:ui",
+      "target": "components/ui/rating-group.tsx"
+    }
+  ]
+}

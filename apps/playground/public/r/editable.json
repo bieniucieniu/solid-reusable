@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "editable",
+  "type": "registry:ui",
+  "title": "Editable",
+  "description": "Zag compound createEditable() — https://zagjs.com/components/solid/editable",
+  "dependencies": [
+    "@zag-js/editable",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/editable.tsx",
+      "content": "import * as machine from \"@zag-js/editable\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — editable.\n * @see https://zagjs.com/components/solid/editable\n *\n * Usage:\n * ```tsx\n * const editable = createEditable()\n * return (\n *   <editable.Root>\n *     ...\n *   </editable.Root>\n * )\n * ```\n */\nexport const createEditable = createMachineCompound(machine as never, {\n  scope: \"editable\",\n  parts: [\"root\",\"area\",\"label\",\"preview\",\"input\",\"editTrigger\",\"submitTrigger\",\"cancelTrigger\",\"control\"] as const,\n  rootPart: \"root\",\n})\n\nexport type EditableCompound = ReturnType<typeof createEditable>\n",
+      "type": "registry:ui",
+      "target": "components/ui/editable.tsx"
+    }
+  ]
+}

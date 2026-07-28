@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "listbox",
+  "type": "registry:ui",
+  "title": "Listbox",
+  "description": "Zag compound createListbox() — https://zagjs.com/components/solid/listbox",
+  "dependencies": [
+    "@zag-js/listbox",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/listbox.tsx",
+      "content": "import * as machine from \"@zag-js/listbox\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — listbox.\n * @see https://zagjs.com/components/solid/listbox\n *\n * Usage:\n * ```tsx\n * const listbox = createListbox()\n * return (\n *   <listbox.Root>\n *     ...\n *   </listbox.Root>\n * )\n * ```\n */\nexport const createListbox = createMachineCompound(machine as never, {\n  scope: \"listbox\",\n  parts: [\"label\",\"input\",\"item\",\"itemText\",\"itemIndicator\",\"itemGroup\",\"itemGroupLabel\",\"content\",\"root\",\"valueText\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ListboxCompound = ReturnType<typeof createListbox>\n",
+      "type": "registry:ui",
+      "target": "components/ui/listbox.tsx"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "title": "Collapsible",
+  "description": "Zag compound createCollapsible() — https://zagjs.com/components/solid/collapsible",
+  "dependencies": [
+    "@zag-js/collapsible",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/collapsible.tsx",
+      "content": "import * as machine from \"@zag-js/collapsible\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — collapsible.\n * @see https://zagjs.com/components/solid/collapsible\n *\n * Usage:\n * ```tsx\n * const collapsible = createCollapsible()\n * return (\n *   <collapsible.Root>\n *     ...\n *   </collapsible.Root>\n * )\n * ```\n */\nexport const createCollapsible = createMachineCompound(machine as never, {\n  scope: \"collapsible\",\n  parts: [\"root\",\"trigger\",\"content\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type CollapsibleCompound = ReturnType<typeof createCollapsible>\n",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    }
+  ]
+}

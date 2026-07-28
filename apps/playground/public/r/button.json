@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "Presentational button (no Zag).",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/button.tsx",
+      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type ButtonProps = ParentProps<\n  JSX.ButtonHTMLAttributes<HTMLButtonElement> & {\n    variant?: \"default\" | \"outline\" | \"ghost\" | \"destructive\"\n    size?: \"default\" | \"sm\" | \"lg\" | \"icon\"\n  }\n>\n\n/** Presentational — no Zag, no createX. */\nexport function Button(props: ButtonProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"variant\", \"size\", \"children\"])\n  return (\n    <button\n      type=\"button\"\n      data-scope=\"button\"\n      data-variant={local.variant ?? \"default\"}\n      data-size={local.size ?? \"default\"}\n      class={cn(local.class)}\n      {...rest}\n    >\n      {local.children}\n    </button>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/button.tsx"
+    }
+  ]
+}

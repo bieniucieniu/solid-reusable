@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pin-input",
+  "type": "registry:ui",
+  "title": "Pin Input",
+  "description": "Zag compound createPinInput() — https://zagjs.com/components/solid/pin-input",
+  "dependencies": [
+    "@zag-js/pin-input",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/pin-input.tsx",
+      "content": "import * as machine from \"@zag-js/pin-input\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — pin-input.\n * @see https://zagjs.com/components/solid/pin-input\n *\n * Usage:\n * ```tsx\n * const pinInput = createPinInput()\n * return (\n *   <pinInput.Root>\n *     ...\n *   </pinInput.Root>\n * )\n * ```\n */\nexport const createPinInput = createMachineCompound(machine as never, {\n  scope: \"pin-input\",\n  parts: [\"root\",\"label\",\"input\",\"control\"] as const,\n  rootPart: \"root\",\n})\n\nexport type PinInputCompound = ReturnType<typeof createPinInput>\n",
+      "type": "registry:ui",
+      "target": "components/ui/pin-input.tsx"
+    }
+  ]
+}

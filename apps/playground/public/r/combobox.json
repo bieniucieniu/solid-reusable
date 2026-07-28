@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "Zag compound createCombobox() — https://zagjs.com/components/solid/combobox",
+  "dependencies": [
+    "@zag-js/combobox",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/combobox.tsx",
+      "content": "import * as machine from \"@zag-js/combobox\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — combobox.\n * @see https://zagjs.com/components/solid/combobox\n *\n * Usage:\n * ```tsx\n * const combobox = createCombobox()\n * return (\n *   <combobox.Root>\n *     ...\n *   </combobox.Root>\n * )\n * ```\n */\nexport const createCombobox = createMachineCompound(machine as never, {\n  scope: \"combobox\",\n  parts: [\"root\",\"clearTrigger\",\"content\",\"control\",\"input\",\"item\",\"itemGroup\",\"itemGroupLabel\",\"itemIndicator\",\"itemText\",\"label\",\"list\",\"positioner\",\"trigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ComboboxCompound = ReturnType<typeof createCombobox>\n",
+      "type": "registry:ui",
+      "target": "components/ui/combobox.tsx"
+    }
+  ]
+}

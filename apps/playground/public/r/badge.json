@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "Presentational badge (no Zag).",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/badge.tsx",
+      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type BadgeProps = ParentProps<\n  JSX.HTMLAttributes<HTMLSpanElement> & {\n    variant?: \"default\" | \"secondary\" | \"outline\" | \"destructive\"\n  }\n>\n\n/** Presentational — no Zag, no createX. */\nexport function Badge(props: BadgeProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"variant\", \"children\"])\n  return (\n    <span\n      data-scope=\"badge\"\n      data-variant={local.variant ?? \"default\"}\n      class={cn(local.class)}\n      {...rest}\n    >\n      {local.children}\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/badge.tsx"
+    }
+  ]
+}

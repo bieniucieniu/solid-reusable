@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "Pagination",
+  "description": "Zag compound createPagination() — https://zagjs.com/components/solid/pagination",
+  "dependencies": [
+    "@zag-js/pagination",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/pagination.tsx",
+      "content": "import * as machine from \"@zag-js/pagination\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — pagination.\n * @see https://zagjs.com/components/solid/pagination\n *\n * Usage:\n * ```tsx\n * const pagination = createPagination()\n * return (\n *   <pagination.Root>\n *     ...\n *   </pagination.Root>\n * )\n * ```\n */\nexport const createPagination = createMachineCompound(machine as never, {\n  scope: \"pagination\",\n  parts: [\"root\",\"item\",\"ellipsis\",\"firstTrigger\",\"prevTrigger\",\"nextTrigger\",\"lastTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type PaginationCompound = ReturnType<typeof createPagination>\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination.tsx"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "type": "registry:ui",
+  "title": "Toast",
+  "description": "Zag compound createToast() — https://zagjs.com/components/solid/toast",
+  "dependencies": [
+    "@zag-js/toast",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/toast.tsx",
+      "content": "import * as machine from \"@zag-js/toast\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toast.\n * @see https://zagjs.com/components/solid/toast\n *\n * Usage:\n * ```tsx\n * const toast = createToast()\n * return (\n *   <toast.Root>\n *     ...\n *   </toast.Root>\n * )\n * ```\n */\nexport const createToast = createMachineCompound(machine as never, {\n  scope: \"toast\",\n  parts: [\"group\",\"root\",\"title\",\"description\",\"actionTrigger\",\"closeTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ToastCompound = ReturnType<typeof createToast>\n",
+      "type": "registry:ui",
+      "target": "components/ui/toast.tsx"
+    }
+  ]
+}

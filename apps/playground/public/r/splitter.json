@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "splitter",
+  "type": "registry:ui",
+  "title": "Splitter",
+  "description": "Zag compound createSplitter() — https://zagjs.com/components/solid/splitter",
+  "dependencies": [
+    "@zag-js/splitter",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/splitter.tsx",
+      "content": "import * as machine from \"@zag-js/splitter\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — splitter.\n * @see https://zagjs.com/components/solid/splitter\n *\n * Usage:\n * ```tsx\n * const splitter = createSplitter()\n * return (\n *   <splitter.Root>\n *     ...\n *   </splitter.Root>\n * )\n * ```\n */\nexport const createSplitter = createMachineCompound(machine as never, {\n  scope: \"splitter\",\n  parts: [\"root\",\"panel\",\"resizeTrigger\",\"resizeTriggerIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SplitterCompound = ReturnType<typeof createSplitter>\n",
+      "type": "registry:ui",
+      "target": "components/ui/splitter.tsx"
+    }
+  ]
+}
