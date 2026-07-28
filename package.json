@@ -1,0 +1,25 @@
+{
+  "name": "solid-reusable",
+  "private": true,
+  "version": "0.0.0",
+  "description": "SolidJS component system — Zag headless, shadcn registry, Tailwind v4",
+  "type": "module",
+  "packageManager": "pnpm@10.33.3",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @solid-reusable/playground dev",
+    "build": "pnpm -r --filter=./packages/* build",
+    "build:registry": "node scripts/build-registry.mjs",
+    "generate:zag": "node scripts/generate-zag-components.mjs",
+    "typecheck": "pnpm -r --filter=./packages/* typecheck",
+    "registry:build": "pnpm build:registry"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

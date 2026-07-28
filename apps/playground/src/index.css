@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Theme tokens later — components currently unstyled placeholders */
+:root {
+  color-scheme: light dark;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,87 @@
+{
+  "name": "@solid-reusable/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./plain/*": {
+      "types": "./src/plain/*.tsx",
+      "default": "./src/plain/*.tsx"
+    },
+    "./zag/*": {
+      "types": "./src/zag/*.tsx",
+      "default": "./src/zag/*.tsx"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@solid-reusable/core": "workspace:*",
+    "@solid-reusable/provider": "workspace:*",
+    "@solid-reusable/provider-zag": "workspace:*",
+    "@zag-js/accordion": "^1.42.0",
+    "@zag-js/angle-slider": "^1.42.0",
+    "@zag-js/async-list": "^1.42.0",
+    "@zag-js/avatar": "^1.42.0",
+    "@zag-js/carousel": "^1.42.0",
+    "@zag-js/cascade-select": "^1.42.0",
+    "@zag-js/checkbox": "^1.42.0",
+    "@zag-js/clipboard": "^1.42.0",
+    "@zag-js/collapsible": "^1.42.0",
+    "@zag-js/color-picker": "^1.42.0",
+    "@zag-js/combobox": "^1.42.0",
+    "@zag-js/date-input": "^1.42.0",
+    "@zag-js/date-picker": "^1.42.0",
+    "@zag-js/dialog": "^1.42.0",
+    "@zag-js/drawer": "^1.42.0",
+    "@zag-js/editable": "^1.42.0",
+    "@zag-js/file-upload": "^1.42.0",
+    "@zag-js/floating-panel": "^1.42.0",
+    "@zag-js/hover-card": "^1.42.0",
+    "@zag-js/image-cropper": "^1.42.0",
+    "@zag-js/listbox": "^1.42.0",
+    "@zag-js/marquee": "^1.42.0",
+    "@zag-js/menu": "^1.42.0",
+    "@zag-js/navigation-menu": "^1.42.0",
+    "@zag-js/number-input": "^1.42.0",
+    "@zag-js/pagination": "^1.42.0",
+    "@zag-js/password-input": "^1.42.0",
+    "@zag-js/pin-input": "^1.42.0",
+    "@zag-js/popover": "^1.42.0",
+    "@zag-js/presence": "^1.42.0",
+    "@zag-js/progress": "^1.42.0",
+    "@zag-js/qr-code": "^1.42.0",
+    "@zag-js/radio-group": "^1.42.0",
+    "@zag-js/rating-group": "^1.42.0",
+    "@zag-js/scroll-area": "^1.42.0",
+    "@zag-js/select": "^1.42.0",
+    "@zag-js/signature-pad": "^1.42.0",
+    "@zag-js/slider": "^1.42.0",
+    "@zag-js/splitter": "^1.42.0",
+    "@zag-js/steps": "^1.42.0",
+    "@zag-js/switch": "^1.42.0",
+    "@zag-js/tabs": "^1.42.0",
+    "@zag-js/tags-input": "^1.42.0",
+    "@zag-js/timer": "^1.42.0",
+    "@zag-js/toast": "^1.42.0",
+    "@zag-js/toc": "^1.42.0",
+    "@zag-js/toggle": "^1.42.0",
+    "@zag-js/toggle-group": "^1.42.0",
+    "@zag-js/tooltip": "^1.42.0",
+    "@zag-js/tour": "^1.42.0",
+    "@zag-js/tree-view": "^1.42.0"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.0"
+  },
+  "devDependencies": {
+    "solid-js": "^1.9.14",
+    "typescript": "^5.8.3"
+  }
+}
