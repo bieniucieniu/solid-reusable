@@ -1,4 +1,4 @@
-import { splitProps, type JSX, type ParentProps } from "solid-js"
+import type { JSX, ParentProps } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
 export type BadgeProps = ParentProps<
@@ -9,15 +9,12 @@ export type BadgeProps = ParentProps<
 
 /** Presentational — no Zag, no createX. */
 export function Badge(props: BadgeProps) {
-  const [local, rest] = splitProps(props, ["class", "variant", "children"])
   return (
     <span
       data-scope="badge"
-      data-variant={local.variant ?? "default"}
-      class={cn(local.class)}
-      {...rest}
-    >
-      {local.children}
-    </span>
+      data-variant={props.variant ?? "default"}
+      {...props}
+      class={cn(props.class)}
+    />
   )
 }

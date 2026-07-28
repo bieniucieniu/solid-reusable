@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/spinner.tsx",
-      "content": "import { splitProps, type JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SpinnerProps = JSX.HTMLAttributes<HTMLDivElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Spinner(props: SpinnerProps) {\n  const [local, rest] = splitProps(props, [\"class\"])\n  return (\n    <div\n      role=\"status\"\n      aria-label=\"Loading\"\n      data-scope=\"spinner\"\n      class={cn(local.class)}\n      {...rest}\n    />\n  )\n}\n",
+      "content": "import type { JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SpinnerProps = JSX.HTMLAttributes<HTMLDivElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Spinner(props: SpinnerProps) {\n  return (\n    <div\n      role=\"status\"\n      aria-label=\"Loading\"\n      data-scope=\"spinner\"\n      {...props}\n      class={cn(props.class)}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/spinner.tsx"
     }

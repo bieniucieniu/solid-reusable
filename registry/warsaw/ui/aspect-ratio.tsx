@@ -1,4 +1,4 @@
-import { splitProps, type JSX, type ParentProps } from "solid-js"
+import type { JSX, ParentProps } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
 export type AspectRatioProps = ParentProps<
@@ -7,16 +7,15 @@ export type AspectRatioProps = ParentProps<
 
 /** Presentational — no Zag, no createX. */
 export function AspectRatio(props: AspectRatioProps) {
-  const [local, rest] = splitProps(props, ["class", "ratio", "children"])
-  const ratio = () => local.ratio ?? 16 / 9
   return (
     <div
       data-scope="aspect-ratio"
-      style={{ "aspect-ratio": String(ratio()) }}
-      class={cn(local.class)}
-      {...rest}
-    >
-      {local.children}
-    </div>
+      {...props}
+      style={{
+        ...(typeof props.style === "object" && props.style ? props.style : {}),
+        "aspect-ratio": String(props.ratio ?? 16 / 9),
+      }}
+      class={cn(props.class)}
+    />
   )
 }
