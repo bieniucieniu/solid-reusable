@@ -4,5 +4,7 @@ dist
 *.local
 .turbo
 apps/playground/dist
+apps/playground/.vinxi
+apps/playground/.output
 *.tsbuildinfo
 .vite

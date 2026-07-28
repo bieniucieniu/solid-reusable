@@ -11,6 +11,7 @@
   "scripts": {
     "format": "biome format --write .",
     "dev": "pnpm --filter @solid-reusable/playground dev",
+    "start": "pnpm --filter @solid-reusable/playground start",
     "build": "pnpm --filter @solid-reusable/core --filter @solid-reusable/provider --filter @solid-reusable/provider-zag build",
     "build:registry": "node scripts/build-registry.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
