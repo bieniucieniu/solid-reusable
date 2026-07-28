@@ -9,28 +9,14 @@ import {
   createTooltip,
   createDialog,
 } from "@solid-reusable/ui"
-import { Show, type Component } from "solid-js"
 
 function TooltipDemo() {
-  const tooltip = createTooltip()
-
-  const Body: Component = () => {
-    const api = tooltip.useApi()
-    return (
-      <>
-        <tooltip.Trigger>Hover me</tooltip.Trigger>
-        <Show when={api().open}>
-          <tooltip.Positioner>
-            <tooltip.Content>Unstyled tooltip content</tooltip.Content>
-          </tooltip.Positioner>
-        </Show>
-      </>
-    )
-  }
+  const tooltip = createTooltip({ openDelay: 200 })
 
   return (
     <tooltip.Root>
-      <Body />
+      <tooltip.Trigger>Hover me</tooltip.Trigger>
+      <tooltip.Content>Unstyled tooltip content</tooltip.Content>
     </tooltip.Root>
   )
 }
@@ -38,28 +24,15 @@ function TooltipDemo() {
 function DialogDemo() {
   const dialog = createDialog()
 
-  const Body: Component = () => {
-    const api = dialog.useApi()
-    return (
-      <>
-        <dialog.Trigger>Open dialog</dialog.Trigger>
-        <Show when={api().open}>
-          <dialog.Backdrop />
-          <dialog.Positioner>
-            <dialog.Content>
-              <dialog.Title>Edit profile</dialog.Title>
-              <dialog.Description>Unstyled dialog placeholder.</dialog.Description>
-              <dialog.CloseTrigger>Close</dialog.CloseTrigger>
-            </dialog.Content>
-          </dialog.Positioner>
-        </Show>
-      </>
-    )
-  }
-
   return (
     <dialog.Root>
-      <Body />
+      <dialog.Trigger>Open dialog</dialog.Trigger>
+      <dialog.Backdrop />
+      <dialog.Content>
+        <dialog.Title>Edit profile</dialog.Title>
+        <dialog.Description>Unstyled dialog placeholder.</dialog.Description>
+        <dialog.CloseTrigger>Close</dialog.CloseTrigger>
+      </dialog.Content>
     </dialog.Root>
   )
 }

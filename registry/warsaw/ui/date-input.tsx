@@ -1,13 +1,31 @@
-import * as machine from "@zag-js/date-input"
-import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-compound"
+import * as zag from "@zag-js/date-input"
+import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import {
+  Show,
+  createMemo,
+  createUniqueId,
+  splitProps,
+  type JSX,
+  type Component,
+} from "solid-js"
+import { Dynamic } from "solid-js/web"
+
+type PartProps = {
+  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
+  children?: JSX.Element
+} & Record<string, unknown>
+
+export type CreateDateInputOptions = Record<string, unknown>
 
 /**
- * Unstyled Zag placeholder — date-input.
+ * Zag date-input compound. Call inside a Solid component setup (uses useMachine).
+ *
  * @see https://zagjs.com/components/solid/date-input
  *
- * Usage:
  * ```tsx
- * const dateInput = createDateInput()
+ * import { createDateInput } from "@components/ui/date-input"
+ *
+ * const dateInput = createDateInput({ openDelay: 200 })
  * return (
  *   <dateInput.Root>
  *     ...
@@ -15,10 +33,30 @@ import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-comp
  * )
  * ```
  */
-export const createDateInput = createMachineCompound(machine as never, {
-  scope: "date-input",
-  parts: ["root"] as const,
-  rootPart: "root",
-})
+export function createDateInput(options: CreateDateInputOptions = {}) {
+  const service = useMachine(zag.machine, {
+    id: createUniqueId(),
+    ...options,
+  })
+  const api = createMemo(() => zag.connect(service, normalizeProps))
+
+  return {
+    Root(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getRootProps
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    /** Connected Zag API (accessor). */
+    api,
+  }
+}
 
 export type DateInputCompound = ReturnType<typeof createDateInput>

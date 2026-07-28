@@ -16,32 +16,6 @@
       ]
     },
     {
-      "name": "zag-runtime",
-      "type": "registry:lib",
-      "description": "Zag compound factory + provider meta (pluggable headless runtime).",
-      "dependencies": [
-        "@zag-js/solid",
-        "solid-js"
-      ],
-      "files": [
-        {
-          "path": "registry/warsaw/lib/meta.ts",
-          "type": "registry:lib",
-          "target": "registry/warsaw/lib/meta.ts"
-        },
-        {
-          "path": "registry/warsaw/lib/create-machine-compound.tsx",
-          "type": "registry:lib",
-          "target": "registry/warsaw/lib/create-machine-compound.tsx"
-        },
-        {
-          "path": "registry/warsaw/lib/provider-types.ts",
-          "type": "registry:lib",
-          "target": "registry/warsaw/lib/provider-types.ts"
-        }
-      ]
-    },
-    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
@@ -51,9 +25,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/accordion.tsx",
@@ -72,9 +44,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/angle-slider.tsx",
@@ -112,9 +82,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/async-list.tsx",
@@ -133,9 +101,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/avatar.tsx",
@@ -211,9 +177,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/carousel.tsx",
@@ -232,9 +196,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/cascade-select.tsx",
@@ -253,9 +215,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/checkbox.tsx",
@@ -274,9 +234,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/clipboard.tsx",
@@ -295,9 +253,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/collapsible.tsx",
@@ -316,9 +272,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/color-picker.tsx",
@@ -337,9 +291,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/combobox.tsx",
@@ -358,9 +310,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/date-input.tsx",
@@ -379,9 +329,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/date-picker.tsx",
@@ -400,9 +348,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/dialog.tsx",
@@ -421,9 +367,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/drawer.tsx",
@@ -442,9 +386,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/editable.tsx",
@@ -463,9 +405,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/file-upload.tsx",
@@ -484,9 +424,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/floating-panel.tsx",
@@ -505,9 +443,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/hover-card.tsx",
@@ -526,9 +462,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/image-cropper.tsx",
@@ -585,9 +519,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/listbox.tsx",
@@ -606,9 +538,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/marquee.tsx",
@@ -627,9 +557,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/menu.tsx",
@@ -648,9 +576,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/navigation-menu.tsx",
@@ -669,9 +595,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/number-input.tsx",
@@ -690,9 +614,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/pagination.tsx",
@@ -711,9 +633,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/password-input.tsx",
@@ -732,9 +652,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/pin-input.tsx",
@@ -753,9 +671,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/popover.tsx",
@@ -774,9 +690,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/presence.tsx",
@@ -795,9 +709,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/progress.tsx",
@@ -816,9 +728,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/qr-code.tsx",
@@ -837,9 +747,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/radio-group.tsx",
@@ -858,9 +766,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/rating-group.tsx",
@@ -879,9 +785,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/scroll-area.tsx",
@@ -900,9 +804,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/select.tsx",
@@ -940,9 +842,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/signature-pad.tsx",
@@ -980,9 +880,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/slider.tsx",
@@ -1020,9 +918,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/splitter.tsx",
@@ -1041,9 +937,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/steps.tsx",
@@ -1062,9 +956,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/switch.tsx",
@@ -1083,9 +975,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/tabs.tsx",
@@ -1104,9 +994,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/tags-input.tsx",
@@ -1125,9 +1013,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/timer.tsx",
@@ -1146,9 +1032,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/toast.tsx",
@@ -1167,9 +1051,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/toc.tsx",
@@ -1188,9 +1070,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/toggle-group.tsx",
@@ -1209,9 +1089,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/toggle.tsx",
@@ -1230,9 +1108,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/tooltip.tsx",
@@ -1251,9 +1127,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/tour.tsx",
@@ -1272,9 +1146,7 @@
         "@zag-js/solid",
         "solid-js"
       ],
-      "registryDependencies": [
-        "zag-runtime"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "registry/warsaw/ui/tree-view.tsx",

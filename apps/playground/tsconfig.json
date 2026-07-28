@@ -6,6 +6,7 @@
     "paths": {
       "~/*": ["./src/*"],
       "@/registry/*": ["../../registry/*"],
+      "@components/*": ["../../registry/warsaw/*"],
       "@solid-reusable/ui": ["../../packages/ui/src/index.ts"],
       "@solid-reusable/ui/*": ["../../packages/ui/src/*"],
       "@solid-reusable/core": ["../../packages/core/src/index.ts"],

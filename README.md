@@ -15,12 +15,12 @@ SolidJS **1.9** component system (prep for **2.0**). Headless via **Zag.js** (pl
 
 ## Patterns
 
-**Zag (stateful)** — `createX()` compound:
+**Zag (stateful)** — call `createX()` **inside** a component (uses `useMachine`):
 
 ```tsx
-import { createTooltip } from "@solid-reusable/ui"
+import { createTooltip } from "@components/ui/tooltip"
 
-const tooltip = createTooltip()
+const tooltip = createTooltip({ openDelay: 200 })
 
 return (
   <tooltip.Root>
@@ -30,6 +30,7 @@ return (
 )
 ```
 
+Each Zag file inlines `useMachine` + `Dynamic` parts (no shared `createMachineCompound`). Overlay `Content` includes `Show` + positioner.
 **Plain (no state machine)** — normal export, **no** `createX`:
 
 ```tsx

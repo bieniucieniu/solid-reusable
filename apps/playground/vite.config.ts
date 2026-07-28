@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@/registry": resolve(__dirname, "../../registry"),
+      "@components": resolve(__dirname, "../../registry/warsaw"),
       "@solid-reusable/ui": resolve(__dirname, "../../packages/ui/src"),
       "@solid-reusable/core": resolve(__dirname, "../../packages/core/src"),
       "@solid-reusable/provider": resolve(__dirname, "../../packages/provider/src"),

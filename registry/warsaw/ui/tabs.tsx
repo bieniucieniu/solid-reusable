@@ -1,13 +1,31 @@
-import * as machine from "@zag-js/tabs"
-import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-compound"
+import * as zag from "@zag-js/tabs"
+import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import {
+  Show,
+  createMemo,
+  createUniqueId,
+  splitProps,
+  type JSX,
+  type Component,
+} from "solid-js"
+import { Dynamic } from "solid-js/web"
+
+type PartProps = {
+  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
+  children?: JSX.Element
+} & Record<string, unknown>
+
+export type CreateTabsOptions = Record<string, unknown>
 
 /**
- * Unstyled Zag placeholder — tabs.
+ * Zag tabs compound. Call inside a Solid component setup (uses useMachine).
+ *
  * @see https://zagjs.com/components/solid/tabs
  *
- * Usage:
  * ```tsx
- * const tabs = createTabs()
+ * import { createTabs } from "@components/ui/tabs"
+ *
+ * const tabs = createTabs({ openDelay: 200 })
  * return (
  *   <tabs.Root>
  *     ...
@@ -15,10 +33,82 @@ import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-comp
  * )
  * ```
  */
-export const createTabs = createMachineCompound(machine as never, {
-  scope: "tabs",
-  parts: ["root","list","trigger","content","indicator"] as const,
-  rootPart: "root",
-})
+export function createTabs(options: CreateTabsOptions = {}) {
+  const service = useMachine(zag.machine, {
+    id: createUniqueId(),
+    ...options,
+  })
+  const api = createMemo(() => zag.connect(service, normalizeProps))
+
+  return {
+    Root(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getRootProps
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    List(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getListProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "list" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    Trigger(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "button"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    Content(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getContentProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "content" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    Indicator(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "indicator" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    /** Connected Zag API (accessor). */
+    api,
+  }
+}
 
 export type TabsCompound = ReturnType<typeof createTabs>

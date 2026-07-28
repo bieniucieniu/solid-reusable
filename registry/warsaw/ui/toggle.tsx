@@ -1,13 +1,31 @@
-import * as machine from "@zag-js/toggle"
-import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-compound"
+import * as zag from "@zag-js/toggle"
+import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import {
+  Show,
+  createMemo,
+  createUniqueId,
+  splitProps,
+  type JSX,
+  type Component,
+} from "solid-js"
+import { Dynamic } from "solid-js/web"
+
+type PartProps = {
+  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
+  children?: JSX.Element
+} & Record<string, unknown>
+
+export type CreateToggleOptions = Record<string, unknown>
 
 /**
- * Unstyled Zag placeholder — toggle.
+ * Zag toggle compound. Call inside a Solid component setup (uses useMachine).
+ *
  * @see https://zagjs.com/components/solid/toggle
  *
- * Usage:
  * ```tsx
- * const toggle = createToggle()
+ * import { createToggle } from "@components/ui/toggle"
+ *
+ * const toggle = createToggle({ openDelay: 200 })
  * return (
  *   <toggle.Root>
  *     ...
@@ -15,10 +33,43 @@ import { createMachineCompound } from "@/registry/warsaw/lib/create-machine-comp
  * )
  * ```
  */
-export const createToggle = createMachineCompound(machine as never, {
-  scope: "toggle",
-  parts: ["root","indicator"] as const,
-  rootPart: "root",
-})
+export function createToggle(options: CreateToggleOptions = {}) {
+  const service = useMachine(zag.machine, {
+    id: createUniqueId(),
+    ...options,
+  })
+  const api = createMemo(() => zag.connect(service, normalizeProps))
+
+  return {
+    Root(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getRootProps
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    Indicator(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().getIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "indicator" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    },
+
+    /** Connected Zag API (accessor). */
+    api,
+  }
+}
 
 export type ToggleCompound = ReturnType<typeof createToggle>
