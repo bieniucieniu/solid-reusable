@@ -30,7 +30,8 @@ return (
 )
 ```
 
-Each Zag file inlines `useMachine` + `Dynamic` parts (no shared `createMachineCompound`). Overlay `Content` includes `Show` + positioner.
+Each Zag file is **hand-written** under `registry/warsaw/ui` (`useMachine` + `Dynamic` parts). Overlay `Content` includes `Show` + positioner.
+
 **Plain (no state machine)** — normal export, **no** `createX`:
 
 ```tsx
@@ -43,10 +44,11 @@ import { Button, Badge, Card } from "@solid-reusable/ui"
 
 ```bash
 pnpm install
-pnpm generate:zag
 pnpm build:registry
 pnpm dev
 ```
+
+Edit comps in `registry/warsaw/` by hand. Then `pnpm build:registry`.
 
 ## Registry (shadcn CLI)
 
