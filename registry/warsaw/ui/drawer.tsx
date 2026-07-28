@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/drawer"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateDrawerOptions = Record<string, unknown>
+export type CreateDrawerOptions = Omit<zag.Props, "id">
 
 /**
  * Zag drawer compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateDrawerOptions = Record<string, unknown>
  * ```tsx
  * import { createDrawer } from "@components/ui/drawer"
  *
- * const drawer = createDrawer({ openDelay: 200 })
+ * const drawer = createDrawer({})
  * return (
  *   <drawer.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateDrawerOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createDrawer(options: CreateDrawerOptions = {}) {
+export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,7 +36,7 @@ export function createDrawer(options: CreateDrawerOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="drawer" data-part="root" {...rest}>
@@ -50,14 +45,15 @@ export function createDrawer(options: CreateDrawerOptions = {}) {
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().getContentProps(), rest)}
+              {...api().getContentProps()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -66,52 +62,53 @@ export function createDrawer(options: CreateDrawerOptions = {}) {
       )
     },
 
-    Title(props: PartProps) {
+    Title(props: DynamicAsProps<"h2">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTitleProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "h2"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "title" }, rest)}
+          {...api().getTitleProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Description(props: PartProps) {
+    Description(props: DynamicAsProps<"p">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDescriptionProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "p"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "description" }, rest)}
+          {...api().getDescriptionProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Trigger(props: PartProps) {
+    Trigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+          {...api().getTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Backdrop(props: PartProps) {
+    Backdrop(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <Dynamic
             component={local.as ?? "div"}
-            {...mergeProps(api().getBackdropProps(), rest)}
+            {...api().getBackdropProps()}
+            {...rest}
           >
             {local.children}
           </Dynamic>
@@ -119,52 +116,52 @@ export function createDrawer(options: CreateDrawerOptions = {}) {
       )
     },
 
-    Grabber(props: PartProps) {
+    Grabber(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getGrabberProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "grabber" }, rest)}
+          {...api().getGrabberProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    GrabberIndicator(props: PartProps) {
+    GrabberIndicator(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getGrabberIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "grabberIndicator" }, rest)}
+          {...api().getGrabberIndicatorProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    CloseTrigger(props: PartProps) {
+    CloseTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getCloseTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "closeTrigger" }, rest)}
+          {...api().getCloseTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    SwipeArea(props: PartProps) {
+    SwipeArea(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSwipeAreaProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "swipeArea" }, rest)}
+          {...api().getSwipeAreaProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

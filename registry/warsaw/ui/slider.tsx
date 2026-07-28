@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/slider"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateSliderOptions = Record<string, unknown>
+export type CreateSliderOptions = Omit<zag.Props, "id">
 
 /**
  * Zag slider compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateSliderOptions = Record<string, unknown>
  * ```tsx
  * import { createSlider } from "@components/ui/slider"
  *
- * const slider = createSlider({ openDelay: 200 })
+ * const slider = createSlider({})
  * return (
  *   <slider.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateSliderOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createSlider(options: CreateSliderOptions = {}) {
+export function createSlider(options: CreateSliderOptions = {} as CreateSliderOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,130 +36,136 @@ export function createSlider(options: CreateSliderOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
+    Label(props: DynamicAsProps<"label">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Thumb(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getThumbProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Thumb<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ThumbProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","index","name"] as ("as" | "children" | "index" | "name")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "thumb" }, rest)}
+          {...api().getThumbProps({ index: local.index, name: local.name })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ValueText(props: PartProps) {
+    ValueText(props: DynamicAsProps<"span">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getValueTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "span"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "valueText" }, rest)}
+          {...api().getValueTextProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Track(props: PartProps) {
+    Track(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTrackProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "track" }, rest)}
+          {...api().getTrackProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Range(props: PartProps) {
+    Range(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRangeProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "range" }, rest)}
+          {...api().getRangeProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Control(props: PartProps) {
+    Control(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "control" }, rest)}
+          {...api().getControlProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    MarkerGroup(props: PartProps) {
+    MarkerGroup(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getMarkerGroupProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "markerGroup" }, rest)}
+          {...api().getMarkerGroupProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Marker(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getMarkerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Marker<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.MarkerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "marker" }, rest)}
+          {...api().getMarkerProps({ value: local.value })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    DraggingIndicator(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDraggingIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    DraggingIndicator<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.DraggingIndicatorProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "draggingIndicator" }, rest)}
+          {...api().getDraggingIndicatorProps({ index: local.index })}
+          {...rest}
         >
           {local.children}
         </Dynamic>

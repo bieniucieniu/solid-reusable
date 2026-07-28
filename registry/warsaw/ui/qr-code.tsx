@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/qr-code"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateQrCodeOptions = Record<string, unknown>
+export type CreateQrCodeOptions = Omit<zag.Props, "id">
 
 /**
  * Zag qr-code compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateQrCodeOptions = Record<string, unknown>
  * ```tsx
  * import { createQrCode } from "@components/ui/qr-code"
  *
- * const qrCode = createQrCode({ openDelay: 200 })
+ * const qrCode = createQrCode({})
  * return (
  *   <qrCode.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateQrCodeOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createQrCode(options: CreateQrCodeOptions = {}) {
+export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,65 +36,67 @@ export function createQrCode(options: CreateQrCodeOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Frame(props: PartProps) {
+    Frame(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getFrameProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "frame" }, rest)}
+          {...api().getFrameProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Pattern(props: PartProps) {
+    Pattern(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getPatternProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "pattern" }, rest)}
+          {...api().getPatternProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Overlay(props: PartProps) {
+    Overlay(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getOverlayProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "overlay" }, rest)}
+          {...api().getOverlayProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    DownloadTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDownloadTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    DownloadTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.DownloadTriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","mimeType","quality","fileName"] as ("as" | "children" | "mimeType" | "quality" | "fileName")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "downloadTrigger" }, rest)}
+          {...api().getDownloadTriggerProps({ mimeType: local.mimeType, quality: local.quality, fileName: local.fileName })}
+          {...rest}
         >
           {local.children}
         </Dynamic>

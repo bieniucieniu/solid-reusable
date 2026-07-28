@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/accordion"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateAccordionOptions = Record<string, unknown>
+export type CreateAccordionOptions = Omit<zag.Props, "id">
 
 /**
  * Zag accordion compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateAccordionOptions = Record<string, unknown>
  * ```tsx
  * import { createAccordion } from "@components/ui/accordion"
  *
- * const accordion = createAccordion({ openDelay: 200 })
+ * const accordion = createAccordion({})
  * return (
  *   <accordion.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateAccordionOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createAccordion(options: CreateAccordionOptions = {}) {
+export function createAccordion(options: CreateAccordionOptions = {} as CreateAccordionOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,65 +36,73 @@ export function createAccordion(options: CreateAccordionOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Item(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Item<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "item" }, rest)}
+          {...api().getItemProps({ value: local.value, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemTrigger" }, rest)}
+          {...api().getItemTriggerProps({ value: local.value, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemContent(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemContentProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemContent<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemContent" }, rest)}
+          {...api().getItemContentProps({ value: local.value, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemIndicator(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemIndicator<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemIndicator" }, rest)}
+          {...api().getItemIndicatorProps({ value: local.value, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>

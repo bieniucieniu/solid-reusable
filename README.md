@@ -8,7 +8,7 @@ SolidJS **1.9** component system (prep for **2.0**). Headless via **Zag.js** (pl
 |---|---|
 | `@solid-reusable/core` | `cn`, shared types |
 | `@solid-reusable/provider` | Headless provider interface |
-| `@solid-reusable/provider-zag` | Zag `createMachineCompound` |
+| `@solid-reusable/provider-zag` | Zag provider meta (pluggable) |
 | `@solid-reusable/ui` | Public comps (re-exports `@/registry/warsaw`) |
 | `registry/warsaw` | Style source (`@/registry/warsaw/...`) |
 | `apps/playground` | Vite demos + serves `/r/*.json` |

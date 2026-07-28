@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/toggle"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateToggleOptions = Record<string, unknown>
+export type CreateToggleOptions = Omit<zag.Props, "id">
 
 /**
  * Zag toggle compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateToggleOptions = Record<string, unknown>
  * ```tsx
  * import { createToggle } from "@components/ui/toggle"
  *
- * const toggle = createToggle({ openDelay: 200 })
+ * const toggle = createToggle({})
  * return (
  *   <toggle.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateToggleOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createToggle(options: CreateToggleOptions = {}) {
+export function createToggle(options: CreateToggleOptions = {} as CreateToggleOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,26 +36,26 @@ export function createToggle(options: CreateToggleOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Indicator(props: PartProps) {
+    Indicator(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "indicator" }, rest)}
+          {...api().getIndicatorProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

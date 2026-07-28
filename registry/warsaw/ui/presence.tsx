@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/presence"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreatePresenceOptions = Record<string, unknown>
+export type CreatePresenceOptions = Omit<zag.Props, "id">
 
 /**
  * Zag presence compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreatePresenceOptions = Record<string, unknown>
  * ```tsx
  * import { createPresence } from "@components/ui/presence"
  *
- * const presence = createPresence({ openDelay: 200 })
+ * const presence = createPresence({})
  * return (
  *   <presence.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreatePresenceOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createPresence(options: CreatePresenceOptions = {}) {
+export function createPresence(options: CreatePresenceOptions = {} as CreatePresenceOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,13 +36,13 @@ export function createPresence(options: CreatePresenceOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

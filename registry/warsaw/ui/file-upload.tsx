@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/file-upload"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateFileUploadOptions = Record<string, unknown>
+export type CreateFileUploadOptions = Omit<zag.Props, "id">
 
 /**
  * Zag file-upload compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateFileUploadOptions = Record<string, unknown>
  * ```tsx
  * import { createFileUpload } from "@components/ui/file-upload"
  *
- * const fileUpload = createFileUpload({ openDelay: 200 })
+ * const fileUpload = createFileUpload({})
  * return (
  *   <fileUpload.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateFileUploadOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createFileUpload(options: CreateFileUploadOptions = {}) {
+export function createFileUpload(options: CreateFileUploadOptions = {} as CreateFileUploadOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,156 +36,172 @@ export function createFileUpload(options: CreateFileUploadOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Dropzone(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDropzoneProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Dropzone<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.DropzoneProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","disableClick"] as ("as" | "children" | "disableClick")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "dropzone" }, rest)}
+          {...api().getDropzoneProps({ disableClick: local.disableClick })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Item(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Item<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "item" }, rest)}
+          {...api().getItemProps({ type: local.type, file: local.file })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemDeleteTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemDeleteTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemDeleteTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemDeleteTrigger" }, rest)}
+          {...api().getItemDeleteTriggerProps({ type: local.type, file: local.file })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemGroup(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemGroupProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemGroup<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemGroupProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type"] as ("as" | "children" | "type")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemGroup" }, rest)}
+          {...api().getItemGroupProps({ type: local.type })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemName(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemNameProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemName<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemName" }, rest)}
+          {...api().getItemNameProps({ type: local.type, file: local.file })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemPreview(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemPreviewProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemPreview<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemPreview" }, rest)}
+          {...api().getItemPreviewProps({ type: local.type, file: local.file })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemPreviewImage(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemPreviewImageProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemPreviewImage<Comp extends ValidComponent = "img">(
+      props: DynamicAsProps<Comp, zag.ItemPreviewImageProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file","url"] as ("as" | "children" | "type" | "file" | "url")[])
       return (
         <Dynamic
           component={local.as ?? "img"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemPreviewImage" }, rest)}
+          {...api().getItemPreviewImageProps({ type: local.type, file: local.file, url: local.url })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemSizeText(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemSizeTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemSizeText<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ItemProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemSizeText" }, rest)}
+          {...api().getItemSizeTextProps({ type: local.type, file: local.file })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
+    Label(props: DynamicAsProps<"label">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Trigger(props: PartProps) {
+    Trigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+          {...api().getTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ClearTrigger(props: PartProps) {
+    ClearTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getClearTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "clearTrigger" }, rest)}
+          {...api().getClearTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

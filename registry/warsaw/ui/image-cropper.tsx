@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/image-cropper"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateImageCropperOptions = Record<string, unknown>
+export type CreateImageCropperOptions = Omit<zag.Props, "id">
 
 /**
  * Zag image-cropper compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateImageCropperOptions = Record<string, unknown>
  * ```tsx
  * import { createImageCropper } from "@components/ui/image-cropper"
  *
- * const imageCropper = createImageCropper({ openDelay: 200 })
+ * const imageCropper = createImageCropper({})
  * return (
  *   <imageCropper.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateImageCropperOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createImageCropper(options: CreateImageCropperOptions = {}) {
+export function createImageCropper(options: CreateImageCropperOptions = {} as CreateImageCropperOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,78 +36,82 @@ export function createImageCropper(options: CreateImageCropperOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Viewport(props: PartProps) {
+    Viewport(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getViewportProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "viewport" }, rest)}
+          {...api().getViewportProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Image(props: PartProps) {
+    Image(props: DynamicAsProps<"img">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getImageProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "img"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "image" }, rest)}
+          {...api().getImageProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Selection(props: PartProps) {
+    Selection(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSelectionProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "selection" }, rest)}
+          {...api().getSelectionProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Handle(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getHandleProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Handle<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.HandleProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","position"] as ("as" | "children" | "position")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "handle" }, rest)}
+          {...api().getHandleProps({ position: local.position })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Grid(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getGridProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Grid<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.GridProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","axis"] as ("as" | "children" | "axis")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "grid" }, rest)}
+          {...api().getGridProps({ axis: local.axis })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
