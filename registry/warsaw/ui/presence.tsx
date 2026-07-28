@@ -1,7 +1,7 @@
 import * as zag from "@zag-js/presence"
 import { normalizeProps, useMachine } from "@zag-js/solid"
-import { createMemo, createUniqueId } from "solid-js"
-import type { ZagMachineProps } from "../lib/dynamic-as"
+import { createMemo } from "solid-js"
+import type { ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
 
 /**
  * Zag presence compound. Call inside a Solid component setup (uses useMachine).

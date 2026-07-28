@@ -16,4 +16,8 @@ export type DynamicAsProps<C extends ValidComponent, P = {}> = Omit<
 export type Override<T, U> = Omit<T, keyof U> & U
 
 export type MaybeAccessor<T> = T | (() => T)
-export type ZagMachineProps<P> = P extends Machine<infer M> ? MaybeAccessor<M["props"]> : never
+
+/** Matches `@zag-js/solid` `useMachine` user props. */
+export type ZagMachineProps<P> = P extends Machine<infer M>
+  ? MaybeAccessor<Partial<M["props"]>>
+  : never

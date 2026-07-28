@@ -4,12 +4,18 @@
   "type": "registry:ui",
   "title": "Avatar",
   "description": "Zag compound createAvatar() — https://zagjs.com/components/solid/avatar",
-  "dependencies": ["@zag-js/avatar", "@zag-js/solid", "solid-js"],
-  "registryDependencies": ["dynamic-as"],
+  "dependencies": [
+    "@zag-js/avatar",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "dynamic-as"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/avatar.tsx",
-      "content": "import * as zag from \"@zag-js/avatar\";\nimport { normalizeProps, useMachine } from \"@zag-js/solid\";\nimport { createMemo, createUniqueId, splitProps } from \"solid-js\";\nimport { Dynamic } from \"solid-js/web\";\nimport type { DynamicAsProps } from \"@/registry/warsaw/lib/dynamic-as\";\n\n/**\n * Zag avatar compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/avatar\n *\n * ```tsx\n * import { createAvatar } from \"@components/ui/avatar\"\n *\n * const avatar = createAvatar({})\n * return (\n *   <avatar.Root>\n *     ...\n *   </avatar.Root>\n * )\n * ```\n */\nexport function createAvatar(options: Partial<zag.Props> = {}) {\n\toptions.id ??= createUniqueId();\n\tconst service = useMachine(zag.machine, options);\n\tconst api = createMemo(() => zag.connect(service, normalizeProps));\n\n\treturn {\n\t\tRoot(props: DynamicAsProps<\"div\", {}>) {\n\t\t\tconst [local, rest] = splitProps(props, [\"as\"]);\n\t\t\treturn (\n\t\t\t\t<Dynamic\n\t\t\t\t\tcomponent={local.as ?? \"div\"}\n\t\t\t\t\t{...api().getRootProps()}\n\t\t\t\t\t{...rest}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\t\tImage(props: DynamicAsProps<\"img\", {}>) {\n\t\t\tconst [local, rest] = splitProps(props, [\"as\"]);\n\t\t\treturn (\n\t\t\t\t<Dynamic\n\t\t\t\t\tcomponent={local.as ?? \"img\"}\n\t\t\t\t\t{...api().getImageProps()}\n\t\t\t\t\t{...rest}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\t\tFallback(props: DynamicAsProps<\"span\", {}>) {\n\t\t\tconst [local, rest] = splitProps(props, [\"as\"]);\n\t\t\treturn (\n\t\t\t\t<Dynamic\n\t\t\t\t\tcomponent={local.as ?? \"span\"}\n\t\t\t\t\t{...api().getFallbackProps()}\n\t\t\t\t\t{...rest}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\n\t\t/** Connected Zag API (accessor). */\n\t\tget api() {\n\t\t\treturn api();\n\t\t},\n\t};\n}\n\nexport type AvatarCompound = ReturnType<typeof createAvatar>;\n",
+      "content": "import * as zag from \"@zag-js/avatar\"\nimport { normalizeProps, useMachine } from \"@zag-js/solid\"\nimport { createMemo, splitProps } from \"solid-js\"\nimport { Dynamic } from \"solid-js/web\"\nimport type { DynamicAsProps, ZagMachineProps } from \"@/registry/warsaw/lib/dynamic-as\"\n\n/**\n * Zag avatar compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/avatar\n *\n * ```tsx\n * import { createAvatar } from \"@components/ui/avatar\"\n *\n * const avatar = createAvatar({})\n * return (\n *   <avatar.Root>\n *     ...\n *   </avatar.Root>\n * )\n * ```\n */\nexport function createAvatar(options?: ZagMachineProps<zag.Machine>) {\n  const service = useMachine(zag.machine, options)\n  const api = createMemo(() => zag.connect(service, normalizeProps))\n\n  return {\n    Root(props: DynamicAsProps<\"div\", {}>) {\n      const [local, rest] = splitProps(props, [\"as\"])\n      return <Dynamic component={local.as ?? \"div\"} {...api().getRootProps()} {...rest} />\n    },\n    Image(props: DynamicAsProps<\"img\", {}>) {\n      const [local, rest] = splitProps(props, [\"as\"])\n      return <Dynamic component={local.as ?? \"img\"} {...api().getImageProps()} {...rest} />\n    },\n    Fallback(props: DynamicAsProps<\"span\", {}>) {\n      const [local, rest] = splitProps(props, [\"as\"])\n      return <Dynamic component={local.as ?? \"span\"} {...api().getFallbackProps()} {...rest} />\n    },\n\n    /** Connected Zag API (accessor). */\n    get api() {\n      return api()\n    },\n  }\n}\n\nexport type AvatarCompound = ReturnType<typeof createAvatar>\n",
       "type": "registry:ui",
       "target": "components/ui/avatar.tsx"
     }

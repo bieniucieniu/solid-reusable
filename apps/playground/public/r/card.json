@@ -4,12 +4,16 @@
   "type": "registry:ui",
   "title": "Card",
   "description": "Presentational card primitives (no Zag).",
-  "dependencies": ["solid-js"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/card.tsx",
-      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\n/** Presentational card primitives — no Zag, no createX. */\nexport function Card(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return (\n    <div data-scope=\"card\" data-part=\"root\" {...props} class={cn(props.class)} />\n  )\n}\n\nexport function CardHeader(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return (\n    <div data-scope=\"card\" data-part=\"header\" {...props} class={cn(props.class)} />\n  )\n}\n\nexport function CardTitle(props: ParentProps<JSX.HTMLAttributes<HTMLHeadingElement>>) {\n  return (\n    <h3 data-scope=\"card\" data-part=\"title\" {...props} class={cn(props.class)} />\n  )\n}\n\nexport function CardDescription(\n  props: ParentProps<JSX.HTMLAttributes<HTMLParagraphElement>>,\n) {\n  return (\n    <p data-scope=\"card\" data-part=\"description\" {...props} class={cn(props.class)} />\n  )\n}\n\nexport function CardContent(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return (\n    <div data-scope=\"card\" data-part=\"content\" {...props} class={cn(props.class)} />\n  )\n}\n\nexport function CardFooter(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return (\n    <div data-scope=\"card\" data-part=\"footer\" {...props} class={cn(props.class)} />\n  )\n}\n",
+      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\n/** Presentational card primitives — no Zag, no createX. */\nexport function Card(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return <div data-scope=\"card\" data-part=\"root\" {...props} class={cn(props.class)} />\n}\n\nexport function CardHeader(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return <div data-scope=\"card\" data-part=\"header\" {...props} class={cn(props.class)} />\n}\n\nexport function CardTitle(props: ParentProps<JSX.HTMLAttributes<HTMLHeadingElement>>) {\n  return <h3 data-scope=\"card\" data-part=\"title\" {...props} class={cn(props.class)} />\n}\n\nexport function CardDescription(props: ParentProps<JSX.HTMLAttributes<HTMLParagraphElement>>) {\n  return <p data-scope=\"card\" data-part=\"description\" {...props} class={cn(props.class)} />\n}\n\nexport function CardContent(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return <div data-scope=\"card\" data-part=\"content\" {...props} class={cn(props.class)} />\n}\n\nexport function CardFooter(props: ParentProps<JSX.HTMLAttributes<HTMLDivElement>>) {\n  return <div data-scope=\"card\" data-part=\"footer\" {...props} class={cn(props.class)} />\n}\n",
       "type": "registry:ui",
       "target": "components/ui/card.tsx"
     }

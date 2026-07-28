@@ -19,7 +19,9 @@
       "name": "dynamic-as",
       "type": "registry:lib",
       "description": "DynamicAsProps helper for polymorphic Zag parts",
-      "dependencies": ["solid-js"],
+      "dependencies": [
+        "solid-js"
+      ],
       "files": [
         {
           "path": "registry/warsaw/lib/dynamic-as.ts",
@@ -33,8 +35,14 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Zag compound createAccordion() — https://zagjs.com/components/solid/accordion",
-      "dependencies": ["@zag-js/accordion", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/accordion",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/accordion.tsx",
@@ -48,8 +56,14 @@
       "type": "registry:ui",
       "title": "Angle Slider",
       "description": "Zag compound createAngleSlider() — https://zagjs.com/components/solid/angle-slider",
-      "dependencies": ["@zag-js/angle-slider", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/angle-slider",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/angle-slider.tsx",
@@ -63,8 +77,12 @@
       "type": "registry:ui",
       "title": "Aspect Ratio",
       "description": "Presentational aspect-ratio (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/aspect-ratio.tsx",
@@ -78,8 +96,14 @@
       "type": "registry:ui",
       "title": "Async List",
       "description": "Zag compound createAsyncList() — https://zagjs.com/components/solid/async-list",
-      "dependencies": ["@zag-js/async-list", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/async-list",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/async-list.tsx",
@@ -93,8 +117,14 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "Zag compound createAvatar() — https://zagjs.com/components/solid/avatar",
-      "dependencies": ["@zag-js/avatar", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/avatar",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/avatar.tsx",
@@ -108,8 +138,12 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Presentational badge (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/badge.tsx",
@@ -123,8 +157,12 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Presentational button (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/button.tsx",
@@ -138,8 +176,12 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Presentational card primitives (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/card.tsx",
@@ -153,8 +195,14 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Zag compound createCarousel() — https://zagjs.com/components/solid/carousel",
-      "dependencies": ["@zag-js/carousel", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/carousel",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/carousel.tsx",
@@ -168,8 +216,14 @@
       "type": "registry:ui",
       "title": "Cascade Select",
       "description": "Zag compound createCascadeSelect() — https://zagjs.com/components/solid/cascade-select",
-      "dependencies": ["@zag-js/cascade-select", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/cascade-select",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/cascade-select.tsx",
@@ -183,8 +237,14 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Zag compound createCheckbox() — https://zagjs.com/components/solid/checkbox",
-      "dependencies": ["@zag-js/checkbox", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/checkbox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/checkbox.tsx",
@@ -198,8 +258,14 @@
       "type": "registry:ui",
       "title": "Clipboard",
       "description": "Zag compound createClipboard() — https://zagjs.com/components/solid/clipboard",
-      "dependencies": ["@zag-js/clipboard", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/clipboard",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/clipboard.tsx",
@@ -213,8 +279,14 @@
       "type": "registry:ui",
       "title": "Collapsible",
       "description": "Zag compound createCollapsible() — https://zagjs.com/components/solid/collapsible",
-      "dependencies": ["@zag-js/collapsible", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/collapsible",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/collapsible.tsx",
@@ -228,8 +300,14 @@
       "type": "registry:ui",
       "title": "Color Picker",
       "description": "Zag compound createColorPicker() — https://zagjs.com/components/solid/color-picker",
-      "dependencies": ["@zag-js/color-picker", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/color-picker",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/color-picker.tsx",
@@ -243,8 +321,14 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Zag compound createCombobox() — https://zagjs.com/components/solid/combobox",
-      "dependencies": ["@zag-js/combobox", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/combobox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/combobox.tsx",
@@ -258,8 +342,14 @@
       "type": "registry:ui",
       "title": "Date Input",
       "description": "Zag compound createDateInput() — https://zagjs.com/components/solid/date-input",
-      "dependencies": ["@zag-js/date-input", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/date-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/date-input.tsx",
@@ -273,8 +363,14 @@
       "type": "registry:ui",
       "title": "Date Picker",
       "description": "Zag compound createDatePicker() — https://zagjs.com/components/solid/date-picker",
-      "dependencies": ["@zag-js/date-picker", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/date-picker",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/date-picker.tsx",
@@ -288,8 +384,14 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Zag compound createDialog() — https://zagjs.com/components/solid/dialog",
-      "dependencies": ["@zag-js/dialog", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/dialog",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/dialog.tsx",
@@ -303,8 +405,14 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Zag compound createDrawer() — https://zagjs.com/components/solid/drawer",
-      "dependencies": ["@zag-js/drawer", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/drawer",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/drawer.tsx",
@@ -318,8 +426,14 @@
       "type": "registry:ui",
       "title": "Editable",
       "description": "Zag compound createEditable() — https://zagjs.com/components/solid/editable",
-      "dependencies": ["@zag-js/editable", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/editable",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/editable.tsx",
@@ -333,8 +447,14 @@
       "type": "registry:ui",
       "title": "File Upload",
       "description": "Zag compound createFileUpload() — https://zagjs.com/components/solid/file-upload",
-      "dependencies": ["@zag-js/file-upload", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/file-upload",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/file-upload.tsx",
@@ -348,8 +468,14 @@
       "type": "registry:ui",
       "title": "Floating Panel",
       "description": "Zag compound createFloatingPanel() — https://zagjs.com/components/solid/floating-panel",
-      "dependencies": ["@zag-js/floating-panel", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/floating-panel",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/floating-panel.tsx",
@@ -363,8 +489,14 @@
       "type": "registry:ui",
       "title": "Hover Card",
       "description": "Zag compound createHoverCard() — https://zagjs.com/components/solid/hover-card",
-      "dependencies": ["@zag-js/hover-card", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/hover-card",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/hover-card.tsx",
@@ -378,8 +510,14 @@
       "type": "registry:ui",
       "title": "Image Cropper",
       "description": "Zag compound createImageCropper() — https://zagjs.com/components/solid/image-cropper",
-      "dependencies": ["@zag-js/image-cropper", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/image-cropper",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/image-cropper.tsx",
@@ -393,8 +531,12 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Presentational kbd (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/kbd.tsx",
@@ -408,8 +550,12 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Presentational label (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/label.tsx",
@@ -423,8 +569,14 @@
       "type": "registry:ui",
       "title": "Listbox",
       "description": "Zag compound createListbox() — https://zagjs.com/components/solid/listbox",
-      "dependencies": ["@zag-js/listbox", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/listbox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/listbox.tsx",
@@ -438,8 +590,14 @@
       "type": "registry:ui",
       "title": "Marquee",
       "description": "Zag compound createMarquee() — https://zagjs.com/components/solid/marquee",
-      "dependencies": ["@zag-js/marquee", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/marquee",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/marquee.tsx",
@@ -453,8 +611,14 @@
       "type": "registry:ui",
       "title": "Menu",
       "description": "Zag compound createMenu() — https://zagjs.com/components/solid/menu",
-      "dependencies": ["@zag-js/menu", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/menu",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/menu.tsx",
@@ -468,8 +632,14 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "Zag compound createNavigationMenu() — https://zagjs.com/components/solid/navigation-menu",
-      "dependencies": ["@zag-js/navigation-menu", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/navigation-menu",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/navigation-menu.tsx",
@@ -483,8 +653,14 @@
       "type": "registry:ui",
       "title": "Number Input",
       "description": "Zag compound createNumberInput() — https://zagjs.com/components/solid/number-input",
-      "dependencies": ["@zag-js/number-input", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/number-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/number-input.tsx",
@@ -498,8 +674,14 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Zag compound createPagination() — https://zagjs.com/components/solid/pagination",
-      "dependencies": ["@zag-js/pagination", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/pagination",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/pagination.tsx",
@@ -513,8 +695,14 @@
       "type": "registry:ui",
       "title": "Password Input",
       "description": "Zag compound createPasswordInput() — https://zagjs.com/components/solid/password-input",
-      "dependencies": ["@zag-js/password-input", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/password-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/password-input.tsx",
@@ -528,8 +716,14 @@
       "type": "registry:ui",
       "title": "Pin Input",
       "description": "Zag compound createPinInput() — https://zagjs.com/components/solid/pin-input",
-      "dependencies": ["@zag-js/pin-input", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/pin-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/pin-input.tsx",
@@ -543,8 +737,14 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Zag compound createPopover() — https://zagjs.com/components/solid/popover",
-      "dependencies": ["@zag-js/popover", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/popover",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/popover.tsx",
@@ -558,8 +758,14 @@
       "type": "registry:ui",
       "title": "Presence",
       "description": "Zag compound createPresence() — https://zagjs.com/components/solid/presence",
-      "dependencies": ["@zag-js/presence", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/presence",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/presence.tsx",
@@ -573,8 +779,14 @@
       "type": "registry:ui",
       "title": "Progress",
       "description": "Zag compound createProgress() — https://zagjs.com/components/solid/progress",
-      "dependencies": ["@zag-js/progress", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/progress",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/progress.tsx",
@@ -588,8 +800,14 @@
       "type": "registry:ui",
       "title": "Qr Code",
       "description": "Zag compound createQrCode() — https://zagjs.com/components/solid/qr-code",
-      "dependencies": ["@zag-js/qr-code", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/qr-code",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/qr-code.tsx",
@@ -603,8 +821,14 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "Zag compound createRadioGroup() — https://zagjs.com/components/solid/radio-group",
-      "dependencies": ["@zag-js/radio-group", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/radio-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/radio-group.tsx",
@@ -618,8 +842,14 @@
       "type": "registry:ui",
       "title": "Rating Group",
       "description": "Zag compound createRatingGroup() — https://zagjs.com/components/solid/rating-group",
-      "dependencies": ["@zag-js/rating-group", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/rating-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/rating-group.tsx",
@@ -633,8 +863,14 @@
       "type": "registry:ui",
       "title": "Scroll Area",
       "description": "Zag compound createScrollArea() — https://zagjs.com/components/solid/scroll-area",
-      "dependencies": ["@zag-js/scroll-area", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/scroll-area",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/scroll-area.tsx",
@@ -648,8 +884,14 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Zag compound createSelect() — https://zagjs.com/components/solid/select",
-      "dependencies": ["@zag-js/select", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/select",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/select.tsx",
@@ -663,8 +905,12 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Presentational separator (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/separator.tsx",
@@ -678,8 +924,14 @@
       "type": "registry:ui",
       "title": "Signature Pad",
       "description": "Zag compound createSignaturePad() — https://zagjs.com/components/solid/signature-pad",
-      "dependencies": ["@zag-js/signature-pad", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/signature-pad",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/signature-pad.tsx",
@@ -693,8 +945,12 @@
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "Presentational skeleton (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/skeleton.tsx",
@@ -708,8 +964,14 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "Zag compound createSlider() — https://zagjs.com/components/solid/slider",
-      "dependencies": ["@zag-js/slider", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/slider",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/slider.tsx",
@@ -723,8 +985,12 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "Presentational spinner (no Zag).",
-      "dependencies": ["solid-js"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/spinner.tsx",
@@ -738,8 +1004,14 @@
       "type": "registry:ui",
       "title": "Splitter",
       "description": "Zag compound createSplitter() — https://zagjs.com/components/solid/splitter",
-      "dependencies": ["@zag-js/splitter", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/splitter",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/splitter.tsx",
@@ -753,8 +1025,14 @@
       "type": "registry:ui",
       "title": "Steps",
       "description": "Zag compound createSteps() — https://zagjs.com/components/solid/steps",
-      "dependencies": ["@zag-js/steps", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/steps",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/steps.tsx",
@@ -768,8 +1046,14 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "Zag compound createSwitch() — https://zagjs.com/components/solid/switch",
-      "dependencies": ["@zag-js/switch", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/switch",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/switch.tsx",
@@ -783,8 +1067,14 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Zag compound createTabs() — https://zagjs.com/components/solid/tabs",
-      "dependencies": ["@zag-js/tabs", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/tabs",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/tabs.tsx",
@@ -798,8 +1088,14 @@
       "type": "registry:ui",
       "title": "Tags Input",
       "description": "Zag compound createTagsInput() — https://zagjs.com/components/solid/tags-input",
-      "dependencies": ["@zag-js/tags-input", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/tags-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/tags-input.tsx",
@@ -813,8 +1109,14 @@
       "type": "registry:ui",
       "title": "Timer",
       "description": "Zag compound createTimer() — https://zagjs.com/components/solid/timer",
-      "dependencies": ["@zag-js/timer", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/timer",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/timer.tsx",
@@ -828,8 +1130,14 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Zag compound createToast() — https://zagjs.com/components/solid/toast",
-      "dependencies": ["@zag-js/toast", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/toast",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/toast.tsx",
@@ -843,8 +1151,14 @@
       "type": "registry:ui",
       "title": "Toc",
       "description": "Zag compound createToc() — https://zagjs.com/components/solid/toc",
-      "dependencies": ["@zag-js/toc", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/toc",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/toc.tsx",
@@ -858,8 +1172,14 @@
       "type": "registry:ui",
       "title": "Toggle Group",
       "description": "Zag compound createToggleGroup() — https://zagjs.com/components/solid/toggle-group",
-      "dependencies": ["@zag-js/toggle-group", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/toggle-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/toggle-group.tsx",
@@ -873,8 +1193,14 @@
       "type": "registry:ui",
       "title": "Toggle",
       "description": "Zag compound createToggle() — https://zagjs.com/components/solid/toggle",
-      "dependencies": ["@zag-js/toggle", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/toggle",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/toggle.tsx",
@@ -888,8 +1214,14 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Zag compound createTooltip() — https://zagjs.com/components/solid/tooltip",
-      "dependencies": ["@zag-js/tooltip", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/tooltip",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/tooltip.tsx",
@@ -903,8 +1235,14 @@
       "type": "registry:ui",
       "title": "Tour",
       "description": "Zag compound createTour() — https://zagjs.com/components/solid/tour",
-      "dependencies": ["@zag-js/tour", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/tour",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/tour.tsx",
@@ -918,8 +1256,14 @@
       "type": "registry:ui",
       "title": "Tree View",
       "description": "Zag compound createTreeView() — https://zagjs.com/components/solid/tree-view",
-      "dependencies": ["@zag-js/tree-view", "@zag-js/solid", "solid-js"],
-      "registryDependencies": ["dynamic-as"],
+      "dependencies": [
+        "@zag-js/tree-view",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "dynamic-as"
+      ],
       "files": [
         {
           "path": "registry/warsaw/ui/tree-view.tsx",

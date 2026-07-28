@@ -4,12 +4,18 @@
   "type": "registry:ui",
   "title": "Toggle",
   "description": "Zag compound createToggle() — https://zagjs.com/components/solid/toggle",
-  "dependencies": ["@zag-js/toggle", "@zag-js/solid", "solid-js"],
-  "registryDependencies": ["dynamic-as"],
+  "dependencies": [
+    "@zag-js/toggle",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "dynamic-as"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/toggle.tsx",
-      "content": "import * as zag from \"@zag-js/toggle\";\nimport { normalizeProps, useMachine } from \"@zag-js/solid\";\nimport { createMemo, createUniqueId, splitProps } from \"solid-js\";\nimport { Dynamic } from \"solid-js/web\";\nimport type { DynamicAsProps } from \"@/registry/warsaw/lib/dynamic-as\";\n\n/**\n * Zag toggle compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/toggle\n *\n * ```tsx\n * import { createToggle } from \"@components/ui/toggle\"\n *\n * const toggle = createToggle({})\n * return (\n *   <toggle.Root>\n *     ...\n *   </toggle.Root>\n * )\n * ```\n */\nexport function createToggle(options: Partial<zag.Props> & { id?: string } = {}) {\n\toptions.id ??= createUniqueId();\n\tconst service = useMachine(zag.machine, options);\n\tconst api = createMemo(() => zag.connect(service, normalizeProps));\n\n\treturn {\n\t\tRoot(props: DynamicAsProps<\"div\", {}>) {\n\t\t\tconst [local, rest] = splitProps(props, [\"as\"]);\n\t\t\treturn (\n\t\t\t\t<Dynamic\n\t\t\t\t\tcomponent={local.as ?? \"div\"}\n\t\t\t\t\t{...api().getRootProps()}\n\t\t\t\t\t{...rest}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\t\tIndicator(props: DynamicAsProps<\"div\", {}>) {\n\t\t\tconst [local, rest] = splitProps(props, [\"as\"]);\n\t\t\treturn (\n\t\t\t\t<Dynamic\n\t\t\t\t\tcomponent={local.as ?? \"div\"}\n\t\t\t\t\t{...api().getIndicatorProps()}\n\t\t\t\t\t{...rest}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\n\t\t/** Connected Zag API (accessor). */\n\t\tget api() {\n\t\t\treturn api();\n\t\t},\n\t};\n}\n\nexport type ToggleCompound = ReturnType<typeof createToggle>;\n",
+      "content": "import { normalizeProps, useMachine } from \"@zag-js/solid\"\nimport * as zag from \"@zag-js/toggle\"\nimport { createMemo, splitProps } from \"solid-js\"\nimport { Dynamic } from \"solid-js/web\"\nimport type { DynamicAsProps, ZagMachineProps } from \"@/registry/warsaw/lib/dynamic-as\"\n\n/**\n * Zag toggle compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/toggle\n *\n * ```tsx\n * import { createToggle } from \"@components/ui/toggle\"\n *\n * const toggle = createToggle({})\n * return (\n *   <toggle.Root>\n *     ...\n *   </toggle.Root>\n * )\n * ```\n */\nexport function createToggle(options?: ZagMachineProps<zag.Machine>) {\n  const service = useMachine(zag.machine, options)\n  const api = createMemo(() => zag.connect(service, normalizeProps))\n\n  return {\n    Root(props: DynamicAsProps<\"div\", {}>) {\n      const [local, rest] = splitProps(props, [\"as\"])\n      return <Dynamic component={local.as ?? \"div\"} {...api().getRootProps()} {...rest} />\n    },\n    Indicator(props: DynamicAsProps<\"div\", {}>) {\n      const [local, rest] = splitProps(props, [\"as\"])\n      return <Dynamic component={local.as ?? \"div\"} {...api().getIndicatorProps()} {...rest} />\n    },\n\n    /** Connected Zag API (accessor). */\n    get api() {\n      return api()\n    },\n  }\n}\n\nexport type ToggleCompound = ReturnType<typeof createToggle>\n",
       "type": "registry:ui",
       "target": "components/ui/toggle.tsx"
     }

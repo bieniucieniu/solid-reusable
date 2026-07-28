@@ -4,12 +4,18 @@
   "type": "registry:ui",
   "title": "Presence",
   "description": "Zag compound createPresence() — https://zagjs.com/components/solid/presence",
-  "dependencies": ["@zag-js/presence", "@zag-js/solid", "solid-js"],
-  "registryDependencies": ["dynamic-as"],
+  "dependencies": [
+    "@zag-js/presence",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "dynamic-as"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/presence.tsx",
-      "content": "import * as zag from \"@zag-js/presence\";\nimport { normalizeProps, useMachine } from \"@zag-js/solid\";\nimport { createMemo, createUniqueId } from \"solid-js\";\n\n/**\n * Zag presence compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/presence\n *\n * ```tsx\n * import { createPresence } from \"@components/ui/presence\"\n *\n * const presence = createPresence({})\n * // use presence.api\n * ```\n */\nexport function createPresence(options: Partial<zag.Props> & { id?: string } = {}) {\n\toptions.id ??= createUniqueId();\n\tconst service = useMachine(zag.machine, options);\n\tconst api = createMemo(() => zag.connect(service, normalizeProps));\n\n\treturn {\n\t\t/** Connected Zag API (accessor). */\n\t\tget api() {\n\t\t\treturn api();\n\t\t},\n\t};\n}\n\nexport type PresenceCompound = ReturnType<typeof createPresence>;\n",
+      "content": "import * as zag from \"@zag-js/presence\"\nimport { normalizeProps, useMachine } from \"@zag-js/solid\"\nimport { createMemo } from \"solid-js\"\nimport type { ZagMachineProps } from \"@/registry/warsaw/lib/dynamic-as\"\n\n/**\n * Zag presence compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/presence\n *\n * ```tsx\n * import { createPresence } from \"@components/ui/presence\"\n *\n * const presence = createPresence({})\n * // use presence.api\n * ```\n */\nexport function createPresence(options?: ZagMachineProps<zag.Machine>) {\n  const service = useMachine(zag.machine, options)\n  const api = createMemo(() => zag.connect(service, normalizeProps))\n\n  return {\n    /** Connected Zag API (accessor). */\n    get api() {\n      return api()\n    },\n  }\n}\n\nexport type PresenceCompound = ReturnType<typeof createPresence>\n",
       "type": "registry:ui",
       "target": "components/ui/presence.tsx"
     }

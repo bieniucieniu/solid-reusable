@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/warsaw/lib/utils.ts",
-      "content": "import type { JSX } from \"solid-js\"\n\n/** Merge class strings — styling layer plugs into this later. */\nexport function cn(...inputs: Array<string | false | null | undefined>): string {\n  return inputs.filter(Boolean).join(\" \")\n}\n\nexport type PolymorphicProps<E extends keyof JSX.IntrinsicElements> =\n  JSX.IntrinsicElements[E] & {\n    class?: string\n  }\n\n/**\n * Solid 2.0 prep notes (do not remove):\n * - Prefer callback refs / mergeRefs over string refs\n * - Avoid deprecated JSX namespaces that 2.0 removes\n * - Keep peer range `^1.9.0 || ^2.0.0` when 2.0 ships\n */\nexport const SOLID_VERSION_TARGET = \"1.9\" as const\n",
+      "content": "import type { JSX } from \"solid-js\"\n\n/** Merge class strings — styling layer plugs into this later. */\nexport function cn(...inputs: Array<string | false | null | undefined>): string {\n  return inputs.filter(Boolean).join(\" \")\n}\n\nexport type PolymorphicProps<E extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[E] & {\n  class?: string\n}\n\n/**\n * Solid 2.0 prep notes (do not remove):\n * - Prefer callback refs / mergeRefs over string refs\n * - Avoid deprecated JSX namespaces that 2.0 removes\n * - Keep peer range `^1.9.0 || ^2.0.0` when 2.0 ships\n */\nexport const SOLID_VERSION_TARGET = \"1.9\" as const\n",
       "type": "registry:lib",
       "target": "lib/utils.ts"
     }

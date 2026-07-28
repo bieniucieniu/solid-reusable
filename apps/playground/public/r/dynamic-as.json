@@ -4,12 +4,14 @@
   "type": "registry:lib",
   "title": "Dynamic As",
   "description": "DynamicAsProps helper for polymorphic Zag parts",
-  "dependencies": ["solid-js"],
+  "dependencies": [
+    "solid-js"
+  ],
   "registryDependencies": [],
   "files": [
     {
       "path": "registry/warsaw/lib/dynamic-as.ts",
-      "content": "import type { ComponentProps, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: optional DOM props + Zag part props + `as`.\n * Zag keys win over DOM keys when they overlap.\n */\nexport type DynamicAsProps<\n\tC extends ValidComponent,\n\tP = {},\n> = Omit<Partial<ComponentProps<C>>, keyof P | \"as\"> &\n\tP & {\n\t\tas?: C | undefined\n\t}\n",
+      "content": "import type { Machine } from \"@zag-js/core\"\nimport type { ComponentProps, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: optional DOM props + Zag part props + `as`.\n * Zag keys win over DOM keys when they overlap.\n */\nexport type DynamicAsProps<C extends ValidComponent, P = {}> = Omit<\n  Partial<ComponentProps<C>>,\n  keyof P | \"as\"\n> &\n  P & {\n    as?: C | undefined\n  }\n\nexport type Override<T, U> = Omit<T, keyof U> & U\n\nexport type MaybeAccessor<T> = T | (() => T)\n\n/** Matches `@zag-js/solid` `useMachine` user props. */\nexport type ZagMachineProps<P> = P extends Machine<infer M>\n  ? MaybeAccessor<Partial<M[\"props\"]>>\n  : never\n",
       "type": "registry:lib",
       "target": "registry/warsaw/lib/dynamic-as.ts"
     }
