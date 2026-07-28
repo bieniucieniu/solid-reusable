@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/scroll-area"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateScrollAreaOptions = Record<string, unknown>
+export type CreateScrollAreaOptions = Omit<zag.Props, "id">
 
 /**
  * Zag scroll-area compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateScrollAreaOptions = Record<string, unknown>
  * ```tsx
  * import { createScrollArea } from "@components/ui/scroll-area"
  *
- * const scrollArea = createScrollArea({ openDelay: 200 })
+ * const scrollArea = createScrollArea({})
  * return (
  *   <scrollArea.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateScrollAreaOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createScrollArea(options: CreateScrollAreaOptions = {}) {
+export function createScrollArea(options: CreateScrollAreaOptions = {} as CreateScrollAreaOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,78 +36,82 @@ export function createScrollArea(options: CreateScrollAreaOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Viewport(props: PartProps) {
+    Viewport(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getViewportProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "viewport" }, rest)}
+          {...api().getViewportProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getContentProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "content" }, rest)}
+          {...api().getContentProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Scrollbar(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getScrollbarProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Scrollbar<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ScrollbarProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","orientation"] as ("as" | "children" | "orientation")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "scrollbar" }, rest)}
+          {...api().getScrollbarProps({ orientation: local.orientation })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Thumb(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getThumbProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Thumb<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ThumbProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","orientation"] as ("as" | "children" | "orientation")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "thumb" }, rest)}
+          {...api().getThumbProps({ orientation: local.orientation })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Corner(props: PartProps) {
+    Corner(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getCornerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "corner" }, rest)}
+          {...api().getCornerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

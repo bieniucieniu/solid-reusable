@@ -131,6 +131,29 @@ items.push({
   files: utilsItem.files.map(({ path, type, target }) => ({ path, type, target })),
 })
 
+const dynamicAsItem = item({
+  name: "dynamic-as",
+  type: "registry:lib",
+  description: "DynamicAsProps helper for polymorphic Zag parts",
+  dependencies: ["solid-js"],
+  files: [
+    {
+      path: `registry/${STYLE}/lib/dynamic-as.ts`,
+      abs: join(libDir, "dynamic-as.ts"),
+      type: "registry:lib",
+      target: `registry/${STYLE}/lib/dynamic-as.ts`,
+    },
+  ],
+})
+writeFileSync(join(outDir, "dynamic-as.json"), JSON.stringify(dynamicAsItem, null, 2))
+items.push({
+  name: "dynamic-as",
+  type: "registry:lib",
+  description: dynamicAsItem.description,
+  dependencies: dynamicAsItem.dependencies,
+  files: dynamicAsItem.files.map(({ path, type, target }) => ({ path, type, target })),
+})
+
 for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
   const name = file.replace(/\.tsx$/, "")
   const abs = join(uiDir, file)
@@ -146,7 +169,7 @@ for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
       type: "registry:ui",
       description: `Zag compound create${pascal}() — https://zagjs.com/components/solid/${name}`,
       dependencies: [`@zag-js/${name}`, "@zag-js/solid", "solid-js"],
-      registryDependencies: [],
+      registryDependencies: ["dynamic-as"],
       files: [
         {
           path,

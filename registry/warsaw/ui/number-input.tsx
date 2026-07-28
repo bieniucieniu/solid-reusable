@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/number-input"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateNumberInputOptions = Record<string, unknown>
+export type CreateNumberInputOptions = Omit<zag.Props, "id">
 
 /**
  * Zag number-input compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateNumberInputOptions = Record<string, unknown>
  * ```tsx
  * import { createNumberInput } from "@components/ui/number-input"
  *
- * const numberInput = createNumberInput({ openDelay: 200 })
+ * const numberInput = createNumberInput({})
  * return (
  *   <numberInput.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateNumberInputOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createNumberInput(options: CreateNumberInputOptions = {}) {
+export function createNumberInput(options: CreateNumberInputOptions = {} as CreateNumberInputOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,104 +36,104 @@ export function createNumberInput(options: CreateNumberInputOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
+    Label(props: DynamicAsProps<"label">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Input(props: PartProps) {
+    Input(props: DynamicAsProps<"input">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getInputProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "input"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "input" }, rest)}
+          {...api().getInputProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Control(props: PartProps) {
+    Control(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "control" }, rest)}
+          {...api().getControlProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ValueText(props: PartProps) {
+    ValueText(props: DynamicAsProps<"span">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getValueTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "span"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "valueText" }, rest)}
+          {...api().getValueTextProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    IncrementTrigger(props: PartProps) {
+    IncrementTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getIncrementTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "incrementTrigger" }, rest)}
+          {...api().getIncrementTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    DecrementTrigger(props: PartProps) {
+    DecrementTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDecrementTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "decrementTrigger" }, rest)}
+          {...api().getDecrementTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Scrubber(props: PartProps) {
+    Scrubber(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getScrubberProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "scrubber" }, rest)}
+          {...api().getScrubberProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

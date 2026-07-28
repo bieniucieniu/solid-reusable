@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/dialog"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateDialogOptions = Record<string, unknown>
+export type CreateDialogOptions = Omit<zag.Props, "id">
 
 /**
  * Zag dialog compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateDialogOptions = Record<string, unknown>
  * ```tsx
  * import { createDialog } from "@components/ui/dialog"
  *
- * const dialog = createDialog({ openDelay: 200 })
+ * const dialog = createDialog({})
  * return (
  *   <dialog.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateDialogOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createDialog(options: CreateDialogOptions = {}) {
+export function createDialog(options: CreateDialogOptions = {} as CreateDialogOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,7 +36,7 @@ export function createDialog(options: CreateDialogOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="dialog" data-part="root" {...rest}>
@@ -50,26 +45,29 @@ export function createDialog(options: CreateDialogOptions = {}) {
       )
     },
 
-    Trigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Trigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.TriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+          {...api().getTriggerProps({ value: local.value })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Backdrop(props: PartProps) {
+    Backdrop(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <Dynamic
             component={local.as ?? "div"}
-            {...mergeProps(api().getBackdropProps(), rest)}
+            {...api().getBackdropProps()}
+            {...rest}
           >
             {local.children}
           </Dynamic>
@@ -77,14 +75,15 @@ export function createDialog(options: CreateDialogOptions = {}) {
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().getContentProps(), rest)}
+              {...api().getContentProps()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -93,39 +92,39 @@ export function createDialog(options: CreateDialogOptions = {}) {
       )
     },
 
-    Title(props: PartProps) {
+    Title(props: DynamicAsProps<"h2">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTitleProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "h2"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "title" }, rest)}
+          {...api().getTitleProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Description(props: PartProps) {
+    Description(props: DynamicAsProps<"p">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDescriptionProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "p"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "description" }, rest)}
+          {...api().getDescriptionProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    CloseTrigger(props: PartProps) {
+    CloseTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getCloseTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "closeTrigger" }, rest)}
+          {...api().getCloseTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

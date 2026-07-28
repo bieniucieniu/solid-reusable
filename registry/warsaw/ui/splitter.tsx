@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/splitter"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateSplitterOptions = Record<string, unknown>
+export type CreateSplitterOptions = Omit<zag.Props, "id">
 
 /**
  * Zag splitter compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateSplitterOptions = Record<string, unknown>
  * ```tsx
  * import { createSplitter } from "@components/ui/splitter"
  *
- * const splitter = createSplitter({ openDelay: 200 })
+ * const splitter = createSplitter({})
  * return (
  *   <splitter.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateSplitterOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createSplitter(options: CreateSplitterOptions = {}) {
+export function createSplitter(options: CreateSplitterOptions = {} as CreateSplitterOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,52 +36,56 @@ export function createSplitter(options: CreateSplitterOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Panel(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getPanelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Panel<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.PanelProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "panel" }, rest)}
+          {...api().getPanelProps({ id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ResizeTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getResizeTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ResizeTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ResizeTriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","id","disabled"] as ("as" | "children" | "id" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "resizeTrigger" }, rest)}
+          {...api().getResizeTriggerProps({ id: local.id, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ResizeTriggerIndicator(props: PartProps) {
+    ResizeTriggerIndicator(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getResizeTriggerIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "resizeTriggerIndicator" }, rest)}
+          {...api().getResizeTriggerIndicatorProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

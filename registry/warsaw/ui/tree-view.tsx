@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/tree-view"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateTreeViewOptions = Record<string, unknown>
+export type CreateTreeViewOptions = Omit<zag.Props, "id">
 
 /**
  * Zag tree-view compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateTreeViewOptions = Record<string, unknown>
  * ```tsx
  * import { createTreeView } from "@components/ui/tree-view"
  *
- * const treeView = createTreeView({ openDelay: 200 })
+ * const treeView = createTreeView({})
  * return (
  *   <treeView.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateTreeViewOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createTreeView(options: CreateTreeViewOptions = {}) {
+export function createTreeView(options: CreateTreeViewOptions = {} as CreateTreeViewOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,195 +36,219 @@ export function createTreeView(options: CreateTreeViewOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Branch(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Branch<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branch" }, rest)}
+          {...api().getBranchProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchContent(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchContentProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchContent<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchContent" }, rest)}
+          {...api().getBranchContentProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchControl(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchControl<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchControl" }, rest)}
+          {...api().getBranchControlProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchIndentGuide(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchIndentGuideProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchIndentGuide<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchIndentGuide" }, rest)}
+          {...api().getBranchIndentGuideProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchIndicator(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchIndicator<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchIndicator" }, rest)}
+          {...api().getBranchIndicatorProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchText(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchText<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchText" }, rest)}
+          {...api().getBranchTextProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    BranchTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getBranchTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    BranchTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "branchTrigger" }, rest)}
+          {...api().getBranchTriggerProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Item(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Item<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "item" }, rest)}
+          {...api().getItemProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemIndicator(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemIndicator<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemIndicator" }, rest)}
+          {...api().getItemIndicatorProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ItemText(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getItemTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ItemText<Comp extends ValidComponent = "span">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "span"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "itemText" }, rest)}
+          {...api().getItemTextProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
+    Label(props: DynamicAsProps<"label">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    NodeCheckbox(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getNodeCheckboxProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    NodeCheckbox<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "nodeCheckbox" }, rest)}
+          {...api().getNodeCheckboxProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    NodeRenameInput(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getNodeRenameInputProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    NodeRenameInput<Comp extends ValidComponent = "input">(
+      props: DynamicAsProps<Comp, zag.NodeProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
       return (
         <Dynamic
           component={local.as ?? "input"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "nodeRenameInput" }, rest)}
+          {...api().getNodeRenameInputProps({ node: local.node, indexPath: local.indexPath })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Tree(props: PartProps) {
+    Tree(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTreeProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tree" }, rest)}
+          {...api().getTreeProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

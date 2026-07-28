@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/date-picker"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateDatePickerOptions = Record<string, unknown>
+export type CreateDatePickerOptions = Omit<zag.Props, "id">
 
 /**
  * Zag date-picker compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateDatePickerOptions = Record<string, unknown>
  * ```tsx
  * import { createDatePicker } from "@components/ui/date-picker"
  *
- * const datePicker = createDatePicker({ openDelay: 200 })
+ * const datePicker = createDatePicker({})
  * return (
  *   <datePicker.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateDatePickerOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createDatePicker(options: CreateDatePickerOptions = {}) {
+export function createDatePicker(options: CreateDatePickerOptions = {} as CreateDatePickerOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,27 +36,28 @@ export function createDatePicker(options: CreateDatePickerOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    ClearTrigger(props: PartProps) {
+    ClearTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getClearTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "clearTrigger" }, rest)}
+          {...api().getClearTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().getContentProps(), rest)}
+              {...api().getContentProps()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -70,273 +66,299 @@ export function createDatePicker(options: CreateDatePickerOptions = {}) {
       )
     },
 
-    Control(props: PartProps) {
+    Control(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "control" }, rest)}
+          {...api().getControlProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Input(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getInputProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Input<Comp extends ValidComponent = "input">(
+      props: DynamicAsProps<Comp, zag.InputProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","index","fixOnBlur"] as ("as" | "children" | "index" | "fixOnBlur")[])
       return (
         <Dynamic
           component={local.as ?? "input"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "input" }, rest)}
+          {...api().getInputProps({ index: local.index, fixOnBlur: local.fixOnBlur })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Label<Comp extends ValidComponent = "label">(
+      props: DynamicAsProps<Comp, zag.LabelProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps({ index: local.index })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    MonthSelect(props: PartProps) {
+    MonthSelect(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getMonthSelectProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "monthSelect" }, rest)}
+          {...api().getMonthSelectProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    NextTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getNextTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    NextTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ViewProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "nextTrigger" }, rest)}
+          {...api().getNextTriggerProps({ view: local.view })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    PresetTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getPresetTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    PresetTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.PresetTriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "presetTrigger" }, rest)}
+          {...api().getPresetTriggerProps({ value: local.value })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    PrevTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getPrevTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    PrevTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ViewProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "prevTrigger" }, rest)}
+          {...api().getPrevTriggerProps({ view: local.view })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    RangeText(props: PartProps) {
+    RangeText(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRangeTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "rangeText" }, rest)}
+          {...api().getRangeTextProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Table(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Table<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TableProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "table" }, rest)}
+          {...api().getTableProps({ view: local.view, columns: local.columns, id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableBody(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableBodyProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    TableBody<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TableProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableBody" }, rest)}
+          {...api().getTableBodyProps({ view: local.view, columns: local.columns, id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableCell(props: PartProps) {
+    TableCell(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableCellProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableCell" }, rest)}
+          {...api().getTableCellProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableCellTrigger(props: PartProps) {
+    TableCellTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableCellTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableCellTrigger" }, rest)}
+          {...api().getTableCellTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableHead(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableHeadProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    TableHead<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TableProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableHead" }, rest)}
+          {...api().getTableHeadProps({ view: local.view, columns: local.columns, id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableHeader(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableHeaderProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    TableHeader<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TableProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableHeader" }, rest)}
+          {...api().getTableHeaderProps({ view: local.view, columns: local.columns, id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TableRow(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTableRowProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    TableRow<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TableProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "tableRow" }, rest)}
+          {...api().getTableRowProps({ view: local.view, columns: local.columns, id: local.id })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Trigger(props: PartProps) {
+    Trigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+          {...api().getTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    View(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getViewProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    View<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ViewProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "view" }, rest)}
+          {...api().getViewProps({ view: local.view })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ViewControl(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getViewControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ViewControl<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ViewProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "viewControl" }, rest)}
+          {...api().getViewControlProps({ view: local.view })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ViewTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getViewTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ViewTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.ViewProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "viewTrigger" }, rest)}
+          {...api().getViewTriggerProps({ view: local.view })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    YearSelect(props: PartProps) {
+    YearSelect(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getYearSelectProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "yearSelect" }, rest)}
+          {...api().getYearSelectProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
