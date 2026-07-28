@@ -1,0 +1,1287 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "solid-reusable",
+  "homepage": "https://github.com/solid-reusable/solid-reusable",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "cn helper",
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "zag-runtime",
+      "type": "registry:lib",
+      "description": "Zag compound factory + provider meta (pluggable headless runtime).",
+      "dependencies": [
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "files": [
+        {
+          "path": "lib/zag/meta.ts",
+          "type": "registry:lib",
+          "target": "lib/zag/meta.ts"
+        },
+        {
+          "path": "lib/zag/create-machine-compound.tsx",
+          "type": "registry:lib",
+          "target": "lib/zag/create-machine-compound.tsx"
+        },
+        {
+          "path": "lib/zag/provider-types.ts",
+          "type": "registry:lib",
+          "target": "lib/zag/provider-types.ts"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Presentational aspect-ratio (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Presentational badge (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Presentational button (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Presentational card primitives (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Presentational kbd (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/kbd.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Presentational label (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Presentational separator (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Presentational skeleton (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Presentational spinner (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Zag compound createAccordion() — https://zagjs.com/components/solid/accordion",
+      "dependencies": [
+        "@zag-js/accordion",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "angle-slider",
+      "type": "registry:ui",
+      "title": "Angle Slider",
+      "description": "Zag compound createAngleSlider() — https://zagjs.com/components/solid/angle-slider",
+      "dependencies": [
+        "@zag-js/angle-slider",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/angle-slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/angle-slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "async-list",
+      "type": "registry:ui",
+      "title": "Async List",
+      "description": "Zag compound createAsyncList() — https://zagjs.com/components/solid/async-list",
+      "dependencies": [
+        "@zag-js/async-list",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/async-list.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/async-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Zag compound createAvatar() — https://zagjs.com/components/solid/avatar",
+      "dependencies": [
+        "@zag-js/avatar",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Zag compound createCarousel() — https://zagjs.com/components/solid/carousel",
+      "dependencies": [
+        "@zag-js/carousel",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/carousel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/carousel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cascade-select",
+      "type": "registry:ui",
+      "title": "Cascade Select",
+      "description": "Zag compound createCascadeSelect() — https://zagjs.com/components/solid/cascade-select",
+      "dependencies": [
+        "@zag-js/cascade-select",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/cascade-select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/cascade-select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Zag compound createCheckbox() — https://zagjs.com/components/solid/checkbox",
+      "dependencies": [
+        "@zag-js/checkbox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "clipboard",
+      "type": "registry:ui",
+      "title": "Clipboard",
+      "description": "Zag compound createClipboard() — https://zagjs.com/components/solid/clipboard",
+      "dependencies": [
+        "@zag-js/clipboard",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/clipboard.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/clipboard.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Zag compound createCollapsible() — https://zagjs.com/components/solid/collapsible",
+      "dependencies": [
+        "@zag-js/collapsible",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "description": "Zag compound createColorPicker() — https://zagjs.com/components/solid/color-picker",
+      "dependencies": [
+        "@zag-js/color-picker",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/color-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/color-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Zag compound createCombobox() — https://zagjs.com/components/solid/combobox",
+      "dependencies": [
+        "@zag-js/combobox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-input",
+      "type": "registry:ui",
+      "title": "Date Input",
+      "description": "Zag compound createDateInput() — https://zagjs.com/components/solid/date-input",
+      "dependencies": [
+        "@zag-js/date-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/date-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/date-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Zag compound createDatePicker() — https://zagjs.com/components/solid/date-picker",
+      "dependencies": [
+        "@zag-js/date-picker",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/date-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Zag compound createDialog() — https://zagjs.com/components/solid/dialog",
+      "dependencies": [
+        "@zag-js/dialog",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Zag compound createDrawer() — https://zagjs.com/components/solid/drawer",
+      "dependencies": [
+        "@zag-js/drawer",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "editable",
+      "type": "registry:ui",
+      "title": "Editable",
+      "description": "Zag compound createEditable() — https://zagjs.com/components/solid/editable",
+      "dependencies": [
+        "@zag-js/editable",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/editable.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/editable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "title": "File Upload",
+      "description": "Zag compound createFileUpload() — https://zagjs.com/components/solid/file-upload",
+      "dependencies": [
+        "@zag-js/file-upload",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/file-upload.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/file-upload.tsx"
+        }
+      ]
+    },
+    {
+      "name": "floating-panel",
+      "type": "registry:ui",
+      "title": "Floating Panel",
+      "description": "Zag compound createFloatingPanel() — https://zagjs.com/components/solid/floating-panel",
+      "dependencies": [
+        "@zag-js/floating-panel",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/floating-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/floating-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Zag compound createHoverCard() — https://zagjs.com/components/solid/hover-card",
+      "dependencies": [
+        "@zag-js/hover-card",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "image-cropper",
+      "type": "registry:ui",
+      "title": "Image Cropper",
+      "description": "Zag compound createImageCropper() — https://zagjs.com/components/solid/image-cropper",
+      "dependencies": [
+        "@zag-js/image-cropper",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/image-cropper.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/image-cropper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "listbox",
+      "type": "registry:ui",
+      "title": "Listbox",
+      "description": "Zag compound createListbox() — https://zagjs.com/components/solid/listbox",
+      "dependencies": [
+        "@zag-js/listbox",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/listbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/listbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "Zag compound createMarquee() — https://zagjs.com/components/solid/marquee",
+      "dependencies": [
+        "@zag-js/marquee",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/marquee.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/marquee.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "Zag compound createMenu() — https://zagjs.com/components/solid/menu",
+      "dependencies": [
+        "@zag-js/menu",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "Zag compound createNavigationMenu() — https://zagjs.com/components/solid/navigation-menu",
+      "dependencies": [
+        "@zag-js/navigation-menu",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/navigation-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "title": "Number Input",
+      "description": "Zag compound createNumberInput() — https://zagjs.com/components/solid/number-input",
+      "dependencies": [
+        "@zag-js/number-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/number-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/number-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Zag compound createPagination() — https://zagjs.com/components/solid/pagination",
+      "dependencies": [
+        "@zag-js/pagination",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pagination.tsx"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "Zag compound createPasswordInput() — https://zagjs.com/components/solid/password-input",
+      "dependencies": [
+        "@zag-js/password-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/password-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/password-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pin-input",
+      "type": "registry:ui",
+      "title": "Pin Input",
+      "description": "Zag compound createPinInput() — https://zagjs.com/components/solid/pin-input",
+      "dependencies": [
+        "@zag-js/pin-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/pin-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pin-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Zag compound createPopover() — https://zagjs.com/components/solid/popover",
+      "dependencies": [
+        "@zag-js/popover",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "presence",
+      "type": "registry:ui",
+      "title": "Presence",
+      "description": "Zag compound createPresence() — https://zagjs.com/components/solid/presence",
+      "dependencies": [
+        "@zag-js/presence",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/presence.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/presence.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Zag compound createProgress() — https://zagjs.com/components/solid/progress",
+      "dependencies": [
+        "@zag-js/progress",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "qr-code",
+      "type": "registry:ui",
+      "title": "Qr Code",
+      "description": "Zag compound createQrCode() — https://zagjs.com/components/solid/qr-code",
+      "dependencies": [
+        "@zag-js/qr-code",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/qr-code.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/qr-code.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Zag compound createRadioGroup() — https://zagjs.com/components/solid/radio-group",
+      "dependencies": [
+        "@zag-js/radio-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rating-group",
+      "type": "registry:ui",
+      "title": "Rating Group",
+      "description": "Zag compound createRatingGroup() — https://zagjs.com/components/solid/rating-group",
+      "dependencies": [
+        "@zag-js/rating-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/rating-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/rating-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Zag compound createScrollArea() — https://zagjs.com/components/solid/scroll-area",
+      "dependencies": [
+        "@zag-js/scroll-area",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Zag compound createSelect() — https://zagjs.com/components/solid/select",
+      "dependencies": [
+        "@zag-js/select",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "signature-pad",
+      "type": "registry:ui",
+      "title": "Signature Pad",
+      "description": "Zag compound createSignaturePad() — https://zagjs.com/components/solid/signature-pad",
+      "dependencies": [
+        "@zag-js/signature-pad",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/signature-pad.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/signature-pad.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Zag compound createSlider() — https://zagjs.com/components/solid/slider",
+      "dependencies": [
+        "@zag-js/slider",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "splitter",
+      "type": "registry:ui",
+      "title": "Splitter",
+      "description": "Zag compound createSplitter() — https://zagjs.com/components/solid/splitter",
+      "dependencies": [
+        "@zag-js/splitter",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/splitter.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/splitter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "steps",
+      "type": "registry:ui",
+      "title": "Steps",
+      "description": "Zag compound createSteps() — https://zagjs.com/components/solid/steps",
+      "dependencies": [
+        "@zag-js/steps",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/steps.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/steps.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Zag compound createSwitch() — https://zagjs.com/components/solid/switch",
+      "dependencies": [
+        "@zag-js/switch",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Zag compound createTabs() — https://zagjs.com/components/solid/tabs",
+      "dependencies": [
+        "@zag-js/tabs",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tags-input",
+      "type": "registry:ui",
+      "title": "Tags Input",
+      "description": "Zag compound createTagsInput() — https://zagjs.com/components/solid/tags-input",
+      "dependencies": [
+        "@zag-js/tags-input",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/tags-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tags-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "timer",
+      "type": "registry:ui",
+      "title": "Timer",
+      "description": "Zag compound createTimer() — https://zagjs.com/components/solid/timer",
+      "dependencies": [
+        "@zag-js/timer",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/timer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/timer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Zag compound createToast() — https://zagjs.com/components/solid/toast",
+      "dependencies": [
+        "@zag-js/toast",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toc",
+      "type": "registry:ui",
+      "title": "Toc",
+      "description": "Zag compound createToc() — https://zagjs.com/components/solid/toc",
+      "dependencies": [
+        "@zag-js/toc",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/toc.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toc.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Zag compound createToggleGroup() — https://zagjs.com/components/solid/toggle-group",
+      "dependencies": [
+        "@zag-js/toggle-group",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Zag compound createToggle() — https://zagjs.com/components/solid/toggle",
+      "dependencies": [
+        "@zag-js/toggle",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Zag compound createTooltip() — https://zagjs.com/components/solid/tooltip",
+      "dependencies": [
+        "@zag-js/tooltip",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tour",
+      "type": "registry:ui",
+      "title": "Tour",
+      "description": "Zag compound createTour() — https://zagjs.com/components/solid/tour",
+      "dependencies": [
+        "@zag-js/tour",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/tour.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tour.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "title": "Tree View",
+      "description": "Zag compound createTreeView() — https://zagjs.com/components/solid/tree-view",
+      "dependencies": [
+        "@zag-js/tree-view",
+        "@zag-js/solid",
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "zag-runtime"
+      ],
+      "files": [
+        {
+          "path": "ui/tree-view.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tree-view.tsx"
+        }
+      ]
+    }
+  ]
+}
