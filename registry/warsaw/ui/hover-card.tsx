@@ -36,7 +36,7 @@ export function createHoverCard(options: CreateHoverCardOptions = {} as CreateHo
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="hover-card" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createHoverCard(options: CreateHoverCardOptions = {} as CreateHo
       )
     },
 
-    Arrow(props: DynamicAsProps<"div">) {
+    Arrow(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -58,7 +58,7 @@ export function createHoverCard(options: CreateHoverCardOptions = {} as CreateHo
       )
     },
 
-    ArrowTip(props: DynamicAsProps<"div">) {
+    ArrowTip(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -86,7 +86,7 @@ export function createHoverCard(options: CreateHoverCardOptions = {} as CreateHo
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>

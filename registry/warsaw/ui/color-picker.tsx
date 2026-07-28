@@ -36,7 +36,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -135,7 +135,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -268,7 +268,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    SwatchGroup(props: DynamicAsProps<"div">) {
+    SwatchGroup(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -326,7 +326,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    EyeDropperTrigger(props: DynamicAsProps<"button">) {
+    EyeDropperTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -339,7 +339,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    FormatTrigger(props: DynamicAsProps<"button">) {
+    FormatTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -352,7 +352,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
       )
     },
 
-    FormatSelect(props: DynamicAsProps<"div">) {
+    FormatSelect(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

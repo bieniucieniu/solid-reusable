@@ -36,7 +36,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
       )
     },
 
-    Viewport(props: DynamicAsProps<"div">) {
+    Viewport(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -105,7 +105,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
       )
     },
 
-    Corner(props: DynamicAsProps<"div">) {
+    Corner(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

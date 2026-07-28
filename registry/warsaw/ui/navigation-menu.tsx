@@ -36,7 +36,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -109,7 +109,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -152,7 +152,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

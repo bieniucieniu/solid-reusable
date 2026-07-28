@@ -36,7 +36,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
       )
     },
 
-    Viewport(props: DynamicAsProps<"div">) {
+    Viewport(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
       )
     },
 
-    Image(props: DynamicAsProps<"img">) {
+    Image(props: DynamicAsProps<"img", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
       )
     },
 
-    Selection(props: DynamicAsProps<"div">) {
+    Selection(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

@@ -36,7 +36,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
       )
     },
 
-    Segment(props: DynamicAsProps<"div">) {
+    Segment(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -90,7 +90,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
       )
     },
 
-    Guide(props: DynamicAsProps<"div">) {
+    Guide(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -103,7 +103,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -116,7 +116,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

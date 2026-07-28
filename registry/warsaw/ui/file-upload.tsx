@@ -36,7 +36,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -169,7 +169,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -182,7 +182,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -195,7 +195,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

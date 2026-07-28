@@ -36,7 +36,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
       )
     },
 
-    Item(props: DynamicAsProps<"div">) {
+    Item(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
       )
     },
 
-    Link(props: DynamicAsProps<"a">) {
+    Link(props: DynamicAsProps<"a", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createToc(options: CreateTocOptions = {} as CreateTocOptions) {
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

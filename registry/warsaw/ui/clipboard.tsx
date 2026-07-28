@@ -36,7 +36,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -90,7 +90,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
       )
     },
 
-    Input(props: DynamicAsProps<"input">) {
+    Input(props: DynamicAsProps<"input", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -103,7 +103,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

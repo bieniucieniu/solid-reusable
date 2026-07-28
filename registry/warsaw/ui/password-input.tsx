@@ -36,7 +36,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
       )
     },
 
-    Input(props: DynamicAsProps<"input">) {
+    Input(props: DynamicAsProps<"input", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createPasswordInput(options: CreatePasswordInputOptions = {} as 
       )
     },
 
-    VisibilityTrigger(props: DynamicAsProps<"button">) {
+    VisibilityTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

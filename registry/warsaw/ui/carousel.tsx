@@ -36,7 +36,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    ItemGroup(props: DynamicAsProps<"div">) {
+    ItemGroup(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -77,7 +77,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -90,7 +90,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    NextTrigger(props: DynamicAsProps<"button">) {
+    NextTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -103,7 +103,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    PrevTrigger(props: DynamicAsProps<"button">) {
+    PrevTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -116,7 +116,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    IndicatorGroup(props: DynamicAsProps<"div">) {
+    IndicatorGroup(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -144,7 +144,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    AutoplayTrigger(props: DynamicAsProps<"button">) {
+    AutoplayTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -157,7 +157,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
       )
     },
 
-    ProgressText(props: DynamicAsProps<"div">) {
+    ProgressText(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

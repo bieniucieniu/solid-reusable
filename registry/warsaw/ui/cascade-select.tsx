@@ -36,7 +36,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -114,7 +114,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -127,7 +127,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -144,7 +144,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -157,7 +157,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    Item(props: DynamicAsProps<"div">) {
+    Item(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -170,7 +170,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    ItemText(props: DynamicAsProps<"span">) {
+    ItemText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -183,7 +183,7 @@ export function createCascadeSelect(options: CreateCascadeSelectOptions = {} as 
       )
     },
 
-    ItemIndicator(props: DynamicAsProps<"div">) {
+    ItemIndicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

@@ -36,7 +36,7 @@ export function createSplitter(options: CreateSplitterOptions = {} as CreateSpli
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -79,7 +79,7 @@ export function createSplitter(options: CreateSplitterOptions = {} as CreateSpli
       )
     },
 
-    ResizeTriggerIndicator(props: DynamicAsProps<"div">) {
+    ResizeTriggerIndicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

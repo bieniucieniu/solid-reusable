@@ -36,7 +36,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -79,7 +79,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
       )
     },
 
-    FirstTrigger(props: DynamicAsProps<"button">) {
+    FirstTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -92,7 +92,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
       )
     },
 
-    PrevTrigger(props: DynamicAsProps<"button">) {
+    PrevTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -105,7 +105,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
       )
     },
 
-    NextTrigger(props: DynamicAsProps<"button">) {
+    NextTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -118,7 +118,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
       )
     },
 
-    LastTrigger(props: DynamicAsProps<"button">) {
+    LastTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

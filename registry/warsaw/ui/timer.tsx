@@ -36,7 +36,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
       )
     },
 
-    Area(props: DynamicAsProps<"div">) {
+    Area(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -135,7 +135,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
       )
     },
 
-    Separator(props: DynamicAsProps<"div">) {
+    Separator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
