@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/qr-code.tsx",
-      "content": "import * as machine from \"@zag-js/qr-code\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — qr-code.\n * @see https://zagjs.com/components/solid/qr-code\n *\n * Usage:\n * ```tsx\n * const qrCode = createQrCode()\n * return (\n *   <qrCode.Root>\n *     ...\n *   </qrCode.Root>\n * )\n * ```\n */\nexport const createQrCode = createMachineCompound(machine as never, {\n  scope: \"qr-code\",\n  parts: [\"root\",\"frame\",\"pattern\",\"overlay\",\"downloadTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type QrCodeCompound = ReturnType<typeof createQrCode>\n",
+      "path": "registry/warsaw/ui/qr-code.tsx",
+      "content": "import * as machine from \"@zag-js/qr-code\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — qr-code.\n * @see https://zagjs.com/components/solid/qr-code\n *\n * Usage:\n * ```tsx\n * const qrCode = createQrCode()\n * return (\n *   <qrCode.Root>\n *     ...\n *   </qrCode.Root>\n * )\n * ```\n */\nexport const createQrCode = createMachineCompound(machine as never, {\n  scope: \"qr-code\",\n  parts: [\"root\",\"frame\",\"pattern\",\"overlay\",\"downloadTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type QrCodeCompound = ReturnType<typeof createQrCode>\n",
       "type": "registry:ui",
       "target": "components/ui/qr-code.tsx"
     }

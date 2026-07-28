@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/number-input.tsx",
-      "content": "import * as machine from \"@zag-js/number-input\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — number-input.\n * @see https://zagjs.com/components/solid/number-input\n *\n * Usage:\n * ```tsx\n * const numberInput = createNumberInput()\n * return (\n *   <numberInput.Root>\n *     ...\n *   </numberInput.Root>\n * )\n * ```\n */\nexport const createNumberInput = createMachineCompound(machine as never, {\n  scope: \"number-input\",\n  parts: [\"root\",\"label\",\"input\",\"control\",\"valueText\",\"incrementTrigger\",\"decrementTrigger\",\"scrubber\"] as const,\n  rootPart: \"root\",\n})\n\nexport type NumberInputCompound = ReturnType<typeof createNumberInput>\n",
+      "path": "registry/warsaw/ui/number-input.tsx",
+      "content": "import * as machine from \"@zag-js/number-input\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — number-input.\n * @see https://zagjs.com/components/solid/number-input\n *\n * Usage:\n * ```tsx\n * const numberInput = createNumberInput()\n * return (\n *   <numberInput.Root>\n *     ...\n *   </numberInput.Root>\n * )\n * ```\n */\nexport const createNumberInput = createMachineCompound(machine as never, {\n  scope: \"number-input\",\n  parts: [\"root\",\"label\",\"input\",\"control\",\"valueText\",\"incrementTrigger\",\"decrementTrigger\",\"scrubber\"] as const,\n  rootPart: \"root\",\n})\n\nexport type NumberInputCompound = ReturnType<typeof createNumberInput>\n",
       "type": "registry:ui",
       "target": "components/ui/number-input.tsx"
     }

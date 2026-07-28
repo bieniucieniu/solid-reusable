@@ -12,8 +12,8 @@
   ],
   "files": [
     {
-      "path": "ui/kbd.tsx",
-      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type KbdProps = ParentProps<JSX.HTMLAttributes<HTMLElement>>\n\n/** Presentational — no Zag, no createX. */\nexport function Kbd(props: KbdProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"children\"])\n  return (\n    <kbd data-scope=\"kbd\" class={cn(local.class)} {...rest}>\n      {local.children}\n    </kbd>\n  )\n}\n",
+      "path": "registry/warsaw/ui/kbd.tsx",
+      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type KbdProps = ParentProps<JSX.HTMLAttributes<HTMLElement>>\n\n/** Presentational — no Zag, no createX. */\nexport function Kbd(props: KbdProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"children\"])\n  return (\n    <kbd data-scope=\"kbd\" class={cn(local.class)} {...rest}>\n      {local.children}\n    </kbd>\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/kbd.tsx"
     }

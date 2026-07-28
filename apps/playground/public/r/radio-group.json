@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/radio-group.tsx",
-      "content": "import * as machine from \"@zag-js/radio-group\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — radio-group.\n * @see https://zagjs.com/components/solid/radio-group\n *\n * Usage:\n * ```tsx\n * const radioGroup = createRadioGroup()\n * return (\n *   <radioGroup.Root>\n *     ...\n *   </radioGroup.Root>\n * )\n * ```\n */\nexport const createRadioGroup = createMachineCompound(machine as never, {\n  scope: \"radio-group\",\n  parts: [\"root\",\"label\",\"item\",\"itemText\",\"itemControl\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type RadioGroupCompound = ReturnType<typeof createRadioGroup>\n",
+      "path": "registry/warsaw/ui/radio-group.tsx",
+      "content": "import * as machine from \"@zag-js/radio-group\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — radio-group.\n * @see https://zagjs.com/components/solid/radio-group\n *\n * Usage:\n * ```tsx\n * const radioGroup = createRadioGroup()\n * return (\n *   <radioGroup.Root>\n *     ...\n *   </radioGroup.Root>\n * )\n * ```\n */\nexport const createRadioGroup = createMachineCompound(machine as never, {\n  scope: \"radio-group\",\n  parts: [\"root\",\"label\",\"item\",\"itemText\",\"itemControl\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type RadioGroupCompound = ReturnType<typeof createRadioGroup>\n",
       "type": "registry:ui",
       "target": "components/ui/radio-group.tsx"
     }

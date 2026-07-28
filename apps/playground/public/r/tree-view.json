@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/tree-view.tsx",
-      "content": "import * as machine from \"@zag-js/tree-view\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tree-view.\n * @see https://zagjs.com/components/solid/tree-view\n *\n * Usage:\n * ```tsx\n * const treeView = createTreeView()\n * return (\n *   <treeView.Root>\n *     ...\n *   </treeView.Root>\n * )\n * ```\n */\nexport const createTreeView = createMachineCompound(machine as never, {\n  scope: \"tree-view\",\n  parts: [\"branch\",\"branchContent\",\"branchControl\",\"branchIndentGuide\",\"branchIndicator\",\"branchText\",\"branchTrigger\",\"item\",\"itemIndicator\",\"itemText\",\"label\",\"nodeCheckbox\",\"nodeRenameInput\",\"root\",\"tree\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TreeViewCompound = ReturnType<typeof createTreeView>\n",
+      "path": "registry/warsaw/ui/tree-view.tsx",
+      "content": "import * as machine from \"@zag-js/tree-view\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tree-view.\n * @see https://zagjs.com/components/solid/tree-view\n *\n * Usage:\n * ```tsx\n * const treeView = createTreeView()\n * return (\n *   <treeView.Root>\n *     ...\n *   </treeView.Root>\n * )\n * ```\n */\nexport const createTreeView = createMachineCompound(machine as never, {\n  scope: \"tree-view\",\n  parts: [\"branch\",\"branchContent\",\"branchControl\",\"branchIndentGuide\",\"branchIndicator\",\"branchText\",\"branchTrigger\",\"item\",\"itemIndicator\",\"itemText\",\"label\",\"nodeCheckbox\",\"nodeRenameInput\",\"root\",\"tree\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TreeViewCompound = ReturnType<typeof createTreeView>\n",
       "type": "registry:ui",
       "target": "components/ui/tree-view.tsx"
     }

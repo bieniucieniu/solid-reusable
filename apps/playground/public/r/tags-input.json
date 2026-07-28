@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/tags-input.tsx",
-      "content": "import * as machine from \"@zag-js/tags-input\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tags-input.\n * @see https://zagjs.com/components/solid/tags-input\n *\n * Usage:\n * ```tsx\n * const tagsInput = createTagsInput()\n * return (\n *   <tagsInput.Root>\n *     ...\n *   </tagsInput.Root>\n * )\n * ```\n */\nexport const createTagsInput = createMachineCompound(machine as never, {\n  scope: \"tags-input\",\n  parts: [\"root\",\"label\",\"control\",\"input\",\"clearTrigger\",\"item\",\"itemPreview\",\"itemInput\",\"itemText\",\"itemDeleteTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TagsInputCompound = ReturnType<typeof createTagsInput>\n",
+      "path": "registry/warsaw/ui/tags-input.tsx",
+      "content": "import * as machine from \"@zag-js/tags-input\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tags-input.\n * @see https://zagjs.com/components/solid/tags-input\n *\n * Usage:\n * ```tsx\n * const tagsInput = createTagsInput()\n * return (\n *   <tagsInput.Root>\n *     ...\n *   </tagsInput.Root>\n * )\n * ```\n */\nexport const createTagsInput = createMachineCompound(machine as never, {\n  scope: \"tags-input\",\n  parts: [\"root\",\"label\",\"control\",\"input\",\"clearTrigger\",\"item\",\"itemPreview\",\"itemInput\",\"itemText\",\"itemDeleteTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TagsInputCompound = ReturnType<typeof createTagsInput>\n",
       "type": "registry:ui",
       "target": "components/ui/tags-input.tsx"
     }

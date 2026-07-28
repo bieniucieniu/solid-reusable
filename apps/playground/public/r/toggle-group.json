@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/toggle-group.tsx",
-      "content": "import * as machine from \"@zag-js/toggle-group\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toggle-group.\n * @see https://zagjs.com/components/solid/toggle-group\n *\n * Usage:\n * ```tsx\n * const toggleGroup = createToggleGroup()\n * return (\n *   <toggleGroup.Root>\n *     ...\n *   </toggleGroup.Root>\n * )\n * ```\n */\nexport const createToggleGroup = createMachineCompound(machine as never, {\n  scope: \"toggle-group\",\n  parts: [\"root\",\"item\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ToggleGroupCompound = ReturnType<typeof createToggleGroup>\n",
+      "path": "registry/warsaw/ui/toggle-group.tsx",
+      "content": "import * as machine from \"@zag-js/toggle-group\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toggle-group.\n * @see https://zagjs.com/components/solid/toggle-group\n *\n * Usage:\n * ```tsx\n * const toggleGroup = createToggleGroup()\n * return (\n *   <toggleGroup.Root>\n *     ...\n *   </toggleGroup.Root>\n * )\n * ```\n */\nexport const createToggleGroup = createMachineCompound(machine as never, {\n  scope: \"toggle-group\",\n  parts: [\"root\",\"item\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ToggleGroupCompound = ReturnType<typeof createToggleGroup>\n",
       "type": "registry:ui",
       "target": "components/ui/toggle-group.tsx"
     }

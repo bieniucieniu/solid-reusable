@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/tabs.tsx",
-      "content": "import * as machine from \"@zag-js/tabs\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tabs.\n * @see https://zagjs.com/components/solid/tabs\n *\n * Usage:\n * ```tsx\n * const tabs = createTabs()\n * return (\n *   <tabs.Root>\n *     ...\n *   </tabs.Root>\n * )\n * ```\n */\nexport const createTabs = createMachineCompound(machine as never, {\n  scope: \"tabs\",\n  parts: [\"root\",\"list\",\"trigger\",\"content\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TabsCompound = ReturnType<typeof createTabs>\n",
+      "path": "registry/warsaw/ui/tabs.tsx",
+      "content": "import * as machine from \"@zag-js/tabs\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tabs.\n * @see https://zagjs.com/components/solid/tabs\n *\n * Usage:\n * ```tsx\n * const tabs = createTabs()\n * return (\n *   <tabs.Root>\n *     ...\n *   </tabs.Root>\n * )\n * ```\n */\nexport const createTabs = createMachineCompound(machine as never, {\n  scope: \"tabs\",\n  parts: [\"root\",\"list\",\"trigger\",\"content\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TabsCompound = ReturnType<typeof createTabs>\n",
       "type": "registry:ui",
       "target": "components/ui/tabs.tsx"
     }

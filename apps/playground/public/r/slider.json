@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/slider.tsx",
-      "content": "import * as machine from \"@zag-js/slider\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — slider.\n * @see https://zagjs.com/components/solid/slider\n *\n * Usage:\n * ```tsx\n * const slider = createSlider()\n * return (\n *   <slider.Root>\n *     ...\n *   </slider.Root>\n * )\n * ```\n */\nexport const createSlider = createMachineCompound(machine as never, {\n  scope: \"slider\",\n  parts: [\"root\",\"label\",\"thumb\",\"valueText\",\"track\",\"range\",\"control\",\"markerGroup\",\"marker\",\"draggingIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SliderCompound = ReturnType<typeof createSlider>\n",
+      "path": "registry/warsaw/ui/slider.tsx",
+      "content": "import * as machine from \"@zag-js/slider\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — slider.\n * @see https://zagjs.com/components/solid/slider\n *\n * Usage:\n * ```tsx\n * const slider = createSlider()\n * return (\n *   <slider.Root>\n *     ...\n *   </slider.Root>\n * )\n * ```\n */\nexport const createSlider = createMachineCompound(machine as never, {\n  scope: \"slider\",\n  parts: [\"root\",\"label\",\"thumb\",\"valueText\",\"track\",\"range\",\"control\",\"markerGroup\",\"marker\",\"draggingIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SliderCompound = ReturnType<typeof createSlider>\n",
       "type": "registry:ui",
       "target": "components/ui/slider.tsx"
     }

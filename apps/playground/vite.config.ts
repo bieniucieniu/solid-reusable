@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [solid(), tailwindcss()],
   resolve: {
     alias: {
+      "@/registry": resolve(__dirname, "../../registry"),
       "@solid-reusable/ui": resolve(__dirname, "../../packages/ui/src"),
       "@solid-reusable/core": resolve(__dirname, "../../packages/core/src"),
       "@solid-reusable/provider": resolve(__dirname, "../../packages/provider/src"),
