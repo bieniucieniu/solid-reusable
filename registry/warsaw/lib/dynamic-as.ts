@@ -18,6 +18,5 @@ export type Override<T, U> = Omit<T, keyof U> & U
 export type MaybeAccessor<T> = T | (() => T)
 
 /** Matches `@zag-js/solid` `useMachine` user props. */
-export type ZagMachineProps<P> = P extends Machine<infer M>
-  ? MaybeAccessor<Partial<M["props"]>>
-  : never
+export type ZagMachineProps<P> =
+  P extends Machine<infer M> ? MaybeAccessor<Partial<M["props"]>> : never
