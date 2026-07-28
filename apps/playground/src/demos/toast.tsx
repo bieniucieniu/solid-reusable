@@ -1,15 +1,19 @@
 import { createToast } from "@solid-reusable/ui"
 
 export default function ToastDemo() {
-  const toast = createToast({ type: "info", title: "Saved", description: "Your changes were stored." })
+  const toast = createToast({
+    type: "info",
+    title: "Saved",
+    description: "Your changes were stored.",
+  })
   return (
-    <toast.Root style={{ background: "var(--panel)", border: "1px solid var(--line)", "border-radius": "0.5rem", padding: "0.75rem", "max-width": "18rem", display: "grid", gap: "0.25rem" }}>
-      <div style={{ display: "flex", "justify-content": "space-between", gap: "0.5rem" }}>
-        <toast.Title />
-        <toast.CloseTrigger>×</toast.CloseTrigger>
+    <toast.Root class="demo-panel grid max-w-xs gap-1">
+      <div class="flex items-start justify-between gap-2">
+        <toast.Title class="text-sm font-medium" />
+        <toast.CloseTrigger class="demo-btn px-2 text-xs">×</toast.CloseTrigger>
       </div>
-      <toast.Description />
-      <toast.ActionTrigger>Undo</toast.ActionTrigger>
+      <toast.Description class="text-mute text-sm" />
+      <toast.ActionTrigger class="demo-btn mt-1 w-fit text-xs">Undo</toast.ActionTrigger>
     </toast.Root>
   )
 }

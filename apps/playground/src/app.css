@@ -1,150 +1,56 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: light;
-  --bg: #f6f4ef;
-  --ink: #1c1917;
-  --muted: #78716c;
-  --line: #d6d3d1;
-  --panel: #fffcf7;
-  --accent: #0f766e;
-  --accent-ink: #ecfdf5;
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Serif", ui-serif, Georgia, serif;
+  --color-canvas: #f4f7f6;
+  --color-panel: #ffffff;
+  --color-ink: #1c1917;
+  --color-mute: #78716c;
+  --color-line: #d6d3d1;
+  --color-brand: #0f766e;
+  --color-brand-soft: #ccfbf1;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(1200px 500px at 10% -10%, #dbeafe 0%, transparent 55%),
-    radial-gradient(900px 400px at 100% 0%, #ccfbf1 0%, transparent 50%),
-    var(--bg);
-  color: var(--ink);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.shell {
-  display: grid;
-  grid-template-columns: 16rem 1fr;
-  min-height: 100vh;
-}
-
-.side {
-  border-right: 1px solid var(--line);
-  background: color-mix(in oklab, var(--panel) 88%, white);
-  padding: 1.25rem 1rem 2rem;
-  overflow: auto;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-}
-
-.side h1 {
-  font-family: "IBM Plex Serif", Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin: 0 0 0.25rem;
-}
-
-.side .tag {
-  color: var(--muted);
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.nav-group {
-  margin-top: 1rem;
-}
-
-.nav-group h2 {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.4rem;
-}
-
-.nav-group a {
-  display: block;
-  padding: 0.28rem 0.45rem;
-  border-radius: 0.35rem;
-  font-size: 0.9rem;
-}
-
-.nav-group a:hover,
-.nav-group a.active {
-  background: color-mix(in oklab, var(--accent) 14%, transparent);
-  color: var(--accent);
-}
-
-.main {
-  padding: 1.5rem 1.75rem 3rem;
-  max-width: 52rem;
-}
-
-.demo-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-}
-
-.demo-card h2 {
-  font-family: "IBM Plex Serif", Georgia, serif;
-  margin: 0 0 0.35rem;
-  font-size: 1.35rem;
-}
-
-.demo-card .meta {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 1.25rem;
-}
-
-.demo-stage {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.demo-stage [data-scope],
-.demo-stage button,
-.demo-stage input,
-.demo-stage label {
-  font: inherit;
-}
-
-.demo-stage button,
-.demo-stage [role="button"] {
-  cursor: pointer;
-  border: 1px solid var(--line);
-  background: white;
-  border-radius: 0.4rem;
-  padding: 0.35rem 0.7rem;
-}
-
-.demo-stage input {
-  border: 1px solid var(--line);
-  border-radius: 0.35rem;
-  padding: 0.35rem 0.5rem;
-  background: white;
-}
-
-.muted {
-  color: var(--muted);
-}
-
-@media (max-width: 860px) {
-  .shell {
-    grid-template-columns: 1fr;
+@layer base {
+  html {
+    @apply antialiased text-ink bg-canvas font-sans;
   }
-  .side {
-    position: static;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
+
+  body {
+    @apply m-0 min-h-screen;
+    background-image:
+      radial-gradient(900px 420px at 8% -8%, color-mix(in oklab, var(--color-brand-soft) 70%, transparent), transparent 60%),
+      radial-gradient(700px 360px at 100% 0%, color-mix(in oklab, #dbeafe 55%, transparent), transparent 55%);
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  code {
+    @apply rounded bg-stone-100 px-1 py-0.5 text-[0.85em];
+  }
+}
+
+@layer components {
+  .demo-btn {
+    @apply inline-flex cursor-pointer items-center justify-center rounded-md border border-line bg-white px-3 py-1.5 text-sm text-ink transition hover:bg-stone-50;
+  }
+
+  .demo-input {
+    @apply rounded-md border border-line bg-white px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand;
+  }
+
+  .demo-panel {
+    @apply rounded-lg border border-line bg-panel p-3 shadow-sm;
+  }
+
+  .demo-overlay {
+    @apply fixed inset-0 bg-stone-950/35;
+  }
+
+  .demo-popover {
+    @apply rounded-lg border border-line bg-panel p-3 shadow-md;
   }
 }

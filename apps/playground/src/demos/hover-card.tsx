@@ -4,8 +4,10 @@ export default function HoverCardDemo() {
   const card = createHoverCard({ openDelay: 200 })
   return (
     <card.Root>
-      <card.Trigger>@solidjs</card.Trigger>
-      <card.Content style={{ background: "var(--panel)", border: "1px solid var(--line)", padding: "0.75rem", "border-radius": "0.5rem", "max-width": "16rem" }}>
+      <card.Trigger class="text-brand font-medium underline-offset-2 hover:underline">
+        @solidjs
+      </card.Trigger>
+      <card.Content class="demo-popover max-w-xs text-sm">
         SolidJS — reactive UI library.
         <card.Arrow>
           <card.ArrowTip />

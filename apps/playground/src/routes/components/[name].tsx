@@ -8,7 +8,7 @@ export default function ComponentDemoPage() {
   const demo = () => DEMOS[params.name] as Component | undefined
 
   return (
-    <Show when={demo()} fallback={<p class="muted">No demo for “{params.name}”.</p>}>
+    <Show when={demo()} fallback={<p class="text-mute">No demo for “{params.name}”.</p>}>
       {(Demo) => {
         const C = Demo()
         return (

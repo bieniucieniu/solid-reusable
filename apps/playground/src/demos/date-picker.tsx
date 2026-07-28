@@ -4,39 +4,28 @@ import { Index } from "solid-js"
 export default function DatePickerDemo() {
   const picker = createDatePicker({ selectionMode: "single" })
   return (
-    <picker.Root style={{ display: "grid", gap: "0.5rem", "max-width": "18rem" }}>
-      <picker.Label>Date</picker.Label>
-      <picker.Control style={{ display: "flex", gap: "0.35rem" }}>
-        <picker.Input index={0} />
-        <picker.Trigger>📅</picker.Trigger>
+    <picker.Root class="grid max-w-xs gap-2">
+      <picker.Label class="text-sm font-medium">Date</picker.Label>
+      <picker.Control class="flex gap-1.5">
+        <picker.Input index={0} class="demo-input flex-1" />
+        <picker.Trigger class="demo-btn px-2">📅</picker.Trigger>
       </picker.Control>
-      <picker.Content
-        style={{
-          background: "var(--panel)",
-          border: "1px solid var(--line)",
-          padding: "0.75rem",
-          "border-radius": "0.5rem",
-        }}
-      >
+      <picker.Content class="demo-popover">
         <picker.View view="day">
-          <picker.ViewControl
-            style={{
-              display: "flex",
-              "justify-content": "space-between",
-              "margin-bottom": "0.5rem",
-            }}
-          >
-            <picker.PrevTrigger>‹</picker.PrevTrigger>
-            <picker.ViewTrigger>
+          <picker.ViewControl class="mb-2 flex items-center justify-between">
+            <picker.PrevTrigger class="demo-btn px-2">‹</picker.PrevTrigger>
+            <picker.ViewTrigger class="text-sm font-medium">
               <picker.RangeText />
             </picker.ViewTrigger>
-            <picker.NextTrigger>›</picker.NextTrigger>
+            <picker.NextTrigger class="demo-btn px-2">›</picker.NextTrigger>
           </picker.ViewControl>
-          <picker.Table>
+          <picker.Table class="w-full text-center text-sm">
             <picker.TableHead>
               <picker.TableRow>
                 <Index each={picker.api.weekDays}>
-                  {(d) => <picker.TableHeader>{d().short}</picker.TableHeader>}
+                  {(d) => (
+                    <picker.TableHeader class="text-mute p-1 text-xs">{d().short}</picker.TableHeader>
+                  )}
                 </Index>
               </picker.TableRow>
             </picker.TableHead>
@@ -47,7 +36,10 @@ export default function DatePickerDemo() {
                     <Index each={week()}>
                       {(day) => (
                         <picker.DayTableCell value={day()}>
-                          <picker.DayTableCellTrigger value={day()}>
+                          <picker.DayTableCellTrigger
+                            value={day()}
+                            class="demo-btn size-8 border-0 p-0"
+                          >
                             {day().day}
                           </picker.DayTableCellTrigger>
                         </picker.DayTableCell>

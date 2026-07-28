@@ -1,8 +1,13 @@
+import { A } from "@solidjs/router"
+
 export default function NotFound() {
   return (
-    <main>
-      <h1>404</h1>
-      <p class="muted">Page not found.</p>
+    <main class="grid gap-3">
+      <h1 class="font-display text-2xl font-semibold">404</h1>
+      <p class="text-mute">Page not found.</p>
+      <A href="/" class="text-brand text-sm underline-offset-2 hover:underline">
+        Back to demos
+      </A>
     </main>
   )
 }

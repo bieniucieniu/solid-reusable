@@ -4,18 +4,20 @@ import { For } from "solid-js"
 export default function FileUploadDemo() {
   const upload = createFileUpload({ maxFiles: 3 })
   return (
-    <upload.Root style={{ display: "grid", gap: "0.5rem", "max-width": "22rem" }}>
-      <upload.Label>Upload</upload.Label>
-      <upload.Dropzone style={{ border: "1px dashed var(--line)", padding: "1rem", "border-radius": "0.5rem", "text-align": "center" }}>
+    <upload.Root class="grid max-w-sm gap-2">
+      <upload.Label class="text-sm font-medium">Upload</upload.Label>
+      <upload.Dropzone class="rounded-lg border border-dashed border-line p-4 text-center text-sm">
         Drop files or
-        <upload.Trigger style={{ "margin-left": "0.35rem" }}>browse</upload.Trigger>
+        <upload.Trigger class="demo-btn ml-1.5">browse</upload.Trigger>
       </upload.Dropzone>
-      <upload.ItemGroup>
+      <upload.ItemGroup class="grid gap-1">
         <For each={upload.api.acceptedFiles}>
           {(file) => (
-            <upload.Item file={file} style={{ display: "flex", "justify-content": "space-between", gap: "0.5rem" }}>
+            <upload.Item file={file} class="flex items-center justify-between gap-2 text-sm">
               <upload.ItemName file={file}>{file.name}</upload.ItemName>
-              <upload.ItemDeleteTrigger file={file}>Remove</upload.ItemDeleteTrigger>
+              <upload.ItemDeleteTrigger file={file} class="demo-btn px-2 text-xs">
+                Remove
+              </upload.ItemDeleteTrigger>
             </upload.Item>
           )}
         </For>

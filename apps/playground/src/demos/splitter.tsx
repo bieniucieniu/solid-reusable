@@ -6,10 +6,14 @@ export default function SplitterDemo() {
     panels: [{ id: "a" }, { id: "b" }],
   })
   return (
-    <splitter.Root style={{ height: "10rem", border: "1px solid var(--line)", "border-radius": "0.5rem", overflow: "hidden" }}>
-      <splitter.Panel id="a" style={{ background: "#fafaf9", padding: "0.75rem" }}>Left</splitter.Panel>
-      <splitter.ResizeTrigger id="a:b" style={{ width: "4px", background: "var(--line)", cursor: "col-resize" }} />
-      <splitter.Panel id="b" style={{ background: "#f5f5f4", padding: "0.75rem" }}>Right</splitter.Panel>
+    <splitter.Root class="flex h-40 overflow-hidden rounded-lg border border-line">
+      <splitter.Panel id="a" class="bg-stone-50 p-3 text-sm">
+        Left
+      </splitter.Panel>
+      <splitter.ResizeTrigger id="a:b" class="w-1 cursor-col-resize bg-line hover:bg-brand" />
+      <splitter.Panel id="b" class="bg-stone-100 p-3 text-sm">
+        Right
+      </splitter.Panel>
     </splitter.Root>
   )
 }

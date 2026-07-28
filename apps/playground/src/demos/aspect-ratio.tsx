@@ -2,8 +2,8 @@ import { AspectRatio } from "@solid-reusable/ui"
 
 export default function AspectRatioDemo() {
   return (
-    <AspectRatio ratio={16 / 9} style={{ background: "#e7e5e4", "max-width": "24rem" }}>
-      <div style={{ display: "grid", "place-items": "center", height: "100%" }}>16:9</div>
+    <AspectRatio ratio={16 / 9} class="grid max-w-md place-items-center rounded-lg bg-stone-200">
+      <span class="text-mute text-sm">16:9</span>
     </AspectRatio>
   )
 }
