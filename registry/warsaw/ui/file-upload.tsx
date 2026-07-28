@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/file-upload"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateFileUploadOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/file-upload";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag file-upload compound. Call inside a Solid component setup (uses useMachine).
@@ -28,189 +20,152 @@ export type CreateFileUploadOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createFileUpload(options: CreateFileUploadOptions = {} as CreateFileUploadOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createFileUpload(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Dropzone(props: DynamicAsProps<"div", zag.DropzoneProps>) {
+			const [local, rest] = splitProps(props, ["as", "disableClick"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getDropzoneProps({ disableClick: local.disableClick })}
+					{...rest}
+				/>
+			);
+		},
+		Trigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
+		HiddenInput(props: DynamicAsProps<"input", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getHiddenInputProps()}
+					{...rest}
+				/>
+			);
+		},
+		ItemGroup(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemGroupProps()}
+					{...rest}
+				/>
+			);
+		},
+		Item(props: DynamicAsProps<"div", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemProps({ type: local.type, file: local.file })}
+					{...rest}
+				/>
+			);
+		},
+		ItemName(props: DynamicAsProps<"span", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getItemNameProps({ type: local.type, file: local.file })}
+					{...rest}
+				/>
+			);
+		},
+		ItemPreview(props: DynamicAsProps<"div", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemPreviewProps({ type: local.type, file: local.file })}
+					{...rest}
+				/>
+			);
+		},
+		ItemPreviewImage(props: DynamicAsProps<"img", zag.ItemPreviewImageProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file", "url"]);
+			return (
+				<Dynamic
+					component={local.as ?? "img"}
+					{...api().getItemPreviewImageProps({
+						type: local.type,
+						file: local.file,
+						url: local.url,
+					})}
+					{...rest}
+				/>
+			);
+		},
+		ItemSizeText(props: DynamicAsProps<"span", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getItemSizeTextProps({ type: local.type, file: local.file })}
+					{...rest}
+				/>
+			);
+		},
+		ItemDeleteTrigger(props: DynamicAsProps<"button", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "type", "file"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getItemDeleteTriggerProps({ type: local.type, file: local.file })}
+					{...rest}
+				/>
+			);
+		},
+		ClearTrigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getClearTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
 
-    Dropzone<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.DropzoneProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","disableClick"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getDropzoneProps({ disableClick: local.disableClick })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Item<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemProps({ type: local.type, file: local.file })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemDeleteTrigger<Comp extends ValidComponent = "button">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getItemDeleteTriggerProps({ type: local.type, file: local.file })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemGroup<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemGroupProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemGroupProps({ type: local.type })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemName<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemNameProps({ type: local.type, file: local.file })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemPreview<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemPreviewProps({ type: local.type, file: local.file })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemPreviewImage<Comp extends ValidComponent = "img">(
-      props: DynamicAsProps<Comp, zag.ItemPreviewImageProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file","url"])
-      return (
-        <Dynamic
-          component={local.as ?? "img"}
-          {...api().getItemPreviewImageProps({ type: local.type, file: local.file, url: local.url })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemSizeText<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemSizeTextProps({ type: local.type, file: local.file })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Trigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ClearTrigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getClearTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type FileUploadCompound = ReturnType<typeof createFileUpload>
+export type FileUploadCompound = ReturnType<typeof createFileUpload>;

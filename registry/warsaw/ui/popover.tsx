@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/popover"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreatePopoverOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/popover";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { Show, createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag popover compound. Call inside a Solid component setup (uses useMachine).
@@ -28,149 +20,123 @@ export type CreatePopoverOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createPopover(options: CreatePopoverOptions = {} as CreatePopoverOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createPopover(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic component={local.as ?? "div"} data-scope="popover" data-part="root" {...rest}>
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					data-scope="popover"
+					data-part="root"
+					{...rest}
+				/>
+			);
+		},
+		Arrow(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getArrowProps()}
+					{...rest}
+				/>
+			);
+		},
+		ArrowTip(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getArrowTipProps()}
+					{...rest}
+				/>
+			);
+		},
+		Anchor(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getAnchorProps()}
+					{...rest}
+				/>
+			);
+		},
+		Trigger(props: DynamicAsProps<"button", zag.TriggerProps>) {
+			const [local, rest] = splitProps(props, ["as", "value"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getTriggerProps({ value: local.value })}
+					{...rest}
+				/>
+			);
+		},
+		Indicator(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getIndicatorProps()}
+					{...rest}
+				/>
+			);
+		},
+		Content(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Show when={api().open}>
+					<div {...api().getPositionerProps()}>
+						<Dynamic
+							component={local.as ?? "div"}
+							{...api().getContentProps()}
+							{...rest}
+						/>
+					</div>
+				</Show>
+			);
+		},
+		Title(props: DynamicAsProps<"h2", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "h2"}
+					{...api().getTitleProps()}
+					{...rest}
+				/>
+			);
+		},
+		Description(props: DynamicAsProps<"p", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "p"}
+					{...api().getDescriptionProps()}
+					{...rest}
+				/>
+			);
+		},
+		CloseTrigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getCloseTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
 
-    Arrow(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getArrowProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ArrowTip(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getArrowTipProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Anchor(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getAnchorProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Trigger<Comp extends ValidComponent = "button">(
-      props: DynamicAsProps<Comp, zag.TriggerProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","value"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getTriggerProps({ value: local.value })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Indicator(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getIndicatorProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Content(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Show when={api().open}>
-          <div {...api().getPositionerProps()}>
-            <Dynamic
-              component={local.as ?? "div"}
-              {...api().getContentProps()}
-              {...rest}
-            >
-              {local.children}
-            </Dynamic>
-          </div>
-        </Show>
-      )
-    },
-
-    Title(props: DynamicAsProps<"h2", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "h2"}
-          {...api().getTitleProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Description(props: DynamicAsProps<"p", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "p"}
-          {...api().getDescriptionProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    CloseTrigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getCloseTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type PopoverCompound = ReturnType<typeof createPopover>
+export type PopoverCompound = ReturnType<typeof createPopover>;

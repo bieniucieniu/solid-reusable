@@ -1,19 +1,13 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 
 /**
- * Polymorphic part props: `as` + Zag part props.
- * Kept loose so Dynamic + Zag prop objects type-check cleanly.
+ * Polymorphic part props: optional DOM props + Zag part props + `as`.
+ * Zag keys win over DOM keys when they overlap.
  */
 export type DynamicAsProps<
-  C extends ValidComponent,
-  P,
-  CP = ComponentProps<C>,
-> = {
-  [K in keyof P | keyof CP]: K extends keyof P
-    ? P[K]
-    : K extends keyof CP
-      ? CP[K]
-      : never
-} & {
-  as?: C | undefined
-}
+	C extends ValidComponent,
+	P = {},
+> = Omit<Partial<ComponentProps<C>>, keyof P | "as"> &
+	P & {
+		as?: C | undefined
+	}

@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/select"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateSelectOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/select";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { Show, createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag select compound. Call inside a Solid component setup (uses useMachine).
@@ -28,213 +20,172 @@ export type CreateSelectOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createSelect(options: CreateSelectOptions = {} as CreateSelectOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createSelect<T>(options: Partial<zag.Props<T>> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		Control(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getControlProps()}
+					{...rest}
+				/>
+			);
+		},
+		Trigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
+		Indicator(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getIndicatorProps()}
+					{...rest}
+				/>
+			);
+		},
+		ClearTrigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getClearTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
+		ValueText(props: DynamicAsProps<"span", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getValueTextProps()}
+					{...rest}
+				/>
+			);
+		},
+		Content(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Show when={api().open}>
+					<div {...api().getPositionerProps()}>
+						<Dynamic
+							component={local.as ?? "div"}
+							{...api().getContentProps()}
+							{...rest}
+						/>
+					</div>
+				</Show>
+			);
+		},
+		List(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getListProps()}
+					{...rest}
+				/>
+			);
+		},
+		Item(props: DynamicAsProps<"div", zag.ItemProps<T>>) {
+			const [local, rest] = splitProps(props, ["as", "item", "persistFocus"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemProps({ item: local.item, persistFocus: local.persistFocus })}
+					{...rest}
+				/>
+			);
+		},
+		ItemText(props: DynamicAsProps<"span", zag.ItemProps<T>>) {
+			const [local, rest] = splitProps(props, ["as", "item", "persistFocus"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getItemTextProps({ item: local.item, persistFocus: local.persistFocus })}
+					{...rest}
+				/>
+			);
+		},
+		ItemIndicator(props: DynamicAsProps<"div", zag.ItemProps<T>>) {
+			const [local, rest] = splitProps(props, ["as", "item", "persistFocus"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemIndicatorProps({ item: local.item, persistFocus: local.persistFocus })}
+					{...rest}
+				/>
+			);
+		},
+		ItemGroup(props: DynamicAsProps<"div", zag.ItemGroupProps>) {
+			const [local, rest] = splitProps(props, ["as", "id"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemGroupProps({ id: local.id })}
+					{...rest}
+				/>
+			);
+		},
+		ItemGroupLabel(props: DynamicAsProps<"div", zag.ItemGroupLabelProps>) {
+			const [local, rest] = splitProps(props, ["as", "htmlFor"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemGroupLabelProps({ htmlFor: local.htmlFor })}
+					{...rest}
+				/>
+			);
+		},
+		HiddenSelect(props: DynamicAsProps<"select", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "select"}
+					{...api().getHiddenSelectProps()}
+					{...rest}
+				/>
+			);
+		},
 
-    Trigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Indicator(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getIndicatorProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ClearTrigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getClearTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Item<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemProps({ item: local.item, persistFocus: local.persistFocus })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemText<Comp extends ValidComponent = "span">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
-      return (
-        <Dynamic
-          component={local.as ?? "span"}
-          {...api().getItemTextProps({ item: local.item, persistFocus: local.persistFocus })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemIndicator<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemIndicatorProps({ item: local.item, persistFocus: local.persistFocus })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemGroup<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemGroupProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","id"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemGroupProps({ id: local.id })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemGroupLabel<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemGroupLabelProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","htmlFor"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemGroupLabelProps({ htmlFor: local.htmlFor })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    List(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getListProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Content(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Show when={api().open}>
-          <div {...api().getPositionerProps()}>
-            <Dynamic
-              component={local.as ?? "div"}
-              {...api().getContentProps()}
-              {...rest}
-            >
-              {local.children}
-            </Dynamic>
-          </div>
-        </Show>
-      )
-    },
-
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Control(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getControlProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ValueText(props: DynamicAsProps<"span", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "span"}
-          {...api().getValueTextProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type SelectCompound = ReturnType<typeof createSelect>
+export type SelectCompound = ReturnType<typeof createSelect>;

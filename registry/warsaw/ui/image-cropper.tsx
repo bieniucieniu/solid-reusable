@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/image-cropper"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateImageCropperOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/image-cropper";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag image-cropper compound. Call inside a Solid component setup (uses useMachine).
@@ -28,99 +20,78 @@ export type CreateImageCropperOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createImageCropper(options: CreateImageCropperOptions = {} as CreateImageCropperOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createImageCropper(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Viewport(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getViewportProps()}
+					{...rest}
+				/>
+			);
+		},
+		Image(props: DynamicAsProps<"img", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "img"}
+					{...api().getImageProps()}
+					{...rest}
+				/>
+			);
+		},
+		Selection(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getSelectionProps()}
+					{...rest}
+				/>
+			);
+		},
+		Handle(props: DynamicAsProps<"div", zag.HandleProps>) {
+			const [local, rest] = splitProps(props, ["as", "position"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getHandleProps({ position: local.position })}
+					{...rest}
+				/>
+			);
+		},
+		Grid(props: DynamicAsProps<"div", zag.GridProps>) {
+			const [local, rest] = splitProps(props, ["as", "axis"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getGridProps({ axis: local.axis })}
+					{...rest}
+				/>
+			);
+		},
 
-    Viewport(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getViewportProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Image(props: DynamicAsProps<"img", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "img"}
-          {...api().getImageProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Selection(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getSelectionProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Handle<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.HandleProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","position"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getHandleProps({ position: local.position })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Grid<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.GridProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","axis"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getGridProps({ axis: local.axis })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type ImageCropperCompound = ReturnType<typeof createImageCropper>
+export type ImageCropperCompound = ReturnType<typeof createImageCropper>;

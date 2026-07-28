@@ -1,16 +1,6 @@
-import * as zag from "@zag-js/async-list"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateAsyncListOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/async-list";
+import { useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId } from "solid-js";
 
 /**
  * Zag async-list compound. Call inside a Solid component setup (uses useMachine).
@@ -21,37 +11,20 @@ export type CreateAsyncListOptions = Omit<zag.Props, "id">
  * import { createAsyncList } from "@components/ui/async-list"
  *
  * const asyncList = createAsyncList({})
- * return (
- *   <asyncList.Root>
- *     ...
- *   </asyncList.Root>
- * )
+ * // use asyncList.api
  * ```
  */
-export function createAsyncList(options: CreateAsyncListOptions = {} as CreateAsyncListOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createAsyncList<T, C>(options: Partial<zag.Props<T, C>> & { id?: string } = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+	return {
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type AsyncListCompound = ReturnType<typeof createAsyncList>
+export type AsyncListCompound = ReturnType<typeof createAsyncList>;
