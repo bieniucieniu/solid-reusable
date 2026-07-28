@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dynamic-as",
+  "type": "registry:lib",
+  "title": "Dynamic As",
+  "description": "DynamicAsProps helper for polymorphic Zag parts",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/warsaw/lib/dynamic-as.ts",
+      "content": "import type { JSX, ValidComponent } from \"solid-js\"\nimport type { DynamicProps } from \"solid-js/web\"\n\n/**\n * Polymorphic part props: `as` + intrinsic/component props + optional Zag part props.\n *\n * @example\n * DynamicAsProps<\"div\">\n * DynamicAsProps<Comp, zag.ItemProps>\n */\nexport type DynamicAsProps<\n  T extends ValidComponent = \"div\",\n  Extra extends object = {},\n> = Omit<DynamicProps<T>, \"component\"> & {\n  as?: T\n  children?: JSX.Element\n} & Extra\n",
+      "type": "registry:lib",
+      "target": "registry/warsaw/lib/dynamic-as.ts"
+    }
+  ]
+}

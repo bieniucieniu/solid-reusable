@@ -1,12 +1,12 @@
 /**
  * Generates inlined createX() Zag compounds under registry/warsaw/ui/
- * No createMachineCompound — each file owns useMachine + Dynamic parts.
  *
- * Pattern (must call createX inside a Solid component setup):
- *   const tooltip = createTooltip({ openDelay: 200 })
- *   <tooltip.Root><tooltip.Trigger/><tooltip.Content/></tooltip.Root>
+ * Part typing follows:
+ *   Root(props: DynamicAsProps<"div">)
+ *   Item<Comp extends ValidComponent>(props: DynamicAsProps<Comp, zag.ItemProps>)
  */
-import { mkdirSync, writeFileSync, readdirSync, readFileSync, cpSync } from "node:fs"
+import { createRequire } from "node:module"
+import { mkdirSync, writeFileSync, readdirSync, readFileSync, cpSync, existsSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -17,8 +17,8 @@ const registryRoot = join(root, "registry", STYLE)
 const uiDir = join(registryRoot, "ui")
 const libDir = join(registryRoot, "lib")
 const pkgUiSrc = join(root, "packages/ui/src")
+const require = createRequire(join(root, "packages/ui/package.json"))
 
-/** Overlay scopes: Content wraps Show + positioner (positioner not exported). */
 const OVERLAY_WITH_POSITIONER = new Set([
   "tooltip",
   "popover",
@@ -35,7 +35,6 @@ const OVERLAY_WITH_POSITIONER = new Set([
   "tour",
 ])
 
-/** Backdrop/parts gated by api().open when present. */
 const OPEN_GATED_PARTS = new Set(["backdrop", "spotlight"])
 
 const DEFAULT_AS = {
@@ -65,12 +64,13 @@ const DEFAULT_AS = {
   itemDeleteTrigger: "button",
   branchTrigger: "button",
   presetTrigger: "button",
-  indicator: "div",
-  item: "div",
+  itemTrigger: "button",
   input: "input",
   channelInput: "input",
   itemInput: "input",
   nodeRenameInput: "input",
+  hiddenInput: "input",
+  itemHiddenInput: "input",
   label: "label",
   channelSliderLabel: "label",
   image: "img",
@@ -161,14 +161,82 @@ function toCamel(name) {
   return p.charAt(0).toLowerCase() + p.slice(1)
 }
 
-function getterName(part) {
-  return `get${toPascal(part)}Props`
-}
-
 function defaultAs(part) {
   if (DEFAULT_AS[part]) return DEFAULT_AS[part]
-  if (part.endsWith("Trigger") || part === "thumb") return part === "thumb" ? "div" : "button"
+  if (part.endsWith("Trigger")) return "button"
   return "div"
+}
+
+function getInterfaceFields(text, typeName, seen = new Set()) {
+  if (!typeName || seen.has(typeName)) return []
+  seen.add(typeName)
+  const re = new RegExp(
+    `interface ${typeName}(?:\\s+extends\\s+([\\w,\\s]+))?\\s*\\{([^}]*)\\}`,
+  )
+  const m = text.match(re)
+  if (!m) return []
+  const extendsList = m[1] ? m[1].split(",").map((s) => s.trim()).filter(Boolean) : []
+  const own = [...m[2].matchAll(/^\s*([a-zA-Z_][a-zA-Z0-9_]*)\??:/gm)].map((x) => x[1])
+  return [
+    ...new Set([
+      ...extendsList.flatMap((e) => getInterfaceFields(text, e, seen)),
+      ...own,
+    ]),
+  ]
+}
+
+function loadZagPartMeta(scope) {
+  const pkgDir = dirname(require.resolve(`@zag-js/${scope}/package.json`))
+  const typesPath = join(pkgDir, "dist", `${scope}.types.d.mts`)
+  const text = existsSync(typesPath) ? readFileSync(typesPath, "utf8") : ""
+
+  /** @type {Map<string, { typeName: string, fields: string[] }>} */
+  const byPart = new Map()
+
+  for (const m of text.matchAll(/get([A-Z][A-Za-z]*)Props:\s*\(([^)]*)\)\s*=>/g)) {
+    const part = m[1].charAt(0).toLowerCase() + m[1].slice(1)
+    const argType = (m[2].match(/:\s*(\w+)/) || [])[1] || null
+    if (!argType) {
+      byPart.set(part, { typeName: null, fields: [] })
+      continue
+    }
+    let fields = getInterfaceFields(text, argType)
+    // fallback: runtime *Props key arrays (itemProps → ItemProps)
+    if (!fields.length) {
+      try {
+        // sync require of CJS build not always available; skip
+      } catch {
+        /* ignore */
+      }
+    }
+    byPart.set(part, { typeName: argType, fields })
+  }
+
+  return { byPart, typesText: text }
+}
+
+async function enrichFieldsFromRuntime(scope, byPart) {
+  try {
+    const mod = await import(`@zag-js/${scope}`)
+    for (const [part, meta] of byPart) {
+      if (!meta.typeName || meta.fields.length) continue
+      // ItemProps → itemProps
+      const arrayName = meta.typeName.charAt(0).toLowerCase() + meta.typeName.slice(1)
+      // ItemBaseProps won't match — try stripping Props and lowercasing fully for multiword
+      const candidates = [
+        arrayName,
+        meta.typeName.replace(/Props$/, "").replace(/^[A-Z]/, (c) => c.toLowerCase()).replace(/[A-Z]/g, (c) => c.toLowerCase()) + "Props",
+      ]
+      // simpler: itemProps from ItemProps
+      const simple = meta.typeName.charAt(0).toLowerCase() + meta.typeName.slice(1)
+      if (Array.isArray(mod[simple])) {
+        meta.fields = [...mod[simple]]
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return byPart
 }
 
 async function loadPartsAsync(scope) {
@@ -182,20 +250,54 @@ async function loadPartsAsync(scope) {
   return ["root"]
 }
 
-function emitPartComponent(scope, part, { foldPositioner }) {
+function emitGetItemObject(fields) {
+  if (!fields.length) return "{}"
+  const lines = fields.map((f) => `${f}: local.${f}`)
+  return `{ ${lines.join(", ")} }`
+}
+
+function emitPartComponent(scope, part, { foldPositioner, partMeta }) {
   const pascal = toPascal(part)
-  const getter = getterName(part)
+  const getter = `get${pascal}Props`
   const asDef = defaultAs(part)
+  const meta = partMeta.get(part) || { typeName: null, fields: [] }
+  const parameterized = Boolean(meta.typeName)
+  const fields = meta.fields.filter((f) => f !== "as" && f !== "children")
+
+  const splitKeys = ["as", "children", ...fields]
+  const splitLit = JSON.stringify(splitKeys)
 
   if (part === "content" && foldPositioner) {
-    return `    ${pascal}(props: PartProps) {
+    // tooltip-style: Content folds positioner; content getter usually zero-arg
+    if (parameterized && fields.length) {
+      return `    ${pascal}<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.${meta.typeName}>,
+    ) {
+      const [local, rest] = splitProps(props, ${splitLit} as ("as" | "children" | ${fields.map((f) => `"${f}"`).join(" | ")})[])
+      return (
+        <Show when={api().open}>
+          <div {...api().getPositionerProps()}>
+            <Dynamic
+              component={local.as ?? "div"}
+              {...api().${getter}(${emitGetItemObject(fields)})}
+              {...rest}
+            >
+              {local.children}
+            </Dynamic>
+          </div>
+        </Show>
+      )
+    }`
+    }
+    return `    ${pascal}(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().${getter}(), rest)}
+              {...api().${getter}()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -206,13 +308,14 @@ function emitPartComponent(scope, part, { foldPositioner }) {
   }
 
   if (OPEN_GATED_PARTS.has(part)) {
-    return `    ${pascal}(props: PartProps) {
+    return `    ${pascal}(props: DynamicAsProps<"${asDef}">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <Dynamic
             component={local.as ?? "${asDef}"}
-            {...mergeProps(api().${getter}(), rest)}
+            {...api().${getter}()}
+            {...rest}
           >
             {local.children}
           </Dynamic>
@@ -221,14 +324,17 @@ function emitPartComponent(scope, part, { foldPositioner }) {
     }`
   }
 
-  if (part === "root") {
-    return `    ${pascal}(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().${getter}
+  if (parameterized && fields.length) {
+    const fieldUnion = fields.map((f) => `"${f}"`).join(" | ")
+    return `    ${pascal}<Comp extends ValidComponent = "${asDef}">(
+      props: DynamicAsProps<Comp, zag.${meta.typeName}>,
+    ) {
+      const [local, rest] = splitProps(props, ${splitLit} as ("as" | "children" | ${fieldUnion})[])
       return (
         <Dynamic
           component={local.as ?? "${asDef}"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().${getter}(${emitGetItemObject(fields)})}
+          {...rest}
         >
           {local.children}
         </Dynamic>
@@ -236,13 +342,31 @@ function emitPartComponent(scope, part, { foldPositioner }) {
     }`
   }
 
-  return `    ${pascal}(props: PartProps) {
+  // zero-arg getter (or unknown fields — still call with empty object if type exists)
+  if (parameterized && !fields.length) {
+    return `    ${pascal}<Comp extends ValidComponent = "${asDef}">(
+      props: DynamicAsProps<Comp, zag.${meta.typeName}>,
+    ) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().${getter} as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "${asDef}"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "${part}" }, rest)}
+          {...api().${getter}(rest as unknown as zag.${meta.typeName})}
+          {...rest}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    }`
+  }
+
+  return `    ${pascal}(props: DynamicAsProps<"${asDef}">) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      return (
+        <Dynamic
+          component={local.as ?? "${asDef}"}
+          {...api().${getter}()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
@@ -250,7 +374,7 @@ function emitPartComponent(scope, part, { foldPositioner }) {
     }`
 }
 
-function fileFor(scope, parts) {
+function fileFor(scope, parts, partMeta) {
   const pascal = toPascal(scope)
   const alias = toCamel(scope)
   const foldPositioner =
@@ -259,13 +383,11 @@ function fileFor(scope, parts) {
     parts.includes("positioner")
 
   const exportParts = parts.filter((p) => !(foldPositioner && p === "positioner"))
-
-  // Always expose Root even if anatomy has no root (wrapper only)
   const hasRoot = exportParts.includes("root")
   const partBlock = []
 
   if (!hasRoot) {
-    partBlock.push(`    Root(props: PartProps) {
+    partBlock.push(`    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="${scope}" data-part="root" {...rest}>
@@ -276,32 +398,22 @@ function fileFor(scope, parts) {
   }
 
   for (const part of exportParts) {
-    partBlock.push(emitPartComponent(scope, part, { foldPositioner }))
+    partBlock.push(emitPartComponent(scope, part, { foldPositioner, partMeta }))
   }
 
-  const keys = [
-    ...(hasRoot ? [] : ["Root"]),
-    ...exportParts.map(toPascal),
-  ]
-
   return `import * as zag from "@zag-js/${scope}"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/${STYLE}/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type Create${pascal}Options = Record<string, unknown>
+export type Create${pascal}Options = Omit<zag.Props, "id">
 
 /**
  * Zag ${scope} compound. Call inside a Solid component setup (uses useMachine).
@@ -311,7 +423,7 @@ export type Create${pascal}Options = Record<string, unknown>
  * \`\`\`tsx
  * import { create${pascal} } from "@components/ui/${scope}"
  *
- * const ${alias} = create${pascal}({ openDelay: 200 })
+ * const ${alias} = create${pascal}({})
  * return (
  *   <${alias}.Root>
  *     ...
@@ -319,7 +431,7 @@ export type Create${pascal}Options = Record<string, unknown>
  * )
  * \`\`\`
  */
-export function create${pascal}(options: Create${pascal}Options = {}) {
+export function create${pascal}(options: Create${pascal}Options = {} as Create${pascal}Options) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -341,21 +453,31 @@ export type ${pascal}Compound = ReturnType<typeof create${pascal}>
 mkdirSync(uiDir, { recursive: true })
 mkdirSync(libDir, { recursive: true })
 
-// Sync utils only (no createMachineCompound)
 cpSync(join(root, "packages/core/src/index.ts"), join(libDir, "utils.ts"))
+// dynamic-as.ts is authored; ensure present
+if (!existsSync(join(libDir, "dynamic-as.ts"))) {
+  throw new Error("missing registry/warsaw/lib/dynamic-as.ts")
+}
 
 const exportLines = []
 
 for (const scope of MACHINES) {
   const parts = await loadPartsAsync(scope)
-  const content = fileFor(scope, parts)
+  const { byPart } = loadZagPartMeta(scope)
+  await enrichFieldsFromRuntime(scope, byPart)
+  const content = fileFor(scope, parts, byPart)
   const file = join(uiDir, `${scope}.tsx`)
   writeFileSync(file, content)
-  console.log("wrote", file, "parts=", parts.join(","))
+  const paramParts = [...byPart.entries()]
+    .filter(([, m]) => m.typeName)
+    .map(([p, m]) => `${p}:${m.typeName}`)
+  console.log("wrote", scope, "param=", paramParts.join(",") || "none")
 
   const pascal = toPascal(scope)
   exportLines.push(`export { create${pascal} } from "@/registry/${STYLE}/ui/${scope}"`)
-  exportLines.push(`export type { ${pascal}Compound, Create${pascal}Options } from "@/registry/${STYLE}/ui/${scope}"`)
+  exportLines.push(
+    `export type { ${pascal}Compound, Create${pascal}Options } from "@/registry/${STYLE}/ui/${scope}"`,
+  )
 }
 
 const plainFiles = readdirSync(uiDir).filter((f) => {
@@ -389,5 +511,4 @@ ${exportLines.join("\n")}
 
 mkdirSync(pkgUiSrc, { recursive: true })
 writeFileSync(join(pkgUiSrc, "index.ts"), index)
-console.log("updated", join(pkgUiSrc, "index.ts"))
-console.log("done", MACHINES.length, "inlined zag compounds → registry/", STYLE)
+console.log("done", MACHINES.length, "typed zag compounds")

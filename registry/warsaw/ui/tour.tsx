@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/tour"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateTourOptions = Record<string, unknown>
+export type CreateTourOptions = Omit<zag.Props, "id">
 
 /**
  * Zag tour compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateTourOptions = Record<string, unknown>
  * ```tsx
  * import { createTour } from "@components/ui/tour"
  *
- * const tour = createTour({ openDelay: 200 })
+ * const tour = createTour({})
  * return (
  *   <tour.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateTourOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createTour(options: CreateTourOptions = {}) {
+export function createTour(options: CreateTourOptions = {} as CreateTourOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,7 +36,7 @@ export function createTour(options: CreateTourOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="tour" data-part="root" {...rest}>
@@ -50,14 +45,15 @@ export function createTour(options: CreateTourOptions = {}) {
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().getContentProps(), rest)}
+              {...api().getContentProps()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -66,104 +62,107 @@ export function createTour(options: CreateTourOptions = {}) {
       )
     },
 
-    ActionTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getActionTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ActionTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.StepActionTriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","action"] as ("as" | "children" | "action")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "actionTrigger" }, rest)}
+          {...api().getActionTriggerProps({ action: local.action })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    CloseTrigger(props: PartProps) {
+    CloseTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getCloseTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "closeTrigger" }, rest)}
+          {...api().getCloseTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ProgressText(props: PartProps) {
+    ProgressText(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getProgressTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "progressText" }, rest)}
+          {...api().getProgressTextProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Title(props: PartProps) {
+    Title(props: DynamicAsProps<"h2">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTitleProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "h2"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "title" }, rest)}
+          {...api().getTitleProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Description(props: PartProps) {
+    Description(props: DynamicAsProps<"p">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getDescriptionProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "p"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "description" }, rest)}
+          {...api().getDescriptionProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Arrow(props: PartProps) {
+    Arrow(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getArrowProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "arrow" }, rest)}
+          {...api().getArrowProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ArrowTip(props: PartProps) {
+    ArrowTip(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getArrowTipProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "arrowTip" }, rest)}
+          {...api().getArrowTipProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Backdrop(props: PartProps) {
+    Backdrop(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <Dynamic
             component={local.as ?? "div"}
-            {...mergeProps(api().getBackdropProps(), rest)}
+            {...api().getBackdropProps()}
+            {...rest}
           >
             {local.children}
           </Dynamic>
@@ -171,13 +170,14 @@ export function createTour(options: CreateTourOptions = {}) {
       )
     },
 
-    Spotlight(props: PartProps) {
+    Spotlight(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <Dynamic
             component={local.as ?? "div"}
-            {...mergeProps(api().getSpotlightProps(), rest)}
+            {...api().getSpotlightProps()}
+            {...rest}
           >
             {local.children}
           </Dynamic>

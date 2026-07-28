@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/color-picker"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateColorPickerOptions = Record<string, unknown>
+export type CreateColorPickerOptions = Omit<zag.Props, "id">
 
 /**
  * Zag color-picker compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateColorPickerOptions = Record<string, unknown>
  * ```tsx
  * import { createColorPicker } from "@components/ui/color-picker"
  *
- * const colorPicker = createColorPicker({ openDelay: 200 })
+ * const colorPicker = createColorPicker({})
  * return (
  *   <colorPicker.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateColorPickerOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createColorPicker(options: CreateColorPickerOptions = {}) {
+export function createColorPicker(options: CreateColorPickerOptions = {} as CreateColorPickerOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,66 +36,67 @@ export function createColorPicker(options: CreateColorPickerOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Label(props: PartProps) {
+    Label(props: DynamicAsProps<"label">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "label" }, rest)}
+          {...api().getLabelProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Control(props: PartProps) {
+    Control(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getControlProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "control" }, rest)}
+          {...api().getControlProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Trigger(props: PartProps) {
+    Trigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "trigger" }, rest)}
+          {...api().getTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Content(props: PartProps) {
+    Content(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
             <Dynamic
               component={local.as ?? "div"}
-              {...mergeProps(api().getContentProps(), rest)}
+              {...api().getContentProps()}
+              {...rest}
             >
               {local.children}
             </Dynamic>
@@ -109,234 +105,260 @@ export function createColorPicker(options: CreateColorPickerOptions = {}) {
       )
     },
 
-    Area(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getAreaProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Area<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.AreaProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "area" }, rest)}
+          {...api().getAreaProps({ xChannel: local.xChannel, yChannel: local.yChannel })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    AreaThumb(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getAreaThumbProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    AreaThumb<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.AreaProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "areaThumb" }, rest)}
+          {...api().getAreaThumbProps({ xChannel: local.xChannel, yChannel: local.yChannel })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ValueText(props: PartProps) {
+    ValueText(props: DynamicAsProps<"span">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getValueTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "span"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "valueText" }, rest)}
+          {...api().getValueTextProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    AreaBackground(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getAreaBackgroundProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    AreaBackground<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.AreaProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "areaBackground" }, rest)}
+          {...api().getAreaBackgroundProps({ xChannel: local.xChannel, yChannel: local.yChannel })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelSlider(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelSliderProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelSlider<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelSlider" }, rest)}
+          {...api().getChannelSliderProps({ channel: local.channel, orientation: local.orientation, format: local.format })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelSliderLabel(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelSliderLabelProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelSliderLabel<Comp extends ValidComponent = "label">(
+      props: DynamicAsProps<Comp, zag.ChannelProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
       return (
         <Dynamic
           component={local.as ?? "label"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelSliderLabel" }, rest)}
+          {...api().getChannelSliderLabelProps({ channel: local.channel, orientation: local.orientation })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelSliderTrack(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelSliderTrackProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelSliderTrack<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelSliderTrack" }, rest)}
+          {...api().getChannelSliderTrackProps({ channel: local.channel, orientation: local.orientation, format: local.format })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelSliderThumb(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelSliderThumbProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelSliderThumb<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelSliderThumb" }, rest)}
+          {...api().getChannelSliderThumbProps({ channel: local.channel, orientation: local.orientation, format: local.format })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelSliderValueText(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelSliderValueTextProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelSliderValueText<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.ChannelProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelSliderValueText" }, rest)}
+          {...api().getChannelSliderValueTextProps({ channel: local.channel, orientation: local.orientation })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    ChannelInput(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getChannelInputProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    ChannelInput<Comp extends ValidComponent = "input">(
+      props: DynamicAsProps<Comp, zag.ChannelInputProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
       return (
         <Dynamic
           component={local.as ?? "input"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "channelInput" }, rest)}
+          {...api().getChannelInputProps({ channel: local.channel, orientation: local.orientation })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    TransparencyGrid(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getTransparencyGridProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    TransparencyGrid<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.TransparencyGridProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","size"] as ("as" | "children" | "size")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "transparencyGrid" }, rest)}
+          {...api().getTransparencyGridProps({ size: local.size })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    SwatchGroup(props: PartProps) {
+    SwatchGroup(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSwatchGroupProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "swatchGroup" }, rest)}
+          {...api().getSwatchGroupProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    SwatchTrigger(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSwatchTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    SwatchTrigger<Comp extends ValidComponent = "button">(
+      props: DynamicAsProps<Comp, zag.SwatchTriggerProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "swatchTrigger" }, rest)}
+          {...api().getSwatchTriggerProps({ value: local.value, disabled: local.disabled })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    SwatchIndicator(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSwatchIndicatorProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    SwatchIndicator<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.SwatchProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"] as ("as" | "children" | "value" | "respectAlpha")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "swatchIndicator" }, rest)}
+          {...api().getSwatchIndicatorProps({ value: local.value, respectAlpha: local.respectAlpha })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Swatch(props: PartProps) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getSwatchProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+    Swatch<Comp extends ValidComponent = "div">(
+      props: DynamicAsProps<Comp, zag.SwatchProps>,
+    ) {
+      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"] as ("as" | "children" | "value" | "respectAlpha")[])
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "swatch" }, rest)}
+          {...api().getSwatchProps({ value: local.value, respectAlpha: local.respectAlpha })}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    EyeDropperTrigger(props: PartProps) {
+    EyeDropperTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getEyeDropperTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "eyeDropperTrigger" }, rest)}
+          {...api().getEyeDropperTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    FormatTrigger(props: PartProps) {
+    FormatTrigger(props: DynamicAsProps<"button">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getFormatTriggerProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "button"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "formatTrigger" }, rest)}
+          {...api().getFormatTriggerProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    FormatSelect(props: PartProps) {
+    FormatSelect(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getFormatSelectProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "formatSelect" }, rest)}
+          {...api().getFormatSelectProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

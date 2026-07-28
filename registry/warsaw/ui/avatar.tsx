@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/avatar"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateAvatarOptions = Record<string, unknown>
+export type CreateAvatarOptions = Omit<zag.Props, "id">
 
 /**
  * Zag avatar compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateAvatarOptions = Record<string, unknown>
  * ```tsx
  * import { createAvatar } from "@components/ui/avatar"
  *
- * const avatar = createAvatar({ openDelay: 200 })
+ * const avatar = createAvatar({})
  * return (
  *   <avatar.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateAvatarOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createAvatar(options: CreateAvatarOptions = {}) {
+export function createAvatar(options: CreateAvatarOptions = {} as CreateAvatarOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,39 +36,39 @@ export function createAvatar(options: CreateAvatarOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Image(props: PartProps) {
+    Image(props: DynamicAsProps<"img">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getImageProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "img"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "image" }, rest)}
+          {...api().getImageProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
       )
     },
 
-    Fallback(props: PartProps) {
+    Fallback(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getFallbackProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...mergeProps(getProps ? getProps(rest) : { "data-part": "fallback" }, rest)}
+          {...api().getFallbackProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>

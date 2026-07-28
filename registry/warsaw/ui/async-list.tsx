@@ -1,21 +1,16 @@
 import * as zag from "@zag-js/async-list"
-import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import {
   Show,
   createMemo,
   createUniqueId,
   splitProps,
-  type JSX,
-  type Component,
+  type ValidComponent,
 } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
 
-type PartProps = {
-  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
-  children?: JSX.Element
-} & Record<string, unknown>
-
-export type CreateAsyncListOptions = Record<string, unknown>
+export type CreateAsyncListOptions = Omit<zag.Props, "id">
 
 /**
  * Zag async-list compound. Call inside a Solid component setup (uses useMachine).
@@ -25,7 +20,7 @@ export type CreateAsyncListOptions = Record<string, unknown>
  * ```tsx
  * import { createAsyncList } from "@components/ui/async-list"
  *
- * const asyncList = createAsyncList({ openDelay: 200 })
+ * const asyncList = createAsyncList({})
  * return (
  *   <asyncList.Root>
  *     ...
@@ -33,7 +28,7 @@ export type CreateAsyncListOptions = Record<string, unknown>
  * )
  * ```
  */
-export function createAsyncList(options: CreateAsyncListOptions = {}) {
+export function createAsyncList(options: CreateAsyncListOptions = {} as CreateAsyncListOptions) {
   const service = useMachine(zag.machine, {
     id: createUniqueId(),
     ...options,
@@ -41,13 +36,13 @@ export function createAsyncList(options: CreateAsyncListOptions = {}) {
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: PartProps) {
+    Root(props: DynamicAsProps<"div">) {
       const [local, rest] = splitProps(props, ["as", "children"])
-      const getProps = api().getRootProps
       return (
         <Dynamic
           component={local.as ?? "div"}
-          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+          {...api().getRootProps()}
+          {...rest}
         >
           {local.children}
         </Dynamic>
