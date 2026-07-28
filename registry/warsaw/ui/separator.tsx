@@ -1,4 +1,4 @@
-import { splitProps, type JSX } from "solid-js"
+import type { JSX } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
 export type SeparatorProps = JSX.HTMLAttributes<HTMLDivElement> & {
@@ -7,14 +7,13 @@ export type SeparatorProps = JSX.HTMLAttributes<HTMLDivElement> & {
 
 /** Presentational — no Zag, no createX. */
 export function Separator(props: SeparatorProps) {
-  const [local, rest] = splitProps(props, ["class", "orientation"])
   return (
     <div
       role="separator"
       data-scope="separator"
-      data-orientation={local.orientation ?? "horizontal"}
-      class={cn(local.class)}
-      {...rest}
+      data-orientation={props.orientation ?? "horizontal"}
+      {...props}
+      class={cn(props.class)}
     />
   )
 }

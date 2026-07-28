@@ -1,18 +1,17 @@
-import { splitProps, type JSX } from "solid-js"
+import type { JSX } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
 export type SpinnerProps = JSX.HTMLAttributes<HTMLDivElement>
 
 /** Presentational — no Zag, no createX. */
 export function Spinner(props: SpinnerProps) {
-  const [local, rest] = splitProps(props, ["class"])
   return (
     <div
       role="status"
       aria-label="Loading"
       data-scope="spinner"
-      class={cn(local.class)}
-      {...rest}
+      {...props}
+      class={cn(props.class)}
     />
   )
 }
