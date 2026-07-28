@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/label.tsx",
-      "content": "import { splitProps, type JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type LabelProps = JSX.LabelHTMLAttributes<HTMLLabelElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Label(props: LabelProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"children\"])\n  return (\n    <label data-scope=\"label\" class={cn(local.class)} {...rest}>\n      {local.children}\n    </label>\n  )\n}\n",
+      "content": "import type { JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type LabelProps = JSX.LabelHTMLAttributes<HTMLLabelElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Label(props: LabelProps) {\n  return <label data-scope=\"label\" {...props} class={cn(props.class)} />\n}\n",
       "type": "registry:ui",
       "target": "components/ui/label.tsx"
     }

@@ -1,4 +1,4 @@
-import { splitProps, type JSX, type ParentProps } from "solid-js"
+import type { JSX, ParentProps } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
 export type ButtonProps = ParentProps<
@@ -10,17 +10,14 @@ export type ButtonProps = ParentProps<
 
 /** Presentational — no Zag, no createX. */
 export function Button(props: ButtonProps) {
-  const [local, rest] = splitProps(props, ["class", "variant", "size", "children"])
   return (
     <button
-      type="button"
       data-scope="button"
-      data-variant={local.variant ?? "default"}
-      data-size={local.size ?? "default"}
-      class={cn(local.class)}
-      {...rest}
-    >
-      {local.children}
-    </button>
+      data-variant={props.variant ?? "default"}
+      data-size={props.size ?? "default"}
+      {...props}
+      type={props.type ?? "button"}
+      class={cn(props.class)}
+    />
   )
 }
