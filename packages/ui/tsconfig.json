@@ -1,17 +1,15 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "composite": true,
+    "noEmit": true,
+    "baseUrl": "../..",
     "paths": {
-      "@/registry/*": ["../../registry/*"]
+      "@/registry/*": ["registry/*"],
+      "@components/*": ["registry/warsaw/*"],
+      "@solid-reusable/core": ["packages/core/src/index.ts"],
+      "@solid-reusable/provider": ["packages/provider/src/index.ts"],
+      "@solid-reusable/provider-zag": ["packages/provider-zag/src/index.ts"]
     }
   },
-  "include": ["src"],
-  "references": [
-    { "path": "../core" },
-    { "path": "../provider" },
-    { "path": "../provider-zag" }
-  ]
+  "include": ["src/**/*", "../../registry/warsaw/**/*"]
 }

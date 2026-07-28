@@ -1,17 +1,16 @@
 import type { JSX, ValidComponent } from "solid-js"
-import type { DynamicProps } from "solid-js/web"
 
 /**
- * Polymorphic part props: `as` + intrinsic/component props + optional Zag part props.
- *
- * @example
- * DynamicAsProps<"div">
- * DynamicAsProps<Comp, zag.ItemProps>
+ * Polymorphic part props: `as` + Zag part props.
+ * Kept loose so Dynamic + Zag prop objects type-check cleanly.
  */
 export type DynamicAsProps<
   T extends ValidComponent = "div",
   Extra extends object = {},
-> = Omit<DynamicProps<T>, "component"> & {
+> = Extra & {
   as?: T
   children?: JSX.Element
-} & Extra
+  class?: string
+  // allow DOM / Zag attrs without fighting Dynamic generics
+  [key: string]: unknown
+}
