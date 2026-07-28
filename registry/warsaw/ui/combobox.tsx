@@ -36,7 +36,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -79,7 +79,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -92,7 +92,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    Input(props: DynamicAsProps<"input">) {
+    Input(props: DynamicAsProps<"input", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -180,7 +180,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -193,7 +193,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

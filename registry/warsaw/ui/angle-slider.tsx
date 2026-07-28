@@ -36,7 +36,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    Thumb(props: DynamicAsProps<"div">) {
+    Thumb(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    Track(props: DynamicAsProps<"div">) {
+    Track(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -114,7 +114,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
       )
     },
 
-    MarkerGroup(props: DynamicAsProps<"div">) {
+    MarkerGroup(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

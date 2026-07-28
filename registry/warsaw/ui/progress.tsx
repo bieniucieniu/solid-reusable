@@ -36,7 +36,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    Track(props: DynamicAsProps<"div">) {
+    Track(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    Range(props: DynamicAsProps<"div">) {
+    Range(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -116,7 +116,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    Circle(props: DynamicAsProps<"div">) {
+    Circle(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -129,7 +129,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    CircleTrack(props: DynamicAsProps<"div">) {
+    CircleTrack(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -142,7 +142,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
       )
     },
 
-    CircleRange(props: DynamicAsProps<"div">) {
+    CircleRange(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

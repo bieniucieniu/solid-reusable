@@ -51,7 +51,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
       )
     },
 
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -64,7 +64,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -77,7 +77,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
       )
     },
 
-    Description(props: DynamicAsProps<"p">) {
+    Description(props: DynamicAsProps<"p", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -90,7 +90,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
       )
     },
 
-    ActionTrigger(props: DynamicAsProps<"button">) {
+    ActionTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -103,7 +103,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

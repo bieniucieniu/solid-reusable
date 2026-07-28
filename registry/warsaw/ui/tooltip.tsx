@@ -36,7 +36,7 @@ export function createTooltip(options: CreateTooltipOptions = {} as CreateToolti
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="tooltip" data-part="root" {...rest}>
@@ -60,7 +60,7 @@ export function createTooltip(options: CreateTooltipOptions = {} as CreateToolti
       )
     },
 
-    Arrow(props: DynamicAsProps<"div">) {
+    Arrow(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -73,7 +73,7 @@ export function createTooltip(options: CreateTooltipOptions = {} as CreateToolti
       )
     },
 
-    ArrowTip(props: DynamicAsProps<"div">) {
+    ArrowTip(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -86,7 +86,7 @@ export function createTooltip(options: CreateTooltipOptions = {} as CreateToolti
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>

@@ -36,7 +36,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="menu" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    Arrow(props: DynamicAsProps<"div">) {
+    Arrow(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -58,7 +58,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    ArrowTip(props: DynamicAsProps<"div">) {
+    ArrowTip(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -71,7 +71,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -103,7 +103,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -191,7 +191,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    Separator(props: DynamicAsProps<"div">) {
+    Separator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -219,7 +219,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
       )
     },
 
-    TriggerItem(props: DynamicAsProps<"div">) {
+    TriggerItem(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

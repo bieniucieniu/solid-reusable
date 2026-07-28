@@ -36,7 +36,7 @@ export function createAvatar(options: CreateAvatarOptions = {} as CreateAvatarOp
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createAvatar(options: CreateAvatarOptions = {} as CreateAvatarOp
       )
     },
 
-    Image(props: DynamicAsProps<"img">) {
+    Image(props: DynamicAsProps<"img", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createAvatar(options: CreateAvatarOptions = {} as CreateAvatarOp
       )
     },
 
-    Fallback(props: DynamicAsProps<"div">) {
+    Fallback(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
