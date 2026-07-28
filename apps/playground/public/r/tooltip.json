@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Tooltip",
   "description": "Zag compound createTooltip() — https://zagjs.com/components/solid/tooltip",
-  "dependencies": [
-    "@zag-js/tooltip",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/tooltip", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/tooltip.tsx",

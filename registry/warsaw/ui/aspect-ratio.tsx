@@ -1,9 +1,7 @@
 import type { JSX, ParentProps } from "solid-js"
 import { cn } from "@/registry/warsaw/lib/utils"
 
-export type AspectRatioProps = ParentProps<
-  JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }
->
+export type AspectRatioProps = ParentProps<JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }>
 
 /** Presentational — no Zag, no createX. */
 export function AspectRatio(props: AspectRatioProps) {

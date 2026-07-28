@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Presence",
   "description": "Zag compound createPresence() — https://zagjs.com/components/solid/presence",
-  "dependencies": [
-    "@zag-js/presence",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/presence", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/presence.tsx",

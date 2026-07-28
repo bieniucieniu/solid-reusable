@@ -4,7 +4,14 @@
 export { AspectRatio } from "@/registry/warsaw/ui/aspect-ratio"
 export { Badge } from "@/registry/warsaw/ui/badge"
 export { Button } from "@/registry/warsaw/ui/button"
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/registry/warsaw/ui/card"
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/registry/warsaw/ui/card"
 export { Kbd } from "@/registry/warsaw/ui/kbd"
 export { Label } from "@/registry/warsaw/ui/label"
 export { Separator } from "@/registry/warsaw/ui/separator"

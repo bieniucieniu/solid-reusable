@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Menu",
   "description": "Zag compound createMenu() — https://zagjs.com/components/solid/menu",
-  "dependencies": [
-    "@zag-js/menu",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/menu", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/menu.tsx",

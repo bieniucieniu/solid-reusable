@@ -4,12 +4,8 @@
   "type": "registry:ui",
   "title": "Label",
   "description": "Presentational label (no Zag).",
-  "dependencies": [
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "utils"
-  ],
+  "dependencies": ["solid-js"],
+  "registryDependencies": ["utils"],
   "files": [
     {
       "path": "registry/warsaw/ui/label.tsx",

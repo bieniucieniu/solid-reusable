@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Avatar",
   "description": "Zag compound createAvatar() — https://zagjs.com/components/solid/avatar",
-  "dependencies": [
-    "@zag-js/avatar",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/avatar", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/avatar.tsx",

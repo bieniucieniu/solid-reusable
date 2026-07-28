@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Tabs",
   "description": "Zag compound createTabs() — https://zagjs.com/components/solid/tabs",
-  "dependencies": [
-    "@zag-js/tabs",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/tabs", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/tabs.tsx",

@@ -2,7 +2,14 @@
  * Builds shadcn-compatible registry JSON into apps/playground/public/r/
  * Source tree: registry/warsaw/{ui,lib}
  */
-import { mkdirSync, readFileSync, writeFileSync, readdirSync, unlinkSync, existsSync } from "node:fs"
+import {
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  unlinkSync,
+  existsSync,
+} from "node:fs"
 import { dirname, join, relative } from "node:path"
 import { fileURLToPath } from "node:url"
 

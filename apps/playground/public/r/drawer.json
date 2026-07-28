@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Drawer",
   "description": "Zag compound createDrawer() — https://zagjs.com/components/solid/drawer",
-  "dependencies": [
-    "@zag-js/drawer",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/drawer", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/drawer.tsx",

@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Scroll Area",
   "description": "Zag compound createScrollArea() — https://zagjs.com/components/solid/scroll-area",
-  "dependencies": [
-    "@zag-js/scroll-area",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/scroll-area", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/scroll-area.tsx",

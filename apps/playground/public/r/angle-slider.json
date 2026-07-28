@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Angle Slider",
   "description": "Zag compound createAngleSlider() — https://zagjs.com/components/solid/angle-slider",
-  "dependencies": [
-    "@zag-js/angle-slider",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/angle-slider", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/angle-slider.tsx",

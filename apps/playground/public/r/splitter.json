@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Splitter",
   "description": "Zag compound createSplitter() — https://zagjs.com/components/solid/splitter",
-  "dependencies": [
-    "@zag-js/splitter",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/splitter", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/splitter.tsx",

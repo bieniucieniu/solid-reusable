@@ -4,9 +4,7 @@
   "type": "registry:lib",
   "title": "Dynamic As",
   "description": "DynamicAsProps helper for polymorphic Zag parts",
-  "dependencies": [
-    "solid-js"
-  ],
+  "dependencies": ["solid-js"],
   "registryDependencies": [],
   "files": [
     {

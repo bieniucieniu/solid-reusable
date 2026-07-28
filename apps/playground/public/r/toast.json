@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Toast",
   "description": "Zag compound createToast() — https://zagjs.com/components/solid/toast",
-  "dependencies": [
-    "@zag-js/toast",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/toast", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/toast.tsx",

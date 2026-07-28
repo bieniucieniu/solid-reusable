@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Hover Card",
   "description": "Zag compound createHoverCard() — https://zagjs.com/components/solid/hover-card",
-  "dependencies": [
-    "@zag-js/hover-card",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/hover-card", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/hover-card.tsx",
