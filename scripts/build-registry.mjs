@@ -1,11 +1,8 @@
 /**
  * Builds shadcn-compatible registry JSON into apps/playground/public/r/
  * Source tree: registry/warsaw/{ui,lib}
- *
- * Consumers:
- *   npx shadcn@latest add http://localhost:5173/r/button.json
  */
-import { mkdirSync, readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs"
+import { mkdirSync, readFileSync, writeFileSync, readdirSync, unlinkSync, existsSync } from "node:fs"
 import { dirname, join, relative } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -134,57 +131,22 @@ items.push({
   files: utilsItem.files.map(({ path, type, target }) => ({ path, type, target })),
 })
 
-const zagRuntimeItem = item({
-  name: "zag-runtime",
-  type: "registry:lib",
-  description: "Zag compound factory + provider meta (pluggable headless runtime).",
-  dependencies: ["@zag-js/solid", "solid-js"],
-  registryDependencies: [],
-  files: [
-    {
-      path: `registry/${STYLE}/lib/meta.ts`,
-      abs: join(libDir, "meta.ts"),
-      type: "registry:lib",
-      target: `registry/${STYLE}/lib/meta.ts`,
-    },
-    {
-      path: `registry/${STYLE}/lib/create-machine-compound.tsx`,
-      abs: join(libDir, "create-machine-compound.tsx"),
-      type: "registry:lib",
-      target: `registry/${STYLE}/lib/create-machine-compound.tsx`,
-    },
-    {
-      path: `registry/${STYLE}/lib/provider-types.ts`,
-      abs: join(libDir, "provider-types.ts"),
-      type: "registry:lib",
-      target: `registry/${STYLE}/lib/provider-types.ts`,
-    },
-  ],
-})
-writeFileSync(join(outDir, "zag-runtime.json"), JSON.stringify(zagRuntimeItem, null, 2))
-items.push({
-  name: "zag-runtime",
-  type: "registry:lib",
-  description: zagRuntimeItem.description,
-  dependencies: zagRuntimeItem.dependencies,
-  files: zagRuntimeItem.files.map(({ path, type, target }) => ({ path, type, target })),
-})
-
 for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
   const name = file.replace(/\.tsx$/, "")
   const abs = join(uiDir, file)
   const path = `registry/${STYLE}/ui/${name}.tsx`
 
   if (ZAG_MACHINES.has(name)) {
+    const pascal = name
+      .split("-")
+      .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+      .join("")
     const registryItem = item({
       name,
       type: "registry:ui",
-      description: `Zag compound create${name
-        .split("-")
-        .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-        .join("")}() — https://zagjs.com/components/solid/${name}`,
+      description: `Zag compound create${pascal}() — https://zagjs.com/components/solid/${name}`,
       dependencies: [`@zag-js/${name}`, "@zag-js/solid", "solid-js"],
-      registryDependencies: ["zag-runtime"],
+      registryDependencies: [],
       files: [
         {
           path,
@@ -234,6 +196,10 @@ for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
     files: [{ path, type: "registry:ui", target: `components/ui/${name}.tsx` }],
   })
 }
+
+// Drop legacy zag-runtime artifact if present
+const legacy = join(outDir, "zag-runtime.json")
+if (existsSync(legacy)) unlinkSync(legacy)
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",

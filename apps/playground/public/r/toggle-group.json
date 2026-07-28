@@ -9,13 +9,11 @@
     "@zag-js/solid",
     "solid-js"
   ],
-  "registryDependencies": [
-    "zag-runtime"
-  ],
+  "registryDependencies": [],
   "files": [
     {
       "path": "registry/warsaw/ui/toggle-group.tsx",
-      "content": "import * as machine from \"@zag-js/toggle-group\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toggle-group.\n * @see https://zagjs.com/components/solid/toggle-group\n *\n * Usage:\n * ```tsx\n * const toggleGroup = createToggleGroup()\n * return (\n *   <toggleGroup.Root>\n *     ...\n *   </toggleGroup.Root>\n * )\n * ```\n */\nexport const createToggleGroup = createMachineCompound(machine as never, {\n  scope: \"toggle-group\",\n  parts: [\"root\",\"item\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ToggleGroupCompound = ReturnType<typeof createToggleGroup>\n",
+      "content": "import * as zag from \"@zag-js/toggle-group\"\nimport { mergeProps, normalizeProps, useMachine } from \"@zag-js/solid\"\nimport {\n  Show,\n  createMemo,\n  createUniqueId,\n  splitProps,\n  type JSX,\n  type Component,\n} from \"solid-js\"\nimport { Dynamic } from \"solid-js/web\"\n\ntype PartProps = {\n  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements\n  children?: JSX.Element\n} & Record<string, unknown>\n\nexport type CreateToggleGroupOptions = Record<string, unknown>\n\n/**\n * Zag toggle-group compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/toggle-group\n *\n * ```tsx\n * import { createToggleGroup } from \"@components/ui/toggle-group\"\n *\n * const toggleGroup = createToggleGroup({ openDelay: 200 })\n * return (\n *   <toggleGroup.Root>\n *     ...\n *   </toggleGroup.Root>\n * )\n * ```\n */\nexport function createToggleGroup(options: CreateToggleGroupOptions = {}) {\n  const service = useMachine(zag.machine, {\n    id: createUniqueId(),\n    ...options,\n  })\n  const api = createMemo(() => zag.connect(service, normalizeProps))\n\n  return {\n    Root(props: PartProps) {\n      const [local, rest] = splitProps(props, [\"as\", \"children\"])\n      const getProps = api().getRootProps\n      return (\n        <Dynamic\n          component={local.as ?? \"div\"}\n          {...(getProps ? mergeProps(getProps(), rest) : rest)}\n        >\n          {local.children}\n        </Dynamic>\n      )\n    },\n\n    Item(props: PartProps) {\n      const [local, rest] = splitProps(props, [\"as\", \"children\"])\n      const getProps = api().getItemProps as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined\n      return (\n        <Dynamic\n          component={local.as ?? \"div\"}\n          {...mergeProps(getProps ? getProps(rest) : { \"data-part\": \"item\" }, rest)}\n        >\n          {local.children}\n        </Dynamic>\n      )\n    },\n\n    /** Connected Zag API (accessor). */\n    api,\n  }\n}\n\nexport type ToggleGroupCompound = ReturnType<typeof createToggleGroup>\n",
       "type": "registry:ui",
       "target": "components/ui/toggle-group.tsx"
     }

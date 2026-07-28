@@ -1,11 +1,12 @@
 /**
- * Generates unstyled Zag compound placeholders under registry/warsaw/ui/
- * and updates packages/ui/src/index.ts re-exports.
+ * Generates inlined createX() Zag compounds under registry/warsaw/ui/
+ * No createMachineCompound — each file owns useMachine + Dynamic parts.
  *
- * Canonical import root: @/registry/warsaw/...
- * Run: pnpm generate:zag  (after deps install)
+ * Pattern (must call createX inside a Solid component setup):
+ *   const tooltip = createTooltip({ openDelay: 200 })
+ *   <tooltip.Root><tooltip.Trigger/><tooltip.Content/></tooltip.Root>
  */
-import { mkdirSync, writeFileSync, readdirSync, existsSync, cpSync } from "node:fs"
+import { mkdirSync, writeFileSync, readdirSync, readFileSync, cpSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -17,59 +18,70 @@ const uiDir = join(registryRoot, "ui")
 const libDir = join(registryRoot, "lib")
 const pkgUiSrc = join(root, "packages/ui/src")
 
-/** Machines that use a real root DOM part by default. */
-const ROOT_PART_BY_SCOPE = {
-  accordion: "root",
-  "angle-slider": "root",
-  avatar: "root",
-  carousel: "root",
-  "cascade-select": "root",
-  checkbox: "root",
-  clipboard: "root",
-  collapsible: "root",
-  "color-picker": "root",
-  combobox: "root",
-  "date-input": "root",
-  "date-picker": "root",
-  editable: "root",
-  "file-upload": "root",
-  "floating-panel": "root",
-  "image-cropper": "root",
-  listbox: "root",
-  marquee: "root",
-  menu: "root",
-  "navigation-menu": "root",
-  "number-input": "root",
-  pagination: "root",
-  "password-input": "root",
-  "pin-input": "root",
-  progress: "root",
-  "qr-code": "root",
-  "radio-group": "root",
-  "rating-group": "root",
-  "scroll-area": "root",
-  select: "root",
-  "signature-pad": "root",
-  slider: "root",
-  splitter: "root",
-  steps: "root",
-  switch: "root",
-  tabs: "root",
-  "tags-input": "root",
-  timer: "root",
-  toast: "root",
-  toc: "root",
-  toggle: "root",
-  "toggle-group": "root",
-  tour: "root",
-  "tree-view": "root",
-  dialog: undefined,
-  drawer: undefined,
-  "hover-card": undefined,
-  popover: undefined,
-  tooltip: undefined,
-  presence: undefined,
-  "async-list": undefined,
+/** Overlay scopes: Content wraps Show + positioner (positioner not exported). */
+const OVERLAY_WITH_POSITIONER = new Set([
+  "tooltip",
+  "popover",
+  "hover-card",
+  "dialog",
+  "drawer",
+  "menu",
+  "select",
+  "combobox",
+  "cascade-select",
+  "date-picker",
+  "color-picker",
+  "floating-panel",
+  "tour",
+])
+
+/** Backdrop/parts gated by api().open when present. */
+const OPEN_GATED_PARTS = new Set(["backdrop", "spotlight"])
+
+const DEFAULT_AS = {
+  trigger: "button",
+  closeTrigger: "button",
+  clearTrigger: "button",
+  editTrigger: "button",
+  submitTrigger: "button",
+  cancelTrigger: "button",
+  prevTrigger: "button",
+  nextTrigger: "button",
+  firstTrigger: "button",
+  lastTrigger: "button",
+  incrementTrigger: "button",
+  decrementTrigger: "button",
+  visibilityTrigger: "button",
+  downloadTrigger: "button",
+  eyeDropperTrigger: "button",
+  formatTrigger: "button",
+  actionTrigger: "button",
+  autoplayTrigger: "button",
+  contextTrigger: "button",
+  viewTrigger: "button",
+  stageTrigger: "button",
+  dragTrigger: "button",
+  resizeTrigger: "button",
+  itemDeleteTrigger: "button",
+  branchTrigger: "button",
+  presetTrigger: "button",
+  indicator: "div",
+  item: "div",
+  input: "input",
+  channelInput: "input",
+  itemInput: "input",
+  nodeRenameInput: "input",
+  label: "label",
+  channelSliderLabel: "label",
+  image: "img",
+  itemPreviewImage: "img",
+  link: "a",
+  itemText: "span",
+  valueText: "span",
+  title: "h2",
+  description: "p",
+  root: "div",
+  content: "div",
 }
 
 const MACHINES = [
@@ -149,10 +161,19 @@ function toCamel(name) {
   return p.charAt(0).toLowerCase() + p.slice(1)
 }
 
+function getterName(part) {
+  return `get${toPascal(part)}Props`
+}
+
+function defaultAs(part) {
+  if (DEFAULT_AS[part]) return DEFAULT_AS[part]
+  if (part.endsWith("Trigger") || part === "thumb") return part === "thumb" ? "div" : "button"
+  return "div"
+}
+
 async function loadPartsAsync(scope) {
-  const pkg = `@zag-js/${scope}`
   try {
-    const mod = await import(pkg + "/anatomy")
+    const mod = await import(`@zag-js/${scope}/anatomy`)
     const keys = Object.keys(mod.parts ?? {})
     if (keys.length) return keys
   } catch (e) {
@@ -161,22 +182,136 @@ async function loadPartsAsync(scope) {
   return ["root"]
 }
 
-function fileFor(scope, parts, rootPart) {
+function emitPartComponent(scope, part, { foldPositioner }) {
+  const pascal = toPascal(part)
+  const getter = getterName(part)
+  const asDef = defaultAs(part)
+
+  if (part === "content" && foldPositioner) {
+    return `    ${pascal}(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      return (
+        <Show when={api().open}>
+          <div {...api().getPositionerProps()}>
+            <Dynamic
+              component={local.as ?? "div"}
+              {...mergeProps(api().${getter}(), rest)}
+            >
+              {local.children}
+            </Dynamic>
+          </div>
+        </Show>
+      )
+    }`
+  }
+
+  if (OPEN_GATED_PARTS.has(part)) {
+    return `    ${pascal}(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      return (
+        <Show when={api().open}>
+          <Dynamic
+            component={local.as ?? "${asDef}"}
+            {...mergeProps(api().${getter}(), rest)}
+          >
+            {local.children}
+          </Dynamic>
+        </Show>
+      )
+    }`
+  }
+
+  if (part === "root") {
+    return `    ${pascal}(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().${getter}
+      return (
+        <Dynamic
+          component={local.as ?? "${asDef}"}
+          {...(getProps ? mergeProps(getProps(), rest) : rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    }`
+  }
+
+  return `    ${pascal}(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      const getProps = api().${getter} as ((p?: Record<string, unknown>) => Record<string, unknown>) | undefined
+      return (
+        <Dynamic
+          component={local.as ?? "${asDef}"}
+          {...mergeProps(getProps ? getProps(rest) : { "data-part": "${part}" }, rest)}
+        >
+          {local.children}
+        </Dynamic>
+      )
+    }`
+}
+
+function fileFor(scope, parts) {
   const pascal = toPascal(scope)
   const alias = toCamel(scope)
-  const partsLit = JSON.stringify(parts)
-  const rootLit = rootPart ? `"${rootPart}"` : "undefined"
+  const foldPositioner =
+    OVERLAY_WITH_POSITIONER.has(scope) &&
+    parts.includes("content") &&
+    parts.includes("positioner")
 
-  return `import * as machine from "@zag-js/${scope}"
-import { createMachineCompound } from "@/registry/${STYLE}/lib/create-machine-compound"
+  const exportParts = parts.filter((p) => !(foldPositioner && p === "positioner"))
+
+  // Always expose Root even if anatomy has no root (wrapper only)
+  const hasRoot = exportParts.includes("root")
+  const partBlock = []
+
+  if (!hasRoot) {
+    partBlock.push(`    Root(props: PartProps) {
+      const [local, rest] = splitProps(props, ["as", "children"])
+      return (
+        <Dynamic component={local.as ?? "div"} data-scope="${scope}" data-part="root" {...rest}>
+          {local.children}
+        </Dynamic>
+      )
+    }`)
+  }
+
+  for (const part of exportParts) {
+    partBlock.push(emitPartComponent(scope, part, { foldPositioner }))
+  }
+
+  const keys = [
+    ...(hasRoot ? [] : ["Root"]),
+    ...exportParts.map(toPascal),
+  ]
+
+  return `import * as zag from "@zag-js/${scope}"
+import { mergeProps, normalizeProps, useMachine } from "@zag-js/solid"
+import {
+  Show,
+  createMemo,
+  createUniqueId,
+  splitProps,
+  type JSX,
+  type Component,
+} from "solid-js"
+import { Dynamic } from "solid-js/web"
+
+type PartProps = {
+  as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements
+  children?: JSX.Element
+} & Record<string, unknown>
+
+export type Create${pascal}Options = Record<string, unknown>
 
 /**
- * Unstyled Zag placeholder — ${scope}.
+ * Zag ${scope} compound. Call inside a Solid component setup (uses useMachine).
+ *
  * @see https://zagjs.com/components/solid/${scope}
  *
- * Usage:
  * \`\`\`tsx
- * const ${alias} = create${pascal}()
+ * import { create${pascal} } from "@components/ui/${scope}"
+ *
+ * const ${alias} = create${pascal}({ openDelay: 200 })
  * return (
  *   <${alias}.Root>
  *     ...
@@ -184,11 +319,20 @@ import { createMachineCompound } from "@/registry/${STYLE}/lib/create-machine-co
  * )
  * \`\`\`
  */
-export const create${pascal} = createMachineCompound(machine as never, {
-  scope: "${scope}",
-  parts: ${partsLit} as const,
-  rootPart: ${rootLit},
-})
+export function create${pascal}(options: Create${pascal}Options = {}) {
+  const service = useMachine(zag.machine, {
+    id: createUniqueId(),
+    ...options,
+  })
+  const api = createMemo(() => zag.connect(service, normalizeProps))
+
+  return {
+${partBlock.join(",\n\n")},
+
+    /** Connected Zag API (accessor). */
+    api,
+  }
+}
 
 export type ${pascal}Compound = ReturnType<typeof create${pascal}>
 `
@@ -197,63 +341,31 @@ export type ${pascal}Compound = ReturnType<typeof create${pascal}>
 mkdirSync(uiDir, { recursive: true })
 mkdirSync(libDir, { recursive: true })
 
-// Keep lib helpers in sync from packages (source of truth for runtime impl)
+// Sync utils only (no createMachineCompound)
 cpSync(join(root, "packages/core/src/index.ts"), join(libDir, "utils.ts"))
-cpSync(join(root, "packages/provider/src/index.ts"), join(libDir, "provider-types.ts"))
-cpSync(join(root, "packages/provider-zag/src/meta.ts"), join(libDir, "meta.ts"))
-cpSync(
-  join(root, "packages/provider-zag/src/create-machine-compound.tsx"),
-  join(libDir, "create-machine-compound.tsx"),
-)
-
-// Rewrite lib imports to @/registry/warsaw
-for (const name of ["meta.ts", "create-machine-compound.tsx", "provider-types.ts", "utils.ts"]) {
-  const file = join(libDir, name)
-  let content = await import("node:fs").then((fs) => fs.readFileSync(file, "utf8"))
-  content = content
-    .replaceAll('from "@solid-reusable/provider"', `from "@/registry/${STYLE}/lib/provider-types"`)
-    .replaceAll("from '@solid-reusable/provider'", `from '@/registry/${STYLE}/lib/provider-types'`)
-    .replaceAll('from "./meta"', `from "@/registry/${STYLE}/lib/meta"`)
-    .replaceAll("from './meta'", `from '@/registry/${STYLE}/lib/meta'`)
-  writeFileSync(file, content)
-}
 
 const exportLines = []
 
 for (const scope of MACHINES) {
   const parts = await loadPartsAsync(scope)
-  const preferredRoot = Object.prototype.hasOwnProperty.call(ROOT_PART_BY_SCOPE, scope)
-    ? ROOT_PART_BY_SCOPE[scope]
-    : parts.includes("root")
-      ? "root"
-      : undefined
-  const resolvedRoot =
-    preferredRoot && parts.includes(preferredRoot) ? preferredRoot : undefined
-
-  const content = fileFor(scope, parts, resolvedRoot)
+  const content = fileFor(scope, parts)
   const file = join(uiDir, `${scope}.tsx`)
   writeFileSync(file, content)
   console.log("wrote", file, "parts=", parts.join(","))
 
   const pascal = toPascal(scope)
-  exportLines.push(
-    `export { create${pascal} } from "@/registry/${STYLE}/ui/${scope}"`,
-  )
-  exportLines.push(
-    `export type { ${pascal}Compound } from "@/registry/${STYLE}/ui/${scope}"`,
-  )
+  exportLines.push(`export { create${pascal} } from "@/registry/${STYLE}/ui/${scope}"`)
+  exportLines.push(`export type { ${pascal}Compound, Create${pascal}Options } from "@/registry/${STYLE}/ui/${scope}"`)
 }
 
 const plainFiles = readdirSync(uiDir).filter((f) => {
   if (!f.endsWith(".tsx")) return false
-  const base = f.replace(/\.tsx$/, "")
-  return !MACHINES.includes(base)
+  return !MACHINES.includes(f.replace(/\.tsx$/, ""))
 })
 
-// Ensure plain comps use warsaw utils import
 for (const f of plainFiles) {
   const file = join(uiDir, f)
-  let content = await import("node:fs").then((fs) => fs.readFileSync(file, "utf8"))
+  let content = readFileSync(file, "utf8")
   content = content
     .replaceAll('from "@solid-reusable/core"', `from "@/registry/${STYLE}/lib/utils"`)
     .replaceAll("from '@solid-reusable/core'", `from '@/registry/${STYLE}/lib/utils'`)
@@ -271,11 +383,11 @@ const index = `/** @solid-reusable/ui — re-exports from @/registry/${STYLE} */
 // Plain (no Zag / no createX) — presentational
 ${plainExports.join("\n")}
 
-// Zag compounds — createX() only
+// Zag compounds — createX() only (inlined useMachine)
 ${exportLines.join("\n")}
 `
 
 mkdirSync(pkgUiSrc, { recursive: true })
 writeFileSync(join(pkgUiSrc, "index.ts"), index)
 console.log("updated", join(pkgUiSrc, "index.ts"))
-console.log("done", MACHINES.length, "zag components → registry/", STYLE)
+console.log("done", MACHINES.length, "inlined zag compounds → registry/", STYLE)
