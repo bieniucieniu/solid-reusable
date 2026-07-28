@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": [
+    "packages/*/src/**/*",
+    "registry/warsaw/**/*",
+    "apps/playground/src/**/*",
+    "apps/playground/vite.config.ts"
+  ],
+  "exclude": ["node_modules", "**/dist"]
+}

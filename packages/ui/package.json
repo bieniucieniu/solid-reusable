@@ -6,20 +6,12 @@
   "exports": {
     ".": {
       "types": "./src/index.ts",
+      "solid": "./src/index.ts",
       "default": "./src/index.ts"
-    },
-    "./plain/*": {
-      "types": "./src/plain/*.tsx",
-      "default": "./src/plain/*.tsx"
-    },
-    "./zag/*": {
-      "types": "./src/zag/*.tsx",
-      "default": "./src/zag/*.tsx"
     }
   },
   "scripts": {
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "build": "tsc -p tsconfig.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "@solid-reusable/core": "workspace:*",
@@ -63,6 +55,7 @@
     "@zag-js/select": "^1.42.0",
     "@zag-js/signature-pad": "^1.42.0",
     "@zag-js/slider": "^1.42.0",
+    "@zag-js/solid": "^1.42.0",
     "@zag-js/splitter": "^1.42.0",
     "@zag-js/steps": "^1.42.0",
     "@zag-js/switch": "^1.42.0",
@@ -78,10 +71,12 @@
     "@zag-js/tree-view": "^1.42.0"
   },
   "peerDependencies": {
-    "solid-js": "^1.9.0"
+    "solid-js": "^1.9.0",
+    "@zag-js/solid": "^1.42.0"
   },
   "devDependencies": {
     "solid-js": "^1.9.14",
+    "@zag-js/solid": "^1.42.0",
     "typescript": "^5.8.3"
   }
 }

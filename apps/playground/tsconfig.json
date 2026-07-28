@@ -1,18 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["vite/client"],
     "noEmit": true,
+    "types": ["vite/client", "node"],
+    "baseUrl": "../..",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/registry/*": ["../../registry/*"],
-      "@components/*": ["../../registry/warsaw/*"],
-      "@solid-reusable/ui": ["../../packages/ui/src/index.ts"],
-      "@solid-reusable/ui/*": ["../../packages/ui/src/*"],
-      "@solid-reusable/core": ["../../packages/core/src/index.ts"],
-      "@solid-reusable/provider": ["../../packages/provider/src/index.ts"],
-      "@solid-reusable/provider-zag": ["../../packages/provider-zag/src/index.ts"]
+      "~/*": ["apps/playground/src/*"],
+      "@/registry/*": ["registry/*"],
+      "@components/*": ["registry/warsaw/*"],
+      "@solid-reusable/ui": ["packages/ui/src/index.ts"],
+      "@solid-reusable/ui/*": ["packages/ui/src/*"],
+      "@solid-reusable/core": ["packages/core/src/index.ts"],
+      "@solid-reusable/provider": ["packages/provider/src/index.ts"],
+      "@solid-reusable/provider-zag": ["packages/provider-zag/src/index.ts"]
     }
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src/**/*", "vite.config.ts", "../../registry/warsaw/**/*"]
 }

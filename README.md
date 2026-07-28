@@ -50,6 +50,16 @@ pnpm dev
 
 Edit comps in `registry/warsaw/` by hand. Then `pnpm build:registry`.
 
+### TS aliases
+
+| Alias | Resolves to |
+|---|---|
+| `@/registry/*` | `registry/*` |
+| `@components/*` | `registry/warsaw/*` |
+| `@solid-reusable/*` | `packages/*/src` |
+
+Root `tsconfig.json` + Vite `resolve.alias` stay in sync. `solid-js` / `@zag-js/solid` are workspace peer/dev deps; machine packages live on `@solid-reusable/ui`.
+
 ## Registry (shadcn CLI)
 
 Playground serves registry at `http://localhost:5173/r/{name}.json`.
