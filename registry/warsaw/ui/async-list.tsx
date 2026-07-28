@@ -1,6 +1,7 @@
 import * as zag from "@zag-js/async-list"
 import { useMachine } from "@zag-js/solid"
-import { createMemo, createUniqueId } from "solid-js"
+import { createMemo } from "solid-js"
+import type { ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
 
 /**
  * Zag async-list compound. Call inside a Solid component setup (uses useMachine).
@@ -14,8 +15,7 @@ import { createMemo, createUniqueId } from "solid-js"
  * // use asyncList.api
  * ```
  */
-export function createAsyncList<T, C>(options: Partial<zag.Props<T, C>> & { id?: string } = {}) {
-  options.id ??= createUniqueId()
+export function createAsyncList<T, C>(options?: ZagMachineProps<zag.Machine<T, C>>) {
   const service = useMachine(zag.machine, options)
   const api = createMemo(() => zag.connect(service))
 

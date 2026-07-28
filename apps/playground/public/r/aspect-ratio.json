@@ -4,12 +4,16 @@
   "type": "registry:ui",
   "title": "Aspect Ratio",
   "description": "Presentational aspect-ratio (no Zag).",
-  "dependencies": ["solid-js"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/aspect-ratio.tsx",
-      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<\n  JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }\n>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  return (\n    <div\n      data-scope=\"aspect-ratio\"\n      {...props}\n      style={{\n        ...(typeof props.style === \"object\" && props.style ? props.style : {}),\n        \"aspect-ratio\": String(props.ratio ?? 16 / 9),\n      }}\n      class={cn(props.class)}\n    />\n  )\n}\n",
+      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  return (\n    <div\n      data-scope=\"aspect-ratio\"\n      {...props}\n      style={{\n        ...(typeof props.style === \"object\" && props.style ? props.style : {}),\n        \"aspect-ratio\": String(props.ratio ?? 16 / 9),\n      }}\n      class={cn(props.class)}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
     }

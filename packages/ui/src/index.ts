@@ -18,6 +18,13 @@ export { Separator } from "@/registry/warsaw/ui/separator"
 export { Skeleton } from "@/registry/warsaw/ui/skeleton"
 export { Spinner } from "@/registry/warsaw/ui/spinner"
 
+export type {
+  DynamicAsProps,
+  ZagMachineProps,
+  MaybeAccessor,
+  Override,
+} from "@/registry/warsaw/lib/dynamic-as"
+
 // Zag compounds — createX() only (inlined useMachine)
 export { createAccordion } from "@/registry/warsaw/ui/accordion"
 export type { AccordionCompound } from "@/registry/warsaw/ui/accordion"

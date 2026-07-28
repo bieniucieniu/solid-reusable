@@ -1,6 +1,6 @@
 import { normalizeProps, useMachine } from "@zag-js/solid"
 import * as zag from "@zag-js/toc"
-import { createMemo, createUniqueId, splitProps } from "solid-js"
+import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
 

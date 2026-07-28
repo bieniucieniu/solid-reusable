@@ -1,6 +1,6 @@
 import * as zag from "@zag-js/hover-card"
 import { normalizeProps, useMachine } from "@zag-js/solid"
-import { createMemo, createUniqueId, Show, splitProps } from "solid-js"
+import { createMemo, Show, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
 

@@ -4,8 +4,12 @@
   "type": "registry:ui",
   "title": "Separator",
   "description": "Presentational separator (no Zag).",
-  "dependencies": ["solid-js"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/warsaw/ui/separator.tsx",
