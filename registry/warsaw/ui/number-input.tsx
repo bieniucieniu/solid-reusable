@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/number-input"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateNumberInputOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/number-input";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag number-input compound. Call inside a Solid component setup (uses useMachine).
@@ -28,121 +20,98 @@ export type CreateNumberInputOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createNumberInput(options: CreateNumberInputOptions = {} as CreateNumberInputOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createNumberInput(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		Control(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getControlProps()}
+					{...rest}
+				/>
+			);
+		},
+		ValueText(props: DynamicAsProps<"span", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getValueTextProps()}
+					{...rest}
+				/>
+			);
+		},
+		Input(props: DynamicAsProps<"input", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getInputProps()}
+					{...rest}
+				/>
+			);
+		},
+		DecrementTrigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getDecrementTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
+		IncrementTrigger(props: DynamicAsProps<"button", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "button"}
+					{...api().getIncrementTriggerProps()}
+					{...rest}
+				/>
+			);
+		},
+		Scrubber(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getScrubberProps()}
+					{...rest}
+				/>
+			);
+		},
 
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Input(props: DynamicAsProps<"input", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "input"}
-          {...api().getInputProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Control(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getControlProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ValueText(props: DynamicAsProps<"span", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "span"}
-          {...api().getValueTextProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    IncrementTrigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getIncrementTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    DecrementTrigger(props: DynamicAsProps<"button", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "button"}
-          {...api().getDecrementTriggerProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Scrubber(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getScrubberProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type NumberInputCompound = ReturnType<typeof createNumberInput>
+export type NumberInputCompound = ReturnType<typeof createNumberInput>;

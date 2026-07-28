@@ -1,16 +1,6 @@
-import * as zag from "@zag-js/presence"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreatePresenceOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/presence";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId } from "solid-js";
 
 /**
  * Zag presence compound. Call inside a Solid component setup (uses useMachine).
@@ -21,37 +11,20 @@ export type CreatePresenceOptions = Omit<zag.Props, "id">
  * import { createPresence } from "@components/ui/presence"
  *
  * const presence = createPresence({})
- * return (
- *   <presence.Root>
- *     ...
- *   </presence.Root>
- * )
+ * // use presence.api
  * ```
  */
-export function createPresence(options: CreatePresenceOptions = {} as CreatePresenceOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createPresence(options: Partial<zag.Props> & { id?: string } = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+	return {
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type PresenceCompound = ReturnType<typeof createPresence>
+export type PresenceCompound = ReturnType<typeof createPresence>;

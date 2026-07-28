@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/warsaw/lib/dynamic-as.ts",
-      "content": "import type { ComponentProps, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: `as` + Zag part props.\n * Kept loose so Dynamic + Zag prop objects type-check cleanly.\n */\nexport type DynamicAsProps<\n  C extends ValidComponent,\n  P,\n  CP = ComponentProps<C>,\n> = {\n  [K in keyof P | keyof CP]: K extends keyof P\n    ? P[K]\n    : K extends keyof CP\n      ? CP[K]\n      : never\n} & {\n  as?: C | undefined\n}\n",
+      "content": "import type { ComponentProps, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: optional DOM props + Zag part props + `as`.\n * Zag keys win over DOM keys when they overlap.\n */\nexport type DynamicAsProps<\n\tC extends ValidComponent,\n\tP = {},\n> = Omit<Partial<ComponentProps<C>>, keyof P | \"as\"> &\n\tP & {\n\t\tas?: C | undefined\n\t}\n",
       "type": "registry:lib",
       "target": "registry/warsaw/lib/dynamic-as.ts"
     }

@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/radio-group"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateRadioGroupOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/radio-group";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag radio-group compound. Call inside a Solid component setup (uses useMachine).
@@ -28,101 +20,88 @@ export type CreateRadioGroupOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createRadioGroup(options: CreateRadioGroupOptions = {} as CreateRadioGroupOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createRadioGroup(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		Item(props: DynamicAsProps<"label", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "value", "disabled", "invalid"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getItemProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
+					{...rest}
+				/>
+			);
+		},
+		ItemText(props: DynamicAsProps<"span", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "value", "disabled", "invalid"]);
+			return (
+				<Dynamic
+					component={local.as ?? "span"}
+					{...api().getItemTextProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
+					{...rest}
+				/>
+			);
+		},
+		ItemControl(props: DynamicAsProps<"div", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "value", "disabled", "invalid"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemControlProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
+					{...rest}
+				/>
+			);
+		},
+		ItemHiddenInput(props: DynamicAsProps<"input", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "value", "disabled", "invalid"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getItemHiddenInputProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
+					{...rest}
+				/>
+			);
+		},
+		Indicator(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getIndicatorProps()}
+					{...rest}
+				/>
+			);
+		},
 
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Item<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemText<Comp extends ValidComponent = "span">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
-      return (
-        <Dynamic
-          component={local.as ?? "span"}
-          {...api().getItemTextProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    ItemControl<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemControlProps({ value: local.value, disabled: local.disabled, invalid: local.invalid })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Indicator(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getIndicatorProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type RadioGroupCompound = ReturnType<typeof createRadioGroup>
+export type RadioGroupCompound = ReturnType<typeof createRadioGroup>;

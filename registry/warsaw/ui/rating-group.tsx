@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/rating-group"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreateRatingGroupOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/rating-group";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag rating-group compound. Call inside a Solid component setup (uses useMachine).
@@ -28,71 +20,68 @@ export type CreateRatingGroupOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createRatingGroup(options: CreateRatingGroupOptions = {} as CreateRatingGroupOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createRatingGroup(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		HiddenInput(props: DynamicAsProps<"input", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getHiddenInputProps()}
+					{...rest}
+				/>
+			);
+		},
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		Control(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getControlProps()}
+					{...rest}
+				/>
+			);
+		},
+		Item(props: DynamicAsProps<"div", zag.ItemProps>) {
+			const [local, rest] = splitProps(props, ["as", "index"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getItemProps({ index: local.index })}
+					{...rest}
+				/>
+			);
+		},
 
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Item<Comp extends ValidComponent = "div">(
-      props: DynamicAsProps<Comp, zag.ItemProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","index"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getItemProps({ index: local.index })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Control(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getControlProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type RatingGroupCompound = ReturnType<typeof createRatingGroup>
+export type RatingGroupCompound = ReturnType<typeof createRatingGroup>;

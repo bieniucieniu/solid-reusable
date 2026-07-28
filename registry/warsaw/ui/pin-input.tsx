@@ -1,16 +1,8 @@
-import * as zag from "@zag-js/pin-input"
-import { normalizeProps, useMachine } from "@zag-js/solid"
-import {
-  Show,
-  createMemo,
-  createUniqueId,
-  splitProps,
-  type ValidComponent,
-} from "solid-js"
-import { Dynamic } from "solid-js/web"
-import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as"
-
-export type CreatePinInputOptions = Omit<zag.Props, "id">
+import * as zag from "@zag-js/pin-input";
+import { normalizeProps, useMachine } from "@zag-js/solid";
+import { createMemo, createUniqueId, splitProps } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import type { DynamicAsProps } from "@/registry/warsaw/lib/dynamic-as";
 
 /**
  * Zag pin-input compound. Call inside a Solid component setup (uses useMachine).
@@ -28,71 +20,68 @@ export type CreatePinInputOptions = Omit<zag.Props, "id">
  * )
  * ```
  */
-export function createPinInput(options: CreatePinInputOptions = {} as CreatePinInputOptions) {
-  const service = useMachine(zag.machine, {
-    id: createUniqueId(),
-    ...options,
-  })
-  const api = createMemo(() => zag.connect(service, normalizeProps))
+export function createPinInput(options: Partial<zag.Props> = {}) {
+	options.id ??= createUniqueId();
+	const service = useMachine(zag.machine, options);
+	const api = createMemo(() => zag.connect(service, normalizeProps));
 
-  return {
-    Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getRootProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
+	return {
+		Root(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getRootProps()}
+					{...rest}
+				/>
+			);
+		},
+		Label(props: DynamicAsProps<"label", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "label"}
+					{...api().getLabelProps()}
+					{...rest}
+				/>
+			);
+		},
+		HiddenInput(props: DynamicAsProps<"input", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getHiddenInputProps()}
+					{...rest}
+				/>
+			);
+		},
+		Control(props: DynamicAsProps<"div", {}>) {
+			const [local, rest] = splitProps(props, ["as"]);
+			return (
+				<Dynamic
+					component={local.as ?? "div"}
+					{...api().getControlProps()}
+					{...rest}
+				/>
+			);
+		},
+		Input(props: DynamicAsProps<"input", zag.InputProps>) {
+			const [local, rest] = splitProps(props, ["as", "index"]);
+			return (
+				<Dynamic
+					component={local.as ?? "input"}
+					{...api().getInputProps({ index: local.index })}
+					{...rest}
+				/>
+			);
+		},
 
-    Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "label"}
-          {...api().getLabelProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Input<Comp extends ValidComponent = "input">(
-      props: DynamicAsProps<Comp, zag.InputProps>,
-    ) {
-      const [local, rest] = splitProps(props, ["as","children","index"])
-      return (
-        <Dynamic
-          component={local.as ?? "input"}
-          {...api().getInputProps({ index: local.index })}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    Control(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as", "children"])
-      return (
-        <Dynamic
-          component={local.as ?? "div"}
-          {...api().getControlProps()}
-          {...rest}
-        >
-          {local.children}
-        </Dynamic>
-      )
-    },
-
-    /** Connected Zag API (accessor). */
-    api,
-  }
+		/** Connected Zag API (accessor). */
+		get api() {
+			return api();
+		},
+	};
 }
 
-export type PinInputCompound = ReturnType<typeof createPinInput>
+export type PinInputCompound = ReturnType<typeof createPinInput>;
