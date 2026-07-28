@@ -6,18 +6,11 @@ const items = ["Solid", "Zag", "Tailwind", "Registry", "Reusable"]
 export default function MarqueeDemo() {
   const marquee = createMarquee({ side: "start" })
   return (
-    <marquee.Root
-      style={{
-        overflow: "hidden",
-        border: "1px solid var(--line)",
-        "border-radius": "0.5rem",
-        padding: "0.5rem 0",
-      }}
-    >
+    <marquee.Root class="overflow-hidden rounded-lg border border-line py-2">
       <marquee.Viewport>
-        <marquee.Content index={0}>
+        <marquee.Content index={0} class="flex">
           <For each={items}>
-            {(t) => <marquee.Item style={{ padding: "0 1rem" }}>{t}</marquee.Item>}
+            {(t) => <marquee.Item class="px-4 text-sm font-medium">{t}</marquee.Item>}
           </For>
         </marquee.Content>
       </marquee.Viewport>

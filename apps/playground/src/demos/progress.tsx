@@ -3,13 +3,13 @@ import { createProgress } from "@solid-reusable/ui"
 export default function ProgressDemo() {
   const progress = createProgress({ value: 45 })
   return (
-    <progress.Root style={{ "max-width": "20rem", display: "grid", gap: "0.35rem" }}>
-      <div style={{ display: "flex", "justify-content": "space-between" }}>
-        <progress.Label>Loading</progress.Label>
-        <progress.ValueText />
+    <progress.Root class="grid max-w-xs gap-1.5">
+      <div class="flex justify-between text-sm">
+        <progress.Label class="font-medium">Loading</progress.Label>
+        <progress.ValueText class="text-mute" />
       </div>
-      <progress.Track style={{ height: "0.45rem", background: "var(--line)", "border-radius": "999px", overflow: "hidden" }}>
-        <progress.Range style={{ background: "var(--accent)", height: "100%" }} />
+      <progress.Track class="h-2 overflow-hidden rounded-full bg-line">
+        <progress.Range class="h-full bg-brand" />
       </progress.Track>
     </progress.Root>
   )

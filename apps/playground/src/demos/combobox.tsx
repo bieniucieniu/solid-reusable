@@ -15,17 +15,20 @@ export default function ComboboxDemo() {
     },
   })
   return (
-    <combobox.Root style={{ "max-width": "16rem", display: "grid", gap: "0.35rem" }}>
-      <combobox.Label>Fruit</combobox.Label>
-      <combobox.Control style={{ display: "flex", gap: "0.25rem" }}>
-        <combobox.Input placeholder="Search…" />
-        <combobox.Trigger>▾</combobox.Trigger>
+    <combobox.Root class="grid max-w-xs gap-1.5">
+      <combobox.Label class="text-sm font-medium">Fruit</combobox.Label>
+      <combobox.Control class="flex gap-1">
+        <combobox.Input placeholder="Search…" class="demo-input flex-1" />
+        <combobox.Trigger class="demo-btn px-2">▾</combobox.Trigger>
       </combobox.Control>
-      <combobox.Content style={{ background: "var(--panel)", border: "1px solid var(--line)", "border-radius": "0.45rem", padding: "0.25rem" }}>
+      <combobox.Content class="demo-popover p-1">
         <combobox.List>
           <Index each={options()}>
             {(item) => (
-              <combobox.Item item={item()} style={{ padding: "0.3rem 0.45rem" }}>
+              <combobox.Item
+                item={item()}
+                class="cursor-pointer rounded px-2 py-1.5 text-sm hover:bg-brand-soft"
+              >
                 <combobox.ItemText item={item()}>{item()}</combobox.ItemText>
               </combobox.Item>
             )}

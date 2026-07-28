@@ -3,8 +3,8 @@ import { createQrCode } from "@solid-reusable/ui"
 export default function QrCodeDemo() {
   const qr = createQrCode({ value: "https://zagjs.com" })
   return (
-    <qr.Root style={{ width: "10rem" }}>
-      <qr.Frame style={{ width: "100%", height: "auto", background: "white" }}>
+    <qr.Root class="w-40">
+      <qr.Frame class="h-auto w-full bg-white">
         <qr.Pattern />
       </qr.Frame>
     </qr.Root>

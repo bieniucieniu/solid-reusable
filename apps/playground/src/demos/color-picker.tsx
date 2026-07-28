@@ -4,35 +4,26 @@ import { parse } from "@zag-js/color-picker"
 export default function ColorPickerDemo() {
   const picker = createColorPicker({ defaultValue: parse("#0f766e") })
   return (
-    <picker.Root style={{ display: "grid", gap: "0.5rem", "max-width": "16rem" }}>
-      <picker.Label>Color</picker.Label>
-      <picker.Control style={{ display: "flex", gap: "0.35rem" }}>
-        <picker.ChannelInput channel="hex" />
+    <picker.Root class="grid max-w-xs gap-2">
+      <picker.Label class="text-sm font-medium">Color</picker.Label>
+      <picker.Control class="flex gap-1.5">
+        <picker.ChannelInput channel="hex" class="demo-input flex-1" />
         <picker.Trigger
-          style={{
-            width: "2rem",
-            "border-radius": "0.35rem",
-            background: picker.api.valueAsString,
-          }}
+          class="size-8 rounded-md border border-line"
+          style={{ background: picker.api.valueAsString }}
         />
       </picker.Control>
-      <picker.Content
-        style={{
-          background: "var(--panel)",
-          border: "1px solid var(--line)",
-          padding: "0.75rem",
-          "border-radius": "0.5rem",
-          display: "grid",
-          gap: "0.5rem",
-        }}
-      >
+      <picker.Content class="demo-popover grid gap-2">
         <picker.Area>
-          <picker.AreaBackground style={{ height: "8rem", "border-radius": "0.35rem" }} />
-          <picker.AreaThumb />
+          <picker.AreaBackground class="h-32 rounded-md" />
+          <picker.AreaThumb class="size-3 rounded-full border-2 border-white shadow" />
         </picker.Area>
         <picker.ChannelSlider channel="hue">
-          <picker.ChannelSliderTrack channel="hue">
-            <picker.ChannelSliderThumb channel="hue" />
+          <picker.ChannelSliderTrack channel="hue" class="h-3 rounded-full">
+            <picker.ChannelSliderThumb
+              channel="hue"
+              class="size-3 rounded-full border-2 border-white shadow"
+            />
           </picker.ChannelSliderTrack>
         </picker.ChannelSlider>
       </picker.Content>

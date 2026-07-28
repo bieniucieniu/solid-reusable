@@ -9,8 +9,19 @@ const collection = zag.collection({
     id: "root",
     name: "",
     children: [
-      { id: "docs", name: "Documents", children: [{ id: "resume", name: "Resume.pdf" }, { id: "cover", name: "Cover letter.docx" }] },
-      { id: "pics", name: "Pictures", children: [{ id: "img1", name: "Vacation.png" }] },
+      {
+        id: "docs",
+        name: "Documents",
+        children: [
+          { id: "resume", name: "Resume.pdf" },
+          { id: "cover", name: "Cover letter.docx" },
+        ],
+      },
+      {
+        id: "pics",
+        name: "Pictures",
+        children: [{ id: "img1", name: "Vacation.png" }],
+      },
     ],
   },
 })
@@ -18,32 +29,48 @@ const collection = zag.collection({
 export default function TreeViewDemo() {
   const tree = createTreeView({ collection })
   return (
-    <tree.Root style={{ "max-width": "18rem" }}>
-      <tree.Label>Files</tree.Label>
-      <tree.Tree style={{ border: "1px solid var(--line)", "border-radius": "0.45rem", padding: "0.35rem", background: "white" }}>
+    <tree.Root class="max-w-xs">
+      <tree.Label class="mb-1.5 text-sm font-medium">Files</tree.Label>
+      <tree.Tree class="rounded-lg border border-line bg-white p-1.5 text-sm">
         <For each={collection.rootNode.children}>
           {(node, i) =>
             node.children ? (
-              <tree.Branch node={node} indexPath={[i()]}> 
-                <tree.BranchControl node={node} indexPath={[i()]} style={{ display: "flex", gap: "0.35rem" }}>
+              <tree.Branch node={node} indexPath={[i()]}>
+                <tree.BranchControl
+                  node={node}
+                  indexPath={[i()]}
+                  class="flex items-center gap-1.5 rounded px-1.5 py-1 hover:bg-brand-soft"
+                >
                   <tree.BranchTrigger node={node} indexPath={[i()]}>
-                    <tree.BranchIndicator node={node} indexPath={[i()]}>▸</tree.BranchIndicator>
+                    <tree.BranchIndicator node={node} indexPath={[i()]}>
+                      ▸
+                    </tree.BranchIndicator>
                   </tree.BranchTrigger>
-                  <tree.BranchText node={node} indexPath={[i()]}>{node.name}</tree.BranchText>
+                  <tree.BranchText node={node} indexPath={[i()]}>
+                    {node.name}
+                  </tree.BranchText>
                 </tree.BranchControl>
-                <tree.BranchContent node={node} indexPath={[i()]} style={{ "padding-left": "1rem" }}>
+                <tree.BranchContent node={node} indexPath={[i()]} class="pl-4">
                   <For each={node.children}>
                     {(child, j) => (
-                      <tree.Item node={child} indexPath={[i(), j()]} style={{ padding: "0.2rem 0" }}>
-                        <tree.ItemText node={child} indexPath={[i(), j()]}>{child.name}</tree.ItemText>
+                      <tree.Item
+                        node={child}
+                        indexPath={[i(), j()]}
+                        class="rounded px-1.5 py-1 hover:bg-brand-soft"
+                      >
+                        <tree.ItemText node={child} indexPath={[i(), j()]}>
+                          {child.name}
+                        </tree.ItemText>
                       </tree.Item>
                     )}
                   </For>
                 </tree.BranchContent>
               </tree.Branch>
             ) : (
-              <tree.Item node={node} indexPath={[i()]}>
-                <tree.ItemText node={node} indexPath={[i()]}>{node.name}</tree.ItemText>
+              <tree.Item node={node} indexPath={[i()]} class="rounded px-1.5 py-1 hover:bg-brand-soft">
+                <tree.ItemText node={node} indexPath={[i()]}>
+                  {node.name}
+                </tree.ItemText>
               </tree.Item>
             )
           }

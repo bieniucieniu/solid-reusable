@@ -3,12 +3,12 @@ import { createCollapsible } from "@solid-reusable/ui"
 export default function CollapsibleDemo() {
   const collapsible = createCollapsible()
   return (
-    <collapsible.Root style={{ "max-width": "24rem" }}>
-      <collapsible.Trigger style={{ display: "flex", "align-items": "center", gap: "0.35rem" }}>
+    <collapsible.Root class="max-w-sm">
+      <collapsible.Trigger class="demo-btn inline-flex items-center gap-1.5">
         Toggle
         <collapsible.Indicator>+</collapsible.Indicator>
       </collapsible.Trigger>
-      <collapsible.Content style={{ "margin-top": "0.5rem" }}>
+      <collapsible.Content class="mt-2 rounded-md border border-line bg-stone-50 p-3 text-sm">
         Collapsible panel content.
       </collapsible.Content>
     </collapsible.Root>

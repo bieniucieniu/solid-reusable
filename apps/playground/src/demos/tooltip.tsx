@@ -4,8 +4,8 @@ export default function TooltipDemo() {
   const tooltip = createTooltip({ openDelay: 150 })
   return (
     <tooltip.Root>
-      <tooltip.Trigger>Hover me</tooltip.Trigger>
-      <tooltip.Content style={{ background: "#1c1917", color: "white", padding: "0.35rem 0.55rem", "border-radius": "0.35rem", "font-size": "0.85rem" }}>
+      <tooltip.Trigger class="demo-btn">Hover me</tooltip.Trigger>
+      <tooltip.Content class="rounded-md bg-stone-900 px-2.5 py-1.5 text-xs text-white shadow">
         Helpful tip
         <tooltip.Arrow>
           <tooltip.ArrowTip />

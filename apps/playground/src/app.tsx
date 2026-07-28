@@ -9,7 +9,7 @@ export default function App() {
     <Router
       root={(props) => (
         <Shell>
-          <Suspense fallback={<p class="muted">Loading…</p>}>{props.children}</Suspense>
+          <Suspense fallback={<p class="text-mute">Loading…</p>}>{props.children}</Suspense>
         </Shell>
       )}
     >

@@ -4,12 +4,18 @@ export default function MenuDemo() {
   const menu = createMenu()
   return (
     <menu.Root>
-      <menu.Trigger>Open menu</menu.Trigger>
-      <menu.Content style={{ background: "var(--panel)", border: "1px solid var(--line)", "border-radius": "0.5rem", padding: "0.35rem", "min-width": "10rem" }}>
-        <menu.Item value="new">New file</menu.Item>
-        <menu.Item value="open">Open…</menu.Item>
-        <menu.Separator />
-        <menu.Item value="quit">Quit</menu.Item>
+      <menu.Trigger class="demo-btn">Open menu</menu.Trigger>
+      <menu.Content class="demo-popover grid min-w-40 gap-0.5 p-1">
+        <menu.Item value="new" class="rounded px-2 py-1.5 text-sm hover:bg-brand-soft">
+          New file
+        </menu.Item>
+        <menu.Item value="open" class="rounded px-2 py-1.5 text-sm hover:bg-brand-soft">
+          Open…
+        </menu.Item>
+        <menu.Separator class="my-1 h-px bg-line" />
+        <menu.Item value="quit" class="rounded px-2 py-1.5 text-sm hover:bg-brand-soft">
+          Quit
+        </menu.Item>
       </menu.Content>
     </menu.Root>
   )

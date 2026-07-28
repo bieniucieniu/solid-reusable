@@ -7,42 +7,47 @@ export function Shell(props: ParentProps) {
   const params = useParams<{ name?: string }>()
 
   return (
-    <div class="shell">
-      <aside class="side">
-        <A href="/">
-          <h1>solid-reusable</h1>
+    <div class="min-h-screen lg:grid lg:grid-cols-[16rem_1fr]">
+      <aside class="border-line bg-panel/90 sticky top-0 h-auto overflow-auto border-b p-4 lg:h-screen lg:border-r lg:border-b-0 lg:p-5">
+        <A href="/" class="block">
+          <h1 class="font-display text-lg font-semibold tracking-tight">solid-reusable</h1>
         </A>
-        <p class="tag">Zag compounds + plain UI · SolidStart</p>
+        <p class="text-mute mb-4 text-sm">Zag compounds + plain UI · SolidStart</p>
 
-        <div class="nav-group">
-          <h2>Plain</h2>
-          <For each={plainItems}>
-            {(item) => (
-              <A
-                href={`/components/${item.name}`}
-                classList={{ active: params.name === item.name }}
-              >
-                {item.title}
-              </A>
-            )}
-          </For>
-        </div>
-
-        <div class="nav-group">
-          <h2>Zag</h2>
-          <For each={zagItems}>
-            {(item) => (
-              <A
-                href={`/components/${item.name}`}
-                classList={{ active: params.name === item.name }}
-              >
-                {item.title}
-              </A>
-            )}
-          </For>
-        </div>
+        <NavGroup title="Plain" items={plainItems} active={params.name} />
+        <NavGroup title="Zag" items={zagItems} active={params.name} />
       </aside>
-      <div class="main">{props.children}</div>
+
+      <div class="mx-auto w-full max-w-3xl p-5 sm:p-7">{props.children}</div>
+    </div>
+  )
+}
+
+function NavGroup(props: {
+  title: string
+  items: CatalogItem[]
+  active: string | undefined
+}) {
+  return (
+    <div class="mt-4">
+      <h2 class="text-mute mb-1.5 text-[0.7rem] font-medium tracking-[0.08em] uppercase">
+        {props.title}
+      </h2>
+      <div class="flex flex-col gap-0.5">
+        <For each={props.items}>
+          {(item) => (
+            <A
+              href={`/components/${item.name}`}
+              class="hover:bg-brand-soft/60 hover:text-brand rounded-md px-2 py-1 text-sm transition"
+              classList={{
+                "bg-brand-soft/70 text-brand font-medium": props.active === item.name,
+              }}
+            >
+              {item.title}
+            </A>
+          )}
+        </For>
+      </div>
     </div>
   )
 }
@@ -51,15 +56,15 @@ export function DemoFrame(props: ParentProps & { name: string }) {
   const item = (): CatalogItem | undefined => CATALOG.find((c) => c.name === props.name)
 
   return (
-    <Show when={item()} fallback={<p class="muted">Unknown component.</p>}>
+    <Show when={item()} fallback={<p class="text-mute">Unknown component.</p>}>
       {(c) => (
-        <article class="demo-card">
-          <h2>{c().title}</h2>
-          <p class="meta">
+        <article class="border-line bg-panel rounded-xl border p-5 shadow-sm sm:p-6">
+          <h2 class="font-display text-2xl font-semibold tracking-tight">{c().title}</h2>
+          <p class="text-mute mb-5 text-sm">
             {c().kind === "zag" ? "createX compound" : "presentational"} ·{" "}
             <code>@components/ui/{c().name}</code>
           </p>
-          <div class="demo-stage">{props.children}</div>
+          <div class="grid gap-3">{props.children}</div>
         </article>
       )}
     </Show>

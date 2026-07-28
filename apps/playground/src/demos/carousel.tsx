@@ -6,27 +6,19 @@ const slides = ["One", "Two", "Three"]
 export default function CarouselDemo() {
   const carousel = createCarousel({ slideCount: slides.length })
   return (
-    <carousel.Root style={{ "max-width": "22rem", display: "grid", gap: "0.5rem" }}>
-      <carousel.Control style={{ display: "flex", gap: "0.35rem" }}>
-        <carousel.PrevTrigger>Prev</carousel.PrevTrigger>
-        <carousel.NextTrigger>Next</carousel.NextTrigger>
+    <carousel.Root class="grid max-w-sm gap-2">
+      <carousel.Control class="flex gap-1.5">
+        <carousel.PrevTrigger class="demo-btn">Prev</carousel.PrevTrigger>
+        <carousel.NextTrigger class="demo-btn">Next</carousel.NextTrigger>
       </carousel.Control>
-      <carousel.ItemGroup
-        style={{
-          display: "grid",
-          "border-radius": "0.5rem",
-          overflow: "hidden",
-          border: "1px solid var(--line)",
-        }}
-      >
+      <carousel.ItemGroup class="overflow-hidden rounded-lg border border-line">
         <Index each={slides}>
           {(slide, i) => (
             <carousel.Item
               index={i}
-              style={{
-                padding: "2rem",
-                "text-align": "center",
-                background: i % 2 ? "#fafaf9" : "#f5f5f4",
+              classList={{
+                "bg-stone-50 p-8 text-center text-sm": true,
+                "bg-stone-100": i % 2 === 1,
               }}
             >
               Slide {slide()}
@@ -34,21 +26,9 @@ export default function CarouselDemo() {
           )}
         </Index>
       </carousel.ItemGroup>
-      <carousel.IndicatorGroup
-        style={{ display: "flex", gap: "0.35rem", "justify-content": "center" }}
-      >
+      <carousel.IndicatorGroup class="flex justify-center gap-1.5">
         <Index each={slides}>
-          {( _, i) => (
-            <carousel.Indicator
-              index={i}
-              style={{
-                width: "0.5rem",
-                height: "0.5rem",
-                "border-radius": "999px",
-                background: "var(--line)",
-              }}
-            />
-          )}
+          {(_, i) => <carousel.Indicator index={i} class="size-2 rounded-full bg-line" />}
         </Index>
       </carousel.IndicatorGroup>
     </carousel.Root>

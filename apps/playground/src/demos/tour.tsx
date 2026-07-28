@@ -24,31 +24,27 @@ export default function TourDemo() {
     tour.api.start()
   })
   return (
-    <div style={{ display: "grid", gap: "1rem" }}>
-      <button id="tour-target-1" type="button">
+    <div class="grid gap-4">
+      <button id="tour-target-1" type="button" class="demo-btn w-fit">
         Target 1
       </button>
-      <button id="tour-target-2" type="button">
+      <button id="tour-target-2" type="button" class="demo-btn w-fit">
         Target 2
       </button>
       <Show when={ready()}>
-        <tour.Backdrop />
+        <tour.Backdrop class="demo-overlay" />
         <tour.Spotlight />
-        <tour.Content
-          style={{
-            background: "var(--panel)",
-            border: "1px solid var(--line)",
-            padding: "0.75rem",
-            "border-radius": "0.5rem",
-            "max-width": "16rem",
-          }}
-        >
-          <tour.Title />
-          <tour.Description />
-          <div style={{ display: "flex", gap: "0.35rem", "margin-top": "0.5rem" }}>
-            <tour.ActionTrigger action={{ label: "Back", action: "prev" }}>Back</tour.ActionTrigger>
-            <tour.ActionTrigger action={{ label: "Next", action: "next" }}>Next</tour.ActionTrigger>
-            <tour.CloseTrigger>Close</tour.CloseTrigger>
+        <tour.Content class="demo-popover max-w-xs">
+          <tour.Title class="font-medium" />
+          <tour.Description class="text-mute text-sm" />
+          <div class="mt-2 flex gap-1.5">
+            <tour.ActionTrigger action={{ label: "Back", action: "prev" }} class="demo-btn">
+              Back
+            </tour.ActionTrigger>
+            <tour.ActionTrigger action={{ label: "Next", action: "next" }} class="demo-btn">
+              Next
+            </tour.ActionTrigger>
+            <tour.CloseTrigger class="demo-btn">Close</tour.CloseTrigger>
           </div>
         </tour.Content>
       </Show>

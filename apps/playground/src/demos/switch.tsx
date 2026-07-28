@@ -3,11 +3,11 @@ import { createSwitch } from "@solid-reusable/ui"
 export default function SwitchDemo() {
   const sw = createSwitch()
   return (
-    <sw.Root style={{ display: "inline-flex", "align-items": "center", gap: "0.5rem" }}>
-      <sw.Control style={{ width: "2.4rem", height: "1.3rem", "border-radius": "999px", border: "1px solid var(--line)", background: "white", position: "relative" }}>
-        <sw.Thumb style={{ width: "1rem", height: "1rem", "border-radius": "999px", background: "var(--accent)", position: "absolute", top: "0.1rem", left: "0.1rem" }} />
+    <sw.Root class="inline-flex items-center gap-2">
+      <sw.Control class="relative h-5 w-9 rounded-full border border-line bg-white">
+        <sw.Thumb class="absolute top-0.5 left-0.5 size-3.5 rounded-full bg-brand" />
       </sw.Control>
-      <sw.Label>Airplane mode</sw.Label>
+      <sw.Label class="text-sm">Airplane mode</sw.Label>
       <sw.HiddenInput />
     </sw.Root>
   )

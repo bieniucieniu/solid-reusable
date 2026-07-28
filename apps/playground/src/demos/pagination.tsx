@@ -4,25 +4,29 @@ import { Index, Match, Switch } from "solid-js"
 export default function PaginationDemo() {
   const pagination = createPagination({ count: 50, pageSize: 10, siblingCount: 1 })
   return (
-    <pagination.Root
-      style={{ display: "flex", gap: "0.25rem", "align-items": "center", "flex-wrap": "wrap" }}
-    >
-      <pagination.PrevTrigger>Prev</pagination.PrevTrigger>
+    <pagination.Root class="flex flex-wrap items-center gap-1">
+      <pagination.PrevTrigger class="demo-btn">Prev</pagination.PrevTrigger>
       <Index each={pagination.api.pages}>
         {(page, i) => (
           <Switch>
             <Match when={page().type === "page"}>
-              <pagination.Item type="page" value={(page() as { value: number }).value}>
+              <pagination.Item
+                type="page"
+                value={(page() as { value: number }).value}
+                class="demo-btn min-w-9"
+              >
                 {(page() as { value: number }).value}
               </pagination.Item>
             </Match>
             <Match when={page().type === "ellipsis"}>
-              <pagination.Ellipsis index={i}>…</pagination.Ellipsis>
+              <pagination.Ellipsis index={i} class="text-mute px-1">
+                …
+              </pagination.Ellipsis>
             </Match>
           </Switch>
         )}
       </Index>
-      <pagination.NextTrigger>Next</pagination.NextTrigger>
+      <pagination.NextTrigger class="demo-btn">Next</pagination.NextTrigger>
     </pagination.Root>
   )
 }

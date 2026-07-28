@@ -3,11 +3,11 @@ import { createNumberInput } from "@solid-reusable/ui"
 export default function NumberInputDemo() {
   const input = createNumberInput({ defaultValue: "1", min: 0, max: 10 })
   return (
-    <input.Root style={{ display: "inline-flex", "align-items": "center", gap: "0.35rem" }}>
-      <input.Label>Quantity</input.Label>
-      <input.DecrementTrigger>-</input.DecrementTrigger>
-      <input.Input style={{ width: "4rem", "text-align": "center" }} />
-      <input.IncrementTrigger>+</input.IncrementTrigger>
+    <input.Root class="inline-flex items-center gap-2">
+      <input.Label class="text-sm font-medium">Quantity</input.Label>
+      <input.DecrementTrigger class="demo-btn px-2">-</input.DecrementTrigger>
+      <input.Input class="demo-input w-16 text-center" />
+      <input.IncrementTrigger class="demo-btn px-2">+</input.IncrementTrigger>
     </input.Root>
   )
 }

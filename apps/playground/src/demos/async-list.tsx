@@ -9,12 +9,16 @@ export default function AsyncListDemo() {
     },
   })
   return (
-    <div style={{ display: "grid", gap: "0.5rem" }}>
-      <p class="muted">loading={String(list.api.loading)} empty={String(list.api.empty)}</p>
-      <ul>
+    <div class="grid gap-2">
+      <p class="text-mute text-sm">
+        loading={String(list.api.loading)} empty={String(list.api.empty)}
+      </p>
+      <ul class="list-disc space-y-1 pl-5 text-sm">
         <For each={list.api.items}>{(item) => <li>{item}</li>}</For>
       </ul>
-      <button type="button" onClick={() => list.api.reload()}>Reload</button>
+      <button type="button" class="demo-btn w-fit" onClick={() => list.api.reload()}>
+        Reload
+      </button>
     </div>
   )
 }

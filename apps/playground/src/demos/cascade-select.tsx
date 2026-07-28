@@ -3,8 +3,8 @@ import * as zag from "@zag-js/cascade-select"
 import { For } from "solid-js"
 
 const collection = zag.collection({
-  nodeToValue: (n: any) => n.value,
-  nodeToString: (n: any) => n.label,
+  nodeToValue: (n: { value: string }) => n.value,
+  nodeToString: (n: { label: string }) => n.label,
   rootNode: {
     value: "root",
     label: "",
@@ -29,49 +29,51 @@ const collection = zag.collection({
   },
 })
 
+type Node = { value: string; label: string; children?: Node[] }
+
 export default function CascadeSelectDemo() {
   const select = createCascadeSelect({ collection })
-  const roots = () => (collection.rootNode as any).children as any[]
+  const roots = () => (collection.rootNode as Node).children ?? []
   return (
-    <select.Root style={{ "max-width": "22rem", display: "grid", gap: "0.35rem" }}>
-      <select.Label>Category</select.Label>
+    <select.Root class="grid max-w-sm gap-1.5">
+      <select.Label class="text-sm font-medium">Category</select.Label>
       <select.Control>
-        <select.Trigger style={{ width: "100%", display: "flex", "justify-content": "space-between" }}>
+        <select.Trigger class="demo-btn flex w-full justify-between">
           <select.ValueText>{select.api.valueAsString || "Select…"}</select.ValueText>
           <select.Indicator>▾</select.Indicator>
         </select.Trigger>
       </select.Control>
-      <select.Content
-        style={{
-          background: "var(--panel)",
-          border: "1px solid var(--line)",
-          "border-radius": "0.45rem",
-          padding: "0.35rem",
-          display: "flex",
-          gap: "0.5rem",
-        }}
-      >
+      <select.Content class="demo-popover flex gap-2">
         <For each={roots()}>
-          {(item, i) => {
-            const indexPath = [i()]
-            return (
-              <div style={{ "min-width": "8rem" }}>
-                <div style={{ "font-weight": 600, padding: "0.25rem 0.4rem" }}>{item.label}</div>
-                <For each={(item.children ?? []) as any[]}>
-                  {(child, j) => {
-                    const childPath = [i(), j()]
-                    return (
-                      <select.Item item={child} indexPath={childPath} value={childPath as any}>
-                        <select.ItemText item={child} indexPath={childPath} value={childPath as any}>
-                          {child.label}
-                        </select.ItemText>
-                      </select.Item>
-                    )
-                  }}
-                </For>
+          {(item, i) => (
+            <div class="min-w-32">
+              <div class="text-mute px-2 py-1 text-xs font-semibold tracking-wide uppercase">
+                {item.label}
               </div>
-            )
-          }}
+              <For each={item.children ?? []}>
+                {(child, j) => {
+                  const indexPath = [i(), j()]
+                  const value = [item.value, child.value]
+                  return (
+                    <select.Item
+                      item={child as never}
+                      indexPath={indexPath}
+                      value={value}
+                      class="hover:bg-brand-soft cursor-pointer rounded px-2 py-1.5 text-sm"
+                    >
+                      <select.ItemText
+                        item={child as never}
+                        indexPath={indexPath}
+                        value={value}
+                      >
+                        {child.label}
+                      </select.ItemText>
+                    </select.Item>
+                  )
+                }}
+              </For>
+            </div>
+          )}
         </For>
       </select.Content>
     </select.Root>
