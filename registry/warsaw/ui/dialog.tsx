@@ -36,7 +36,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="dialog" data-part="root" {...rest}>
@@ -60,7 +60,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
       )
     },
 
-    Backdrop(props: DynamicAsProps<"div">) {
+    Backdrop(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -75,7 +75,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -92,7 +92,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -105,7 +105,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
       )
     },
 
-    Description(props: DynamicAsProps<"p">) {
+    Description(props: DynamicAsProps<"p", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -118,7 +118,7 @@ export function createDialog(options: CreateDialogOptions = {} as CreateDialogOp
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

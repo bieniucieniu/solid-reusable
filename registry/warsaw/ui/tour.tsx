@@ -36,7 +36,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="tour" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -77,7 +77,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -90,7 +90,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    ProgressText(props: DynamicAsProps<"div">) {
+    ProgressText(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -103,7 +103,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -116,7 +116,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Description(props: DynamicAsProps<"p">) {
+    Description(props: DynamicAsProps<"p", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -129,7 +129,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Arrow(props: DynamicAsProps<"div">) {
+    Arrow(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -142,7 +142,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    ArrowTip(props: DynamicAsProps<"div">) {
+    ArrowTip(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -155,7 +155,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Backdrop(props: DynamicAsProps<"div">) {
+    Backdrop(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -170,7 +170,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
       )
     },
 
-    Spotlight(props: DynamicAsProps<"div">) {
+    Spotlight(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>

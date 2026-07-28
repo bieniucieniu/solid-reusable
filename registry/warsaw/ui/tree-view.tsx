@@ -186,7 +186,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -229,7 +229,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
       )
     },
 
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -242,7 +242,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
       )
     },
 
-    Tree(props: DynamicAsProps<"div">) {
+    Tree(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/warsaw/lib/dynamic-as.ts",
-      "content": "import type { JSX, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: `as` + Zag part props.\n * Kept loose so Dynamic + Zag prop objects type-check cleanly.\n */\nexport type DynamicAsProps<\n  T extends ValidComponent = \"div\",\n  Extra extends object = {},\n> = Extra & {\n  as?: T\n  children?: JSX.Element\n  class?: string\n  // allow DOM / Zag attrs without fighting Dynamic generics\n  [key: string]: unknown\n}\n",
+      "content": "import type { ComponentProps, ValidComponent } from \"solid-js\"\n\n/**\n * Polymorphic part props: `as` + Zag part props.\n * Kept loose so Dynamic + Zag prop objects type-check cleanly.\n */\nexport type DynamicAsProps<\n  C extends ValidComponent,\n  P,\n  CP = ComponentProps<C>,\n> = {\n  [K in keyof P | keyof CP]: K extends keyof P\n    ? P[K]\n    : K extends keyof CP\n      ? CP[K]\n      : never\n} & {\n  as?: C | undefined\n}\n",
       "type": "registry:lib",
       "target": "registry/warsaw/lib/dynamic-as.ts"
     }

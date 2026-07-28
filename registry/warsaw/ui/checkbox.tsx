@@ -36,7 +36,7 @@ export function createCheckbox(options: CreateCheckboxOptions = {} as CreateChec
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createCheckbox(options: CreateCheckboxOptions = {} as CreateChec
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createCheckbox(options: CreateCheckboxOptions = {} as CreateChec
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createCheckbox(options: CreateCheckboxOptions = {} as CreateChec
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

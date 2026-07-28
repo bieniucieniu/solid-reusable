@@ -36,7 +36,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -163,7 +163,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -176,7 +176,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -193,7 +193,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -206,7 +206,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -219,7 +219,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

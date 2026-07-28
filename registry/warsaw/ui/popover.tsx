@@ -36,7 +36,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="popover" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Arrow(props: DynamicAsProps<"div">) {
+    Arrow(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -58,7 +58,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    ArrowTip(props: DynamicAsProps<"div">) {
+    ArrowTip(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -71,7 +71,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Anchor(props: DynamicAsProps<"div">) {
+    Anchor(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -99,7 +99,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Indicator(props: DynamicAsProps<"div">) {
+    Indicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -112,7 +112,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -129,7 +129,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -142,7 +142,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    Description(props: DynamicAsProps<"p">) {
+    Description(props: DynamicAsProps<"p", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -155,7 +155,7 @@ export function createPopover(options: CreatePopoverOptions = {} as CreatePopove
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

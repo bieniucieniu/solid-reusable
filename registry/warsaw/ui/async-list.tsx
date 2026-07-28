@@ -36,7 +36,7 @@ export function createAsyncList(options: CreateAsyncListOptions = {} as CreateAs
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

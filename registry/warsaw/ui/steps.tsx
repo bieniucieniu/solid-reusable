@@ -36,7 +36,7 @@ export function createSteps(options: CreateStepsOptions = {} as CreateStepsOptio
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createSteps(options: CreateStepsOptions = {} as CreateStepsOptio
       )
     },
 
-    List(props: DynamicAsProps<"div">) {
+    List(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -137,7 +137,7 @@ export function createSteps(options: CreateStepsOptions = {} as CreateStepsOptio
       )
     },
 
-    NextTrigger(props: DynamicAsProps<"button">) {
+    NextTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -150,7 +150,7 @@ export function createSteps(options: CreateStepsOptions = {} as CreateStepsOptio
       )
     },
 
-    PrevTrigger(props: DynamicAsProps<"button">) {
+    PrevTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -163,7 +163,7 @@ export function createSteps(options: CreateStepsOptions = {} as CreateStepsOptio
       )
     },
 
-    Progress(props: DynamicAsProps<"div">) {
+    Progress(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

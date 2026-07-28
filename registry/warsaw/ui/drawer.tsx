@@ -36,7 +36,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="drawer" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -62,7 +62,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Description(props: DynamicAsProps<"p">) {
+    Description(props: DynamicAsProps<"p", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Backdrop(props: DynamicAsProps<"div">) {
+    Backdrop(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -116,7 +116,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    Grabber(props: DynamicAsProps<"div">) {
+    Grabber(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -129,7 +129,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    GrabberIndicator(props: DynamicAsProps<"div">) {
+    GrabberIndicator(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -142,7 +142,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -155,7 +155,7 @@ export function createDrawer(options: CreateDrawerOptions = {} as CreateDrawerOp
       )
     },
 
-    SwipeArea(props: DynamicAsProps<"div">) {
+    SwipeArea(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

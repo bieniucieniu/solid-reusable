@@ -36,7 +36,7 @@ export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOp
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOp
       )
     },
 
-    Frame(props: DynamicAsProps<"div">) {
+    Frame(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOp
       )
     },
 
-    Pattern(props: DynamicAsProps<"div">) {
+    Pattern(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOp
       )
     },
 
-    Overlay(props: DynamicAsProps<"div">) {
+    Overlay(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

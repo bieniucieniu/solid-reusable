@@ -36,7 +36,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic component={local.as ?? "div"} data-scope="floating-panel" data-part="root" {...rest}>
@@ -45,7 +45,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Trigger(props: DynamicAsProps<"button">) {
+    Trigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -58,7 +58,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Content(props: DynamicAsProps<"div">) {
+    Content(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Show when={api().open}>
@@ -75,7 +75,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Header(props: DynamicAsProps<"div">) {
+    Header(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Body(props: DynamicAsProps<"div">) {
+    Body(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Title(props: DynamicAsProps<"h2">) {
+    Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -129,7 +129,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    DragTrigger(props: DynamicAsProps<"button">) {
+    DragTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -157,7 +157,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    CloseTrigger(props: DynamicAsProps<"button">) {
+    CloseTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -170,7 +170,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

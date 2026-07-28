@@ -36,7 +36,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    Input(props: DynamicAsProps<"input">) {
+    Input(props: DynamicAsProps<"input", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    ValueText(props: DynamicAsProps<"span">) {
+    ValueText(props: DynamicAsProps<"span", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -101,7 +101,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    IncrementTrigger(props: DynamicAsProps<"button">) {
+    IncrementTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -114,7 +114,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    DecrementTrigger(props: DynamicAsProps<"button">) {
+    DecrementTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -127,7 +127,7 @@ export function createNumberInput(options: CreateNumberInputOptions = {} as Crea
       )
     },
 
-    Scrubber(props: DynamicAsProps<"div">) {
+    Scrubber(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic

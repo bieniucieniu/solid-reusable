@@ -36,7 +36,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {
-    Root(props: DynamicAsProps<"div">) {
+    Root(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -49,7 +49,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
       )
     },
 
-    Label(props: DynamicAsProps<"label">) {
+    Label(props: DynamicAsProps<"label", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -62,7 +62,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
       )
     },
 
-    Control(props: DynamicAsProps<"div">) {
+    Control(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -75,7 +75,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
       )
     },
 
-    Input(props: DynamicAsProps<"input">) {
+    Input(props: DynamicAsProps<"input", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
@@ -88,7 +88,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
       )
     },
 
-    ClearTrigger(props: DynamicAsProps<"button">) {
+    ClearTrigger(props: DynamicAsProps<"button", {}>) {
       const [local, rest] = splitProps(props, ["as", "children"])
       return (
         <Dynamic
