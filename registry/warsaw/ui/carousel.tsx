@@ -65,7 +65,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","snapAlign"] as ("as" | "children" | "index" | "snapAlign")[])
+      const [local, rest] = splitProps(props, ["as","children","index","snapAlign"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -132,7 +132,7 @@ export function createCarousel(options: CreateCarouselOptions = {} as CreateCaro
     Indicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.IndicatorProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","readOnly"] as ("as" | "children" | "index" | "readOnly")[])
+      const [local, rest] = splitProps(props, ["as","children","index","readOnly"])
       return (
         <Dynamic
           component={local.as ?? "div"}

@@ -65,7 +65,7 @@ export function createRatingGroup(options: CreateRatingGroupOptions = {} as Crea
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "div"}

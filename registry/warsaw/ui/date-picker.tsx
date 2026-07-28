@@ -82,7 +82,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     Input<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.InputProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","fixOnBlur"] as ("as" | "children" | "index" | "fixOnBlur")[])
+      const [local, rest] = splitProps(props, ["as","children","index","fixOnBlur"])
       return (
         <Dynamic
           component={local.as ?? "input"}
@@ -97,7 +97,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     Label<Comp extends ValidComponent = "label">(
       props: DynamicAsProps<Comp, zag.LabelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "label"}
@@ -125,7 +125,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     NextTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
+      const [local, rest] = splitProps(props, ["as","children","view"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -140,7 +140,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     PresetTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.PresetTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -155,7 +155,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     PrevTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
+      const [local, rest] = splitProps(props, ["as","children","view"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -196,7 +196,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     Table<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TableProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -211,7 +211,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     TableBody<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TableProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -252,7 +252,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     TableHead<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TableProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -267,7 +267,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     TableHeader<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TableProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -282,7 +282,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     TableRow<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TableProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view","columns","id"] as ("as" | "children" | "view" | "columns" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","view","columns","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -310,7 +310,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     View<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
+      const [local, rest] = splitProps(props, ["as","children","view"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -325,7 +325,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     ViewControl<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
+      const [local, rest] = splitProps(props, ["as","children","view"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -340,7 +340,7 @@ export function createDatePicker(options: CreateDatePickerOptions = {} as Create
     ViewTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","view"] as ("as" | "children" | "view")[])
+      const [local, rest] = splitProps(props, ["as","children","view"])
       return (
         <Dynamic
           component={local.as ?? "button"}

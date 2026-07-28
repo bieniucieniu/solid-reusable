@@ -78,7 +78,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
     Scrollbar<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ScrollbarProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","orientation"] as ("as" | "children" | "orientation")[])
+      const [local, rest] = splitProps(props, ["as","children","orientation"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -93,7 +93,7 @@ export function createScrollArea(options: CreateScrollAreaOptions = {} as Create
     Thumb<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ThumbProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","orientation"] as ("as" | "children" | "orientation")[])
+      const [local, rest] = splitProps(props, ["as","children","orientation"])
       return (
         <Dynamic
           component={local.as ?? "div"}

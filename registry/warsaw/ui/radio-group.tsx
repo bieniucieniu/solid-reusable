@@ -65,7 +65,7 @@ export function createRadioGroup(options: CreateRadioGroupOptions = {} as Create
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"] as ("as" | "children" | "value" | "disabled" | "invalid")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -80,7 +80,7 @@ export function createRadioGroup(options: CreateRadioGroupOptions = {} as Create
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"] as ("as" | "children" | "value" | "disabled" | "invalid")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -95,7 +95,7 @@ export function createRadioGroup(options: CreateRadioGroupOptions = {} as Create
     ItemControl<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"] as ("as" | "children" | "value" | "disabled" | "invalid")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","invalid"])
       return (
         <Dynamic
           component={local.as ?? "div"}

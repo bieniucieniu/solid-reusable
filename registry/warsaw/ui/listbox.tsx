@@ -52,7 +52,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     Input<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.InputProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","autoHighlight","keyboardPriority"] as ("as" | "children" | "autoHighlight" | "keyboardPriority")[])
+      const [local, rest] = splitProps(props, ["as","children","autoHighlight","keyboardPriority"])
       return (
         <Dynamic
           component={local.as ?? "input"}
@@ -67,7 +67,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"] as ("as" | "children" | "item" | "highlightOnHover")[])
+      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -82,7 +82,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"] as ("as" | "children" | "item" | "highlightOnHover")[])
+      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -97,7 +97,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"] as ("as" | "children" | "item" | "highlightOnHover")[])
+      const [local, rest] = splitProps(props, ["as","children","item","highlightOnHover"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -112,7 +112,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     ItemGroup<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -127,7 +127,7 @@ export function createListbox(options: CreateListboxOptions = {} as CreateListbo
     ItemGroupLabel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupLabelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","htmlFor"] as ("as" | "children" | "htmlFor")[])
+      const [local, rest] = splitProps(props, ["as","children","htmlFor"])
       return (
         <Dynamic
           component={local.as ?? "div"}

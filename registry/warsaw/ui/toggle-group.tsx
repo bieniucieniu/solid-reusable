@@ -52,7 +52,7 @@ export function createToggleGroup(options: CreateToggleGroupOptions = {} as Crea
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}

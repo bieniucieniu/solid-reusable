@@ -52,7 +52,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     ViewportPositioner<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ViewportProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","align"] as ("as" | "children" | "align")[])
+      const [local, rest] = splitProps(props, ["as","children","align"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -67,7 +67,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Viewport<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ViewportProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","align"] as ("as" | "children" | "align")[])
+      const [local, rest] = splitProps(props, ["as","children","align"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -82,7 +82,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Trigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -97,7 +97,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Content<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ContentProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -125,7 +125,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -140,7 +140,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Link<Comp extends ValidComponent = "a">(
       props: DynamicAsProps<Comp, zag.LinkProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","current","onSelect","closeOnClick"] as ("as" | "children" | "value" | "current" | "onSelect" | "closeOnClick")[])
+      const [local, rest] = splitProps(props, ["as","children","value","current","onSelect","closeOnClick"])
       return (
         <Dynamic
           component={local.as ?? "a"}
@@ -168,7 +168,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -183,7 +183,7 @@ export function createNavigationMenu(options: CreateNavigationMenuOptions = {} a
     Arrow<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ArrowProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}

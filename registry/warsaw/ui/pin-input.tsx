@@ -65,7 +65,7 @@ export function createPinInput(options: CreatePinInputOptions = {} as CreatePinI
     Input<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.InputProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "input"}

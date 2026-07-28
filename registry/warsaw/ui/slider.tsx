@@ -65,7 +65,7 @@ export function createSlider(options: CreateSliderOptions = {} as CreateSliderOp
     Thumb<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ThumbProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","name"] as ("as" | "children" | "index" | "name")[])
+      const [local, rest] = splitProps(props, ["as","children","index","name"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -145,7 +145,7 @@ export function createSlider(options: CreateSliderOptions = {} as CreateSliderOp
     Marker<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.MarkerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -160,7 +160,7 @@ export function createSlider(options: CreateSliderOptions = {} as CreateSliderOp
     DraggingIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.DraggingIndicatorProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "div"}

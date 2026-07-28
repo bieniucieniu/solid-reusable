@@ -52,7 +52,7 @@ export function createAccordion(options: CreateAccordionOptions = {} as CreateAc
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -67,7 +67,7 @@ export function createAccordion(options: CreateAccordionOptions = {} as CreateAc
     ItemTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -82,7 +82,7 @@ export function createAccordion(options: CreateAccordionOptions = {} as CreateAc
     ItemContent<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -97,7 +97,7 @@ export function createAccordion(options: CreateAccordionOptions = {} as CreateAc
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}

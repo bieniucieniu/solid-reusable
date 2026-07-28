@@ -130,7 +130,7 @@ export function createAngleSlider(options: CreateAngleSliderOptions = {} as Crea
     Marker<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.MarkerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}

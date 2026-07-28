@@ -91,7 +91,7 @@ export function createQrCode(options: CreateQrCodeOptions = {} as CreateQrCodeOp
     DownloadTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.DownloadTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","mimeType","quality","fileName"] as ("as" | "children" | "mimeType" | "quality" | "fileName")[])
+      const [local, rest] = splitProps(props, ["as","children","mimeType","quality","fileName"])
       return (
         <Dynamic
           component={local.as ?? "button"}

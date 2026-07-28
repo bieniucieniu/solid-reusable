@@ -108,7 +108,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"] as ("as" | "children" | "persistFocus" | "item")[])
+      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -123,7 +123,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     ItemGroup<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -138,7 +138,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     ItemGroupLabel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupLabelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","htmlFor"] as ("as" | "children" | "htmlFor")[])
+      const [local, rest] = splitProps(props, ["as","children","htmlFor"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -153,7 +153,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"] as ("as" | "children" | "persistFocus" | "item")[])
+      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -168,7 +168,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"] as ("as" | "children" | "persistFocus" | "item")[])
+      const [local, rest] = splitProps(props, ["as","children","persistFocus","item"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -209,7 +209,7 @@ export function createCombobox(options: CreateComboboxOptions = {} as CreateComb
     Trigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.TriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","focusable"] as ("as" | "children" | "focusable")[])
+      const [local, rest] = splitProps(props, ["as","children","focusable"])
       return (
         <Dynamic
           component={local.as ?? "button"}
