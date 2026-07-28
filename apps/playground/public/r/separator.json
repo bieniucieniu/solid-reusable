@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "title": "Separator",
+  "description": "Presentational separator (no Zag).",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/separator.tsx",
+      "content": "import { splitProps, type JSX } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type SeparatorProps = JSX.HTMLAttributes<HTMLDivElement> & {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\n/** Presentational — no Zag, no createX. */\nexport function Separator(props: SeparatorProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"orientation\"])\n  return (\n    <div\n      role=\"separator\"\n      data-scope=\"separator\"\n      data-orientation={local.orientation ?? \"horizontal\"}\n      class={cn(local.class)}\n      {...rest}\n    />\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/separator.tsx"
+    }
+  ]
+}

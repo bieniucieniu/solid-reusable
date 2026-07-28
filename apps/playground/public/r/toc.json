@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toc",
+  "type": "registry:ui",
+  "title": "Toc",
+  "description": "Zag compound createToc() — https://zagjs.com/components/solid/toc",
+  "dependencies": [
+    "@zag-js/toc",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/toc.tsx",
+      "content": "import * as machine from \"@zag-js/toc\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toc.\n * @see https://zagjs.com/components/solid/toc\n *\n * Usage:\n * ```tsx\n * const toc = createToc()\n * return (\n *   <toc.Root>\n *     ...\n *   </toc.Root>\n * )\n * ```\n */\nexport const createToc = createMachineCompound(machine as never, {\n  scope: \"toc\",\n  parts: [\"root\",\"title\",\"list\",\"item\",\"link\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TocCompound = ReturnType<typeof createToc>\n",
+      "type": "registry:ui",
+      "target": "components/ui/toc.tsx"
+    }
+  ]
+}

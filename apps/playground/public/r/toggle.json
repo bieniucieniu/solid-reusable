@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:ui",
+  "title": "Toggle",
+  "description": "Zag compound createToggle() — https://zagjs.com/components/solid/toggle",
+  "dependencies": [
+    "@zag-js/toggle",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/toggle.tsx",
+      "content": "import * as machine from \"@zag-js/toggle\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — toggle.\n * @see https://zagjs.com/components/solid/toggle\n *\n * Usage:\n * ```tsx\n * const toggle = createToggle()\n * return (\n *   <toggle.Root>\n *     ...\n *   </toggle.Root>\n * )\n * ```\n */\nexport const createToggle = createMachineCompound(machine as never, {\n  scope: \"toggle\",\n  parts: [\"root\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ToggleCompound = ReturnType<typeof createToggle>\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle.tsx"
+    }
+  ]
+}

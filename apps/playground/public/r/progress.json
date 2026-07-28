@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "Progress",
+  "description": "Zag compound createProgress() — https://zagjs.com/components/solid/progress",
+  "dependencies": [
+    "@zag-js/progress",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/progress.tsx",
+      "content": "import * as machine from \"@zag-js/progress\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — progress.\n * @see https://zagjs.com/components/solid/progress\n *\n * Usage:\n * ```tsx\n * const progress = createProgress()\n * return (\n *   <progress.Root>\n *     ...\n *   </progress.Root>\n * )\n * ```\n */\nexport const createProgress = createMachineCompound(machine as never, {\n  scope: \"progress\",\n  parts: [\"root\",\"label\",\"track\",\"range\",\"valueText\",\"view\",\"circle\",\"circleTrack\",\"circleRange\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ProgressCompound = ReturnType<typeof createProgress>\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress.tsx"
+    }
+  ]
+}

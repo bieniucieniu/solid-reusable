@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tags-input",
+  "type": "registry:ui",
+  "title": "Tags Input",
+  "description": "Zag compound createTagsInput() — https://zagjs.com/components/solid/tags-input",
+  "dependencies": [
+    "@zag-js/tags-input",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/tags-input.tsx",
+      "content": "import * as machine from \"@zag-js/tags-input\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tags-input.\n * @see https://zagjs.com/components/solid/tags-input\n *\n * Usage:\n * ```tsx\n * const tagsInput = createTagsInput()\n * return (\n *   <tagsInput.Root>\n *     ...\n *   </tagsInput.Root>\n * )\n * ```\n */\nexport const createTagsInput = createMachineCompound(machine as never, {\n  scope: \"tags-input\",\n  parts: [\"root\",\"label\",\"control\",\"input\",\"clearTrigger\",\"item\",\"itemPreview\",\"itemInput\",\"itemText\",\"itemDeleteTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TagsInputCompound = ReturnType<typeof createTagsInput>\n",
+      "type": "registry:ui",
+      "target": "components/ui/tags-input.tsx"
+    }
+  ]
+}

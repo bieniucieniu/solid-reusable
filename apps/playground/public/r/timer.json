@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timer",
+  "type": "registry:ui",
+  "title": "Timer",
+  "description": "Zag compound createTimer() — https://zagjs.com/components/solid/timer",
+  "dependencies": [
+    "@zag-js/timer",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/timer.tsx",
+      "content": "import * as machine from \"@zag-js/timer\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — timer.\n * @see https://zagjs.com/components/solid/timer\n *\n * Usage:\n * ```tsx\n * const timer = createTimer()\n * return (\n *   <timer.Root>\n *     ...\n *   </timer.Root>\n * )\n * ```\n */\nexport const createTimer = createMachineCompound(machine as never, {\n  scope: \"timer\",\n  parts: [\"root\",\"area\",\"control\",\"item\",\"itemValue\",\"itemLabel\",\"actionTrigger\",\"separator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type TimerCompound = ReturnType<typeof createTimer>\n",
+      "type": "registry:ui",
+      "target": "components/ui/timer.tsx"
+    }
+  ]
+}

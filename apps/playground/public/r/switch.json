@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:ui",
+  "title": "Switch",
+  "description": "Zag compound createSwitch() — https://zagjs.com/components/solid/switch",
+  "dependencies": [
+    "@zag-js/switch",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/switch.tsx",
+      "content": "import * as machine from \"@zag-js/switch\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — switch.\n * @see https://zagjs.com/components/solid/switch\n *\n * Usage:\n * ```tsx\n * const switch = createSwitch()\n * return (\n *   <switch.Root>\n *     ...\n *   </switch.Root>\n * )\n * ```\n */\nexport const createSwitch = createMachineCompound(machine as never, {\n  scope: \"switch\",\n  parts: [\"root\",\"label\",\"control\",\"thumb\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SwitchCompound = ReturnType<typeof createSwitch>\n",
+      "type": "registry:ui",
+      "target": "components/ui/switch.tsx"
+    }
+  ]
+}

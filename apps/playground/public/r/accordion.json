@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Zag compound createAccordion() — https://zagjs.com/components/solid/accordion",
+  "dependencies": [
+    "@zag-js/accordion",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/accordion.tsx",
+      "content": "import * as machine from \"@zag-js/accordion\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — accordion.\n * @see https://zagjs.com/components/solid/accordion\n *\n * Usage:\n * ```tsx\n * const accordion = createAccordion()\n * return (\n *   <accordion.Root>\n *     ...\n *   </accordion.Root>\n * )\n * ```\n */\nexport const createAccordion = createMachineCompound(machine as never, {\n  scope: \"accordion\",\n  parts: [\"root\",\"item\",\"itemTrigger\",\"itemContent\",\"itemIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type AccordionCompound = ReturnType<typeof createAccordion>\n",
+      "type": "registry:ui",
+      "target": "components/ui/accordion.tsx"
+    }
+  ]
+}

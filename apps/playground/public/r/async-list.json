@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "async-list",
+  "type": "registry:ui",
+  "title": "Async List",
+  "description": "Zag compound createAsyncList() — https://zagjs.com/components/solid/async-list",
+  "dependencies": [
+    "@zag-js/async-list",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/async-list.tsx",
+      "content": "import * as machine from \"@zag-js/async-list\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — async-list.\n * @see https://zagjs.com/components/solid/async-list\n *\n * Usage:\n * ```tsx\n * const asyncList = createAsyncList()\n * return (\n *   <asyncList.Root>\n *     ...\n *   </asyncList.Root>\n * )\n * ```\n */\nexport const createAsyncList = createMachineCompound(machine as never, {\n  scope: \"async-list\",\n  parts: [\"root\"] as const,\n  rootPart: undefined,\n})\n\nexport type AsyncListCompound = ReturnType<typeof createAsyncList>\n",
+      "type": "registry:ui",
+      "target": "components/ui/async-list.tsx"
+    }
+  ]
+}

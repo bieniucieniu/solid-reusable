@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "clipboard",
+  "type": "registry:ui",
+  "title": "Clipboard",
+  "description": "Zag compound createClipboard() — https://zagjs.com/components/solid/clipboard",
+  "dependencies": [
+    "@zag-js/clipboard",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/clipboard.tsx",
+      "content": "import * as machine from \"@zag-js/clipboard\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — clipboard.\n * @see https://zagjs.com/components/solid/clipboard\n *\n * Usage:\n * ```tsx\n * const clipboard = createClipboard()\n * return (\n *   <clipboard.Root>\n *     ...\n *   </clipboard.Root>\n * )\n * ```\n */\nexport const createClipboard = createMachineCompound(machine as never, {\n  scope: \"clipboard\",\n  parts: [\"root\",\"control\",\"trigger\",\"indicator\",\"input\",\"label\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ClipboardCompound = ReturnType<typeof createClipboard>\n",
+      "type": "registry:ui",
+      "target": "components/ui/clipboard.tsx"
+    }
+  ]
+}

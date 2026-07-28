@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "title": "Dialog",
+  "description": "Zag compound createDialog() — https://zagjs.com/components/solid/dialog",
+  "dependencies": [
+    "@zag-js/dialog",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/dialog.tsx",
+      "content": "import * as machine from \"@zag-js/dialog\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — dialog.\n * @see https://zagjs.com/components/solid/dialog\n *\n * Usage:\n * ```tsx\n * const dialog = createDialog()\n * return (\n *   <dialog.Root>\n *     ...\n *   </dialog.Root>\n * )\n * ```\n */\nexport const createDialog = createMachineCompound(machine as never, {\n  scope: \"dialog\",\n  parts: [\"trigger\",\"backdrop\",\"positioner\",\"content\",\"title\",\"description\",\"closeTrigger\"] as const,\n  rootPart: undefined,\n})\n\nexport type DialogCompound = ReturnType<typeof createDialog>\n",
+      "type": "registry:ui",
+      "target": "components/ui/dialog.tsx"
+    }
+  ]
+}

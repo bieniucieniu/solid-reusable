@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-input",
+  "type": "registry:ui",
+  "title": "Date Input",
+  "description": "Zag compound createDateInput() — https://zagjs.com/components/solid/date-input",
+  "dependencies": [
+    "@zag-js/date-input",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/date-input.tsx",
+      "content": "import * as machine from \"@zag-js/date-input\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — date-input.\n * @see https://zagjs.com/components/solid/date-input\n *\n * Usage:\n * ```tsx\n * const dateInput = createDateInput()\n * return (\n *   <dateInput.Root>\n *     ...\n *   </dateInput.Root>\n * )\n * ```\n */\nexport const createDateInput = createMachineCompound(machine as never, {\n  scope: \"date-input\",\n  parts: [\"root\"] as const,\n  rootPart: \"root\",\n})\n\nexport type DateInputCompound = ReturnType<typeof createDateInput>\n",
+      "type": "registry:ui",
+      "target": "components/ui/date-input.tsx"
+    }
+  ]
+}

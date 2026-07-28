@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-picker",
+  "type": "registry:ui",
+  "title": "Color Picker",
+  "description": "Zag compound createColorPicker() — https://zagjs.com/components/solid/color-picker",
+  "dependencies": [
+    "@zag-js/color-picker",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/color-picker.tsx",
+      "content": "import * as machine from \"@zag-js/color-picker\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — color-picker.\n * @see https://zagjs.com/components/solid/color-picker\n *\n * Usage:\n * ```tsx\n * const colorPicker = createColorPicker()\n * return (\n *   <colorPicker.Root>\n *     ...\n *   </colorPicker.Root>\n * )\n * ```\n */\nexport const createColorPicker = createMachineCompound(machine as never, {\n  scope: \"color-picker\",\n  parts: [\"root\",\"label\",\"control\",\"trigger\",\"positioner\",\"content\",\"area\",\"areaThumb\",\"valueText\",\"areaBackground\",\"channelSlider\",\"channelSliderLabel\",\"channelSliderTrack\",\"channelSliderThumb\",\"channelSliderValueText\",\"channelInput\",\"transparencyGrid\",\"swatchGroup\",\"swatchTrigger\",\"swatchIndicator\",\"swatch\",\"eyeDropperTrigger\",\"formatTrigger\",\"formatSelect\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ColorPickerCompound = ReturnType<typeof createColorPicker>\n",
+      "type": "registry:ui",
+      "target": "components/ui/color-picker.tsx"
+    }
+  ]
+}

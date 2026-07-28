@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "title": "Slider",
+  "description": "Zag compound createSlider() — https://zagjs.com/components/solid/slider",
+  "dependencies": [
+    "@zag-js/slider",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/slider.tsx",
+      "content": "import * as machine from \"@zag-js/slider\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — slider.\n * @see https://zagjs.com/components/solid/slider\n *\n * Usage:\n * ```tsx\n * const slider = createSlider()\n * return (\n *   <slider.Root>\n *     ...\n *   </slider.Root>\n * )\n * ```\n */\nexport const createSlider = createMachineCompound(machine as never, {\n  scope: \"slider\",\n  parts: [\"root\",\"label\",\"thumb\",\"valueText\",\"track\",\"range\",\"control\",\"markerGroup\",\"marker\",\"draggingIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SliderCompound = ReturnType<typeof createSlider>\n",
+      "type": "registry:ui",
+      "target": "components/ui/slider.tsx"
+    }
+  ]
+}

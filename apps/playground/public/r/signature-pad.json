@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signature-pad",
+  "type": "registry:ui",
+  "title": "Signature Pad",
+  "description": "Zag compound createSignaturePad() — https://zagjs.com/components/solid/signature-pad",
+  "dependencies": [
+    "@zag-js/signature-pad",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/signature-pad.tsx",
+      "content": "import * as machine from \"@zag-js/signature-pad\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — signature-pad.\n * @see https://zagjs.com/components/solid/signature-pad\n *\n * Usage:\n * ```tsx\n * const signaturePad = createSignaturePad()\n * return (\n *   <signaturePad.Root>\n *     ...\n *   </signaturePad.Root>\n * )\n * ```\n */\nexport const createSignaturePad = createMachineCompound(machine as never, {\n  scope: \"signature-pad\",\n  parts: [\"root\",\"control\",\"segment\",\"segmentPath\",\"guide\",\"clearTrigger\",\"label\"] as const,\n  rootPart: \"root\",\n})\n\nexport type SignaturePadCompound = ReturnType<typeof createSignaturePad>\n",
+      "type": "registry:ui",
+      "target": "components/ui/signature-pad.tsx"
+    }
+  ]
+}

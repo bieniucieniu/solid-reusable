@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-upload",
+  "type": "registry:ui",
+  "title": "File Upload",
+  "description": "Zag compound createFileUpload() — https://zagjs.com/components/solid/file-upload",
+  "dependencies": [
+    "@zag-js/file-upload",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/file-upload.tsx",
+      "content": "import * as machine from \"@zag-js/file-upload\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — file-upload.\n * @see https://zagjs.com/components/solid/file-upload\n *\n * Usage:\n * ```tsx\n * const fileUpload = createFileUpload()\n * return (\n *   <fileUpload.Root>\n *     ...\n *   </fileUpload.Root>\n * )\n * ```\n */\nexport const createFileUpload = createMachineCompound(machine as never, {\n  scope: \"file-upload\",\n  parts: [\"root\",\"dropzone\",\"item\",\"itemDeleteTrigger\",\"itemGroup\",\"itemName\",\"itemPreview\",\"itemPreviewImage\",\"itemSizeText\",\"label\",\"trigger\",\"clearTrigger\"] as const,\n  rootPart: \"root\",\n})\n\nexport type FileUploadCompound = ReturnType<typeof createFileUpload>\n",
+      "type": "registry:ui",
+      "target": "components/ui/file-upload.tsx"
+    }
+  ]
+}

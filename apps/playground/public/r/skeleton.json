@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "Skeleton",
+  "description": "Presentational skeleton (no Zag).",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/skeleton.tsx",
+      "content": "import { splitProps, type JSX } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type SkeletonProps = JSX.HTMLAttributes<HTMLDivElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Skeleton(props: SkeletonProps) {\n  const [local, rest] = splitProps(props, [\"class\"])\n  return <div data-scope=\"skeleton\" class={cn(local.class)} {...rest} />\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    }
+  ]
+}

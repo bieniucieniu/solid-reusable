@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "type": "registry:ui",
+  "title": "Hover Card",
+  "description": "Zag compound createHoverCard() — https://zagjs.com/components/solid/hover-card",
+  "dependencies": [
+    "@zag-js/hover-card",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/hover-card.tsx",
+      "content": "import * as machine from \"@zag-js/hover-card\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — hover-card.\n * @see https://zagjs.com/components/solid/hover-card\n *\n * Usage:\n * ```tsx\n * const hoverCard = createHoverCard()\n * return (\n *   <hoverCard.Root>\n *     ...\n *   </hoverCard.Root>\n * )\n * ```\n */\nexport const createHoverCard = createMachineCompound(machine as never, {\n  scope: \"hover-card\",\n  parts: [\"arrow\",\"arrowTip\",\"trigger\",\"positioner\",\"content\"] as const,\n  rootPart: undefined,\n})\n\nexport type HoverCardCompound = ReturnType<typeof createHoverCard>\n",
+      "type": "registry:ui",
+      "target": "components/ui/hover-card.tsx"
+    }
+  ]
+}

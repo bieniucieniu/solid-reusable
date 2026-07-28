@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "Presentational label (no Zag).",
+  "dependencies": [
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/label.tsx",
+      "content": "import { splitProps, type JSX } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type LabelProps = JSX.LabelHTMLAttributes<HTMLLabelElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Label(props: LabelProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"children\"])\n  return (\n    <label data-scope=\"label\" class={cn(local.class)} {...rest}>\n      {local.children}\n    </label>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/label.tsx"
+    }
+  ]
+}

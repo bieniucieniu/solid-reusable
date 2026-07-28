@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cascade-select",
+  "type": "registry:ui",
+  "title": "Cascade Select",
+  "description": "Zag compound createCascadeSelect() — https://zagjs.com/components/solid/cascade-select",
+  "dependencies": [
+    "@zag-js/cascade-select",
+    "@zag-js/solid",
+    "solid-js"
+  ],
+  "registryDependencies": [
+    "zag-runtime"
+  ],
+  "files": [
+    {
+      "path": "ui/cascade-select.tsx",
+      "content": "import * as machine from \"@zag-js/cascade-select\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — cascade-select.\n * @see https://zagjs.com/components/solid/cascade-select\n *\n * Usage:\n * ```tsx\n * const cascadeSelect = createCascadeSelect()\n * return (\n *   <cascadeSelect.Root>\n *     ...\n *   </cascadeSelect.Root>\n * )\n * ```\n */\nexport const createCascadeSelect = createMachineCompound(machine as never, {\n  scope: \"cascade-select\",\n  parts: [\"root\",\"label\",\"control\",\"trigger\",\"indicator\",\"valueText\",\"clearTrigger\",\"positioner\",\"content\",\"list\",\"item\",\"itemText\",\"itemIndicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type CascadeSelectCompound = ReturnType<typeof createCascadeSelect>\n",
+      "type": "registry:ui",
+      "target": "components/ui/cascade-select.tsx"
+    }
+  ]
+}
