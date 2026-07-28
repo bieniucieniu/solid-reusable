@@ -11,7 +11,7 @@ SolidJS **1.9** component system (prep for **2.0**). Headless via **Zag.js** (pl
 | `@solid-reusable/provider-zag` | Zag provider meta (pluggable) |
 | `@solid-reusable/ui` | Public comps (re-exports `@/registry/warsaw`) |
 | `registry/warsaw` | Style source (`@/registry/warsaw/...`) |
-| `apps/playground` | Vite demos + serves `/r/*.json` |
+| `apps/playground` | SolidStart demos (file routes) + serves `/r/*.json` |
 
 ## Patterns
 
@@ -47,6 +47,8 @@ pnpm install
 pnpm build:registry
 pnpm dev
 ```
+
+Playground (SolidStart): `/` catalog, `/components/{name}` per demo. Registry JSON still at `/r/*.json`.
 
 Edit comps in `registry/warsaw/` by hand. Then `pnpm build:registry`.
 
