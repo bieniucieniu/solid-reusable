@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/scroll-area.tsx",
-      "content": "import * as machine from \"@zag-js/scroll-area\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — scroll-area.\n * @see https://zagjs.com/components/solid/scroll-area\n *\n * Usage:\n * ```tsx\n * const scrollArea = createScrollArea()\n * return (\n *   <scrollArea.Root>\n *     ...\n *   </scrollArea.Root>\n * )\n * ```\n */\nexport const createScrollArea = createMachineCompound(machine as never, {\n  scope: \"scroll-area\",\n  parts: [\"root\",\"viewport\",\"content\",\"scrollbar\",\"thumb\",\"corner\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ScrollAreaCompound = ReturnType<typeof createScrollArea>\n",
+      "path": "registry/warsaw/ui/scroll-area.tsx",
+      "content": "import * as machine from \"@zag-js/scroll-area\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — scroll-area.\n * @see https://zagjs.com/components/solid/scroll-area\n *\n * Usage:\n * ```tsx\n * const scrollArea = createScrollArea()\n * return (\n *   <scrollArea.Root>\n *     ...\n *   </scrollArea.Root>\n * )\n * ```\n */\nexport const createScrollArea = createMachineCompound(machine as never, {\n  scope: \"scroll-area\",\n  parts: [\"root\",\"viewport\",\"content\",\"scrollbar\",\"thumb\",\"corner\"] as const,\n  rootPart: \"root\",\n})\n\nexport type ScrollAreaCompound = ReturnType<typeof createScrollArea>\n",
       "type": "registry:ui",
       "target": "components/ui/scroll-area.tsx"
     }

@@ -1,19 +1,21 @@
 /**
- * Generates unstyled Zag compound placeholders under packages/ui/src/zag/
- * and updates packages/ui/src/index.ts exports.
+ * Generates unstyled Zag compound placeholders under registry/warsaw/ui/
+ * and updates packages/ui/src/index.ts re-exports.
  *
+ * Canonical import root: @/registry/warsaw/...
  * Run: pnpm generate:zag  (after deps install)
  */
-import { createRequire } from "node:module"
-import { mkdirSync, writeFileSync, readdirSync, existsSync } from "node:fs"
+import { mkdirSync, writeFileSync, readdirSync, existsSync, cpSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, "..")
-const uiSrc = join(root, "packages/ui/src")
-const zagDir = join(uiSrc, "zag")
-const require = createRequire(join(root, "packages/ui/package.json"))
+const STYLE = "warsaw"
+const registryRoot = join(root, "registry", STYLE)
+const uiDir = join(registryRoot, "ui")
+const libDir = join(registryRoot, "lib")
+const pkgUiSrc = join(root, "packages/ui/src")
 
 /** Machines that use a real root DOM part by default. */
 const ROOT_PART_BY_SCOPE = {
@@ -35,7 +37,7 @@ const ROOT_PART_BY_SCOPE = {
   "image-cropper": "root",
   listbox: "root",
   marquee: "root",
-  menu: "root", // often trigger+content; keep root when present
+  menu: "root",
   "navigation-menu": "root",
   "number-input": "root",
   pagination: "root",
@@ -61,7 +63,6 @@ const ROOT_PART_BY_SCOPE = {
   "toggle-group": "root",
   tour: "root",
   "tree-view": "root",
-  // overlays — context-only Root (no rootPart)
   dialog: undefined,
   drawer: undefined,
   "hover-card": undefined,
@@ -125,6 +126,17 @@ const MACHINES = [
   "tree-view",
 ]
 
+const PLAIN_NAMED_EXPORTS = {
+  card: [
+    "Card",
+    "CardHeader",
+    "CardTitle",
+    "CardDescription",
+    "CardContent",
+    "CardFooter",
+  ],
+}
+
 function toPascal(name) {
   return name
     .split("-")
@@ -132,15 +144,9 @@ function toPascal(name) {
     .join("")
 }
 
-function loadParts(pkgName) {
-  try {
-    const anatomyPath = require.resolve(`${pkgName}/anatomy`)
-    // anatomy mjs exports { anatomy, parts }
-    // We can't easily import ESM anatomy keys without dynamic import — use package types file
-  } catch {
-    /* fall through */
-  }
-  return null
+function toCamel(name) {
+  const p = toPascal(name)
+  return p.charAt(0).toLowerCase() + p.slice(1)
 }
 
 async function loadPartsAsync(scope) {
@@ -152,17 +158,17 @@ async function loadPartsAsync(scope) {
   } catch (e) {
     console.warn(`warn: no anatomy for ${scope}`, e.message)
   }
-  // Fallback: try reading connect file isn't practical — minimal parts
   return ["root"]
 }
 
 function fileFor(scope, parts, rootPart) {
   const pascal = toPascal(scope)
+  const alias = toCamel(scope)
   const partsLit = JSON.stringify(parts)
   const rootLit = rootPart ? `"${rootPart}"` : "undefined"
 
   return `import * as machine from "@zag-js/${scope}"
-import { createMachineCompound } from "@solid-reusable/provider-zag"
+import { createMachineCompound } from "@/registry/${STYLE}/lib/create-machine-compound"
 
 /**
  * Unstyled Zag placeholder — ${scope}.
@@ -170,11 +176,11 @@ import { createMachineCompound } from "@solid-reusable/provider-zag"
  *
  * Usage:
  * \`\`\`tsx
- * const ${scope.includes("-") ? toCamel(scope) : scope} = create${pascal}()
+ * const ${alias} = create${pascal}()
  * return (
- *   <${scope.includes("-") ? toCamel(scope) : scope}.Root>
+ *   <${alias}.Root>
  *     ...
- *   </${scope.includes("-") ? toCamel(scope) : scope}.Root>
+ *   </${alias}.Root>
  * )
  * \`\`\`
  */
@@ -188,15 +194,31 @@ export type ${pascal}Compound = ReturnType<typeof create${pascal}>
 `
 }
 
-function toCamel(name) {
-  const p = toPascal(name)
-  return p.charAt(0).toLowerCase() + p.slice(1)
+mkdirSync(uiDir, { recursive: true })
+mkdirSync(libDir, { recursive: true })
+
+// Keep lib helpers in sync from packages (source of truth for runtime impl)
+cpSync(join(root, "packages/core/src/index.ts"), join(libDir, "utils.ts"))
+cpSync(join(root, "packages/provider/src/index.ts"), join(libDir, "provider-types.ts"))
+cpSync(join(root, "packages/provider-zag/src/meta.ts"), join(libDir, "meta.ts"))
+cpSync(
+  join(root, "packages/provider-zag/src/create-machine-compound.tsx"),
+  join(libDir, "create-machine-compound.tsx"),
+)
+
+// Rewrite lib imports to @/registry/warsaw
+for (const name of ["meta.ts", "create-machine-compound.tsx", "provider-types.ts", "utils.ts"]) {
+  const file = join(libDir, name)
+  let content = await import("node:fs").then((fs) => fs.readFileSync(file, "utf8"))
+  content = content
+    .replaceAll('from "@solid-reusable/provider"', `from "@/registry/${STYLE}/lib/provider-types"`)
+    .replaceAll("from '@solid-reusable/provider'", `from '@/registry/${STYLE}/lib/provider-types'`)
+    .replaceAll('from "./meta"', `from "@/registry/${STYLE}/lib/meta"`)
+    .replaceAll("from './meta'", `from '@/registry/${STYLE}/lib/meta'`)
+  writeFileSync(file, content)
 }
 
-mkdirSync(zagDir, { recursive: true })
-
 const exportLines = []
-const createExports = []
 
 for (const scope of MACHINES) {
   const parts = await loadPartsAsync(scope)
@@ -205,46 +227,46 @@ for (const scope of MACHINES) {
     : parts.includes("root")
       ? "root"
       : undefined
-
-  // Only attach rootPart when anatomy actually exposes it
   const resolvedRoot =
     preferredRoot && parts.includes(preferredRoot) ? preferredRoot : undefined
 
   const content = fileFor(scope, parts, resolvedRoot)
-  const file = join(zagDir, `${scope}.tsx`)
+  const file = join(uiDir, `${scope}.tsx`)
   writeFileSync(file, content)
   console.log("wrote", file, "parts=", parts.join(","))
 
   const pascal = toPascal(scope)
-  exportLines.push(`export { create${pascal} } from "./zag/${scope}"`)
-  exportLines.push(`export type { ${pascal}Compound } from "./zag/${scope}"`)
-  createExports.push(`create${pascal}`)
+  exportLines.push(
+    `export { create${pascal} } from "@/registry/${STYLE}/ui/${scope}"`,
+  )
+  exportLines.push(
+    `export type { ${pascal}Compound } from "@/registry/${STYLE}/ui/${scope}"`,
+  )
 }
 
-// Plain components barrel is separate — index merges both
-const plainDir = join(uiSrc, "plain")
-const plainFiles = existsSync(plainDir)
-  ? readdirSync(plainDir).filter((f) => f.endsWith(".tsx"))
-  : []
+const plainFiles = readdirSync(uiDir).filter((f) => {
+  if (!f.endsWith(".tsx")) return false
+  const base = f.replace(/\.tsx$/, "")
+  return !MACHINES.includes(base)
+})
 
-const PLAIN_NAMED_EXPORTS = {
-  card: [
-    "Card",
-    "CardHeader",
-    "CardTitle",
-    "CardDescription",
-    "CardContent",
-    "CardFooter",
-  ],
+// Ensure plain comps use warsaw utils import
+for (const f of plainFiles) {
+  const file = join(uiDir, f)
+  let content = await import("node:fs").then((fs) => fs.readFileSync(file, "utf8"))
+  content = content
+    .replaceAll('from "@solid-reusable/core"', `from "@/registry/${STYLE}/lib/utils"`)
+    .replaceAll("from '@solid-reusable/core'", `from '@/registry/${STYLE}/lib/utils'`)
+  writeFileSync(file, content)
 }
 
 const plainExports = plainFiles.flatMap((f) => {
   const base = f.replace(/\.tsx$/, "")
   const names = PLAIN_NAMED_EXPORTS[base] ?? [toPascal(base)]
-  return [`export { ${names.join(", ")} } from "./plain/${base}"`]
+  return [`export { ${names.join(", ")} } from "@/registry/${STYLE}/ui/${base}"`]
 })
 
-const index = `/** @solid-reusable/ui — public API */
+const index = `/** @solid-reusable/ui — re-exports from @/registry/${STYLE} */
 
 // Plain (no Zag / no createX) — presentational
 ${plainExports.join("\n")}
@@ -253,6 +275,7 @@ ${plainExports.join("\n")}
 ${exportLines.join("\n")}
 `
 
-writeFileSync(join(uiSrc, "index.ts"), index)
-console.log("updated", join(uiSrc, "index.ts"))
-console.log("done", MACHINES.length, "zag components")
+mkdirSync(pkgUiSrc, { recursive: true })
+writeFileSync(join(pkgUiSrc, "index.ts"), index)
+console.log("updated", join(pkgUiSrc, "index.ts"))
+console.log("done", MACHINES.length, "zag components → registry/", STYLE)

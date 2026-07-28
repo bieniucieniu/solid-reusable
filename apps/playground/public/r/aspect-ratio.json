@@ -12,8 +12,8 @@
   ],
   "files": [
     {
-      "path": "ui/aspect-ratio.tsx",
-      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<\n  JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }\n>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"ratio\", \"children\"])\n  const ratio = () => local.ratio ?? 16 / 9\n  return (\n    <div\n      data-scope=\"aspect-ratio\"\n      style={{ \"aspect-ratio\": String(ratio()) }}\n      class={cn(local.class)}\n      {...rest}\n    >\n      {local.children}\n    </div>\n  )\n}\n",
+      "path": "registry/warsaw/ui/aspect-ratio.tsx",
+      "content": "import { splitProps, type JSX, type ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<\n  JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }\n>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"ratio\", \"children\"])\n  const ratio = () => local.ratio ?? 16 / 9\n  return (\n    <div\n      data-scope=\"aspect-ratio\"\n      style={{ \"aspect-ratio\": String(ratio()) }}\n      class={cn(local.class)}\n      {...rest}\n    >\n      {local.children}\n    </div>\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
     }

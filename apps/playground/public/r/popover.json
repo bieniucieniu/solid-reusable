@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/popover.tsx",
-      "content": "import * as machine from \"@zag-js/popover\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — popover.\n * @see https://zagjs.com/components/solid/popover\n *\n * Usage:\n * ```tsx\n * const popover = createPopover()\n * return (\n *   <popover.Root>\n *     ...\n *   </popover.Root>\n * )\n * ```\n */\nexport const createPopover = createMachineCompound(machine as never, {\n  scope: \"popover\",\n  parts: [\"arrow\",\"arrowTip\",\"anchor\",\"trigger\",\"indicator\",\"positioner\",\"content\",\"title\",\"description\",\"closeTrigger\"] as const,\n  rootPart: undefined,\n})\n\nexport type PopoverCompound = ReturnType<typeof createPopover>\n",
+      "path": "registry/warsaw/ui/popover.tsx",
+      "content": "import * as machine from \"@zag-js/popover\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — popover.\n * @see https://zagjs.com/components/solid/popover\n *\n * Usage:\n * ```tsx\n * const popover = createPopover()\n * return (\n *   <popover.Root>\n *     ...\n *   </popover.Root>\n * )\n * ```\n */\nexport const createPopover = createMachineCompound(machine as never, {\n  scope: \"popover\",\n  parts: [\"arrow\",\"arrowTip\",\"anchor\",\"trigger\",\"indicator\",\"positioner\",\"content\",\"title\",\"description\",\"closeTrigger\"] as const,\n  rootPart: undefined,\n})\n\nexport type PopoverCompound = ReturnType<typeof createPopover>\n",
       "type": "registry:ui",
       "target": "components/ui/popover.tsx"
     }

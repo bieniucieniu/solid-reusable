@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/navigation-menu.tsx",
-      "content": "import * as machine from \"@zag-js/navigation-menu\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — navigation-menu.\n * @see https://zagjs.com/components/solid/navigation-menu\n *\n * Usage:\n * ```tsx\n * const navigationMenu = createNavigationMenu()\n * return (\n *   <navigationMenu.Root>\n *     ...\n *   </navigationMenu.Root>\n * )\n * ```\n */\nexport const createNavigationMenu = createMachineCompound(machine as never, {\n  scope: \"navigation-menu\",\n  parts: [\"root\",\"viewportPositioner\",\"viewport\",\"trigger\",\"content\",\"list\",\"item\",\"link\",\"indicator\",\"itemIndicator\",\"arrow\"] as const,\n  rootPart: \"root\",\n})\n\nexport type NavigationMenuCompound = ReturnType<typeof createNavigationMenu>\n",
+      "path": "registry/warsaw/ui/navigation-menu.tsx",
+      "content": "import * as machine from \"@zag-js/navigation-menu\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — navigation-menu.\n * @see https://zagjs.com/components/solid/navigation-menu\n *\n * Usage:\n * ```tsx\n * const navigationMenu = createNavigationMenu()\n * return (\n *   <navigationMenu.Root>\n *     ...\n *   </navigationMenu.Root>\n * )\n * ```\n */\nexport const createNavigationMenu = createMachineCompound(machine as never, {\n  scope: \"navigation-menu\",\n  parts: [\"root\",\"viewportPositioner\",\"viewport\",\"trigger\",\"content\",\"list\",\"item\",\"link\",\"indicator\",\"itemIndicator\",\"arrow\"] as const,\n  rootPart: \"root\",\n})\n\nexport type NavigationMenuCompound = ReturnType<typeof createNavigationMenu>\n",
       "type": "registry:ui",
       "target": "components/ui/navigation-menu.tsx"
     }

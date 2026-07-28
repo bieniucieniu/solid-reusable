@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/tooltip.tsx",
-      "content": "import * as machine from \"@zag-js/tooltip\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tooltip.\n * @see https://zagjs.com/components/solid/tooltip\n *\n * Usage:\n * ```tsx\n * const tooltip = createTooltip()\n * return (\n *   <tooltip.Root>\n *     ...\n *   </tooltip.Root>\n * )\n * ```\n */\nexport const createTooltip = createMachineCompound(machine as never, {\n  scope: \"tooltip\",\n  parts: [\"trigger\",\"arrow\",\"arrowTip\",\"positioner\",\"content\"] as const,\n  rootPart: undefined,\n})\n\nexport type TooltipCompound = ReturnType<typeof createTooltip>\n",
+      "path": "registry/warsaw/ui/tooltip.tsx",
+      "content": "import * as machine from \"@zag-js/tooltip\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — tooltip.\n * @see https://zagjs.com/components/solid/tooltip\n *\n * Usage:\n * ```tsx\n * const tooltip = createTooltip()\n * return (\n *   <tooltip.Root>\n *     ...\n *   </tooltip.Root>\n * )\n * ```\n */\nexport const createTooltip = createMachineCompound(machine as never, {\n  scope: \"tooltip\",\n  parts: [\"trigger\",\"arrow\",\"arrowTip\",\"positioner\",\"content\"] as const,\n  rootPart: undefined,\n})\n\nexport type TooltipCompound = ReturnType<typeof createTooltip>\n",
       "type": "registry:ui",
       "target": "components/ui/tooltip.tsx"
     }

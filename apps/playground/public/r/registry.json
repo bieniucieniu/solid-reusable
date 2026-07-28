@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "solid-reusable",
-  "homepage": "https://github.com/solid-reusable/solid-reusable",
+  "homepage": "https://github.com/bieniucieniu/solid-reusable",
   "items": [
     {
       "name": "utils",
@@ -9,7 +9,7 @@
       "description": "cn helper",
       "files": [
         {
-          "path": "lib/utils.ts",
+          "path": "registry/warsaw/lib/utils.ts",
           "type": "registry:lib",
           "target": "lib/utils.ts"
         }
@@ -25,190 +25,19 @@
       ],
       "files": [
         {
-          "path": "lib/zag/meta.ts",
+          "path": "registry/warsaw/lib/meta.ts",
           "type": "registry:lib",
-          "target": "lib/zag/meta.ts"
+          "target": "registry/warsaw/lib/meta.ts"
         },
         {
-          "path": "lib/zag/create-machine-compound.tsx",
+          "path": "registry/warsaw/lib/create-machine-compound.tsx",
           "type": "registry:lib",
-          "target": "lib/zag/create-machine-compound.tsx"
+          "target": "registry/warsaw/lib/create-machine-compound.tsx"
         },
         {
-          "path": "lib/zag/provider-types.ts",
+          "path": "registry/warsaw/lib/provider-types.ts",
           "type": "registry:lib",
-          "target": "lib/zag/provider-types.ts"
-        }
-      ]
-    },
-    {
-      "name": "aspect-ratio",
-      "type": "registry:ui",
-      "title": "Aspect Ratio",
-      "description": "Presentational aspect-ratio (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/aspect-ratio.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/aspect-ratio.tsx"
-        }
-      ]
-    },
-    {
-      "name": "badge",
-      "type": "registry:ui",
-      "title": "Badge",
-      "description": "Presentational badge (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/badge.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/badge.tsx"
-        }
-      ]
-    },
-    {
-      "name": "button",
-      "type": "registry:ui",
-      "title": "Button",
-      "description": "Presentational button (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/button.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/button.tsx"
-        }
-      ]
-    },
-    {
-      "name": "card",
-      "type": "registry:ui",
-      "title": "Card",
-      "description": "Presentational card primitives (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/card.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/card.tsx"
-        }
-      ]
-    },
-    {
-      "name": "kbd",
-      "type": "registry:ui",
-      "title": "Kbd",
-      "description": "Presentational kbd (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/kbd.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/kbd.tsx"
-        }
-      ]
-    },
-    {
-      "name": "label",
-      "type": "registry:ui",
-      "title": "Label",
-      "description": "Presentational label (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/label.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/label.tsx"
-        }
-      ]
-    },
-    {
-      "name": "separator",
-      "type": "registry:ui",
-      "title": "Separator",
-      "description": "Presentational separator (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/separator.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/separator.tsx"
-        }
-      ]
-    },
-    {
-      "name": "skeleton",
-      "type": "registry:ui",
-      "title": "Skeleton",
-      "description": "Presentational skeleton (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/skeleton.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/skeleton.tsx"
-        }
-      ]
-    },
-    {
-      "name": "spinner",
-      "type": "registry:ui",
-      "title": "Spinner",
-      "description": "Presentational spinner (no Zag).",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "ui/spinner.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/spinner.tsx"
+          "target": "registry/warsaw/lib/provider-types.ts"
         }
       ]
     },
@@ -227,7 +56,7 @@
       ],
       "files": [
         {
-          "path": "ui/accordion.tsx",
+          "path": "registry/warsaw/ui/accordion.tsx",
           "type": "registry:ui",
           "target": "components/ui/accordion.tsx"
         }
@@ -248,9 +77,28 @@
       ],
       "files": [
         {
-          "path": "ui/angle-slider.tsx",
+          "path": "registry/warsaw/ui/angle-slider.tsx",
           "type": "registry:ui",
           "target": "components/ui/angle-slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Presentational aspect-ratio (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aspect-ratio.tsx"
         }
       ]
     },
@@ -269,7 +117,7 @@
       ],
       "files": [
         {
-          "path": "ui/async-list.tsx",
+          "path": "registry/warsaw/ui/async-list.tsx",
           "type": "registry:ui",
           "target": "components/ui/async-list.tsx"
         }
@@ -290,9 +138,66 @@
       ],
       "files": [
         {
-          "path": "ui/avatar.tsx",
+          "path": "registry/warsaw/ui/avatar.tsx",
           "type": "registry:ui",
           "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Presentational badge (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Presentational button (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Presentational card primitives (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
         }
       ]
     },
@@ -311,7 +216,7 @@
       ],
       "files": [
         {
-          "path": "ui/carousel.tsx",
+          "path": "registry/warsaw/ui/carousel.tsx",
           "type": "registry:ui",
           "target": "components/ui/carousel.tsx"
         }
@@ -332,7 +237,7 @@
       ],
       "files": [
         {
-          "path": "ui/cascade-select.tsx",
+          "path": "registry/warsaw/ui/cascade-select.tsx",
           "type": "registry:ui",
           "target": "components/ui/cascade-select.tsx"
         }
@@ -353,7 +258,7 @@
       ],
       "files": [
         {
-          "path": "ui/checkbox.tsx",
+          "path": "registry/warsaw/ui/checkbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/checkbox.tsx"
         }
@@ -374,7 +279,7 @@
       ],
       "files": [
         {
-          "path": "ui/clipboard.tsx",
+          "path": "registry/warsaw/ui/clipboard.tsx",
           "type": "registry:ui",
           "target": "components/ui/clipboard.tsx"
         }
@@ -395,7 +300,7 @@
       ],
       "files": [
         {
-          "path": "ui/collapsible.tsx",
+          "path": "registry/warsaw/ui/collapsible.tsx",
           "type": "registry:ui",
           "target": "components/ui/collapsible.tsx"
         }
@@ -416,7 +321,7 @@
       ],
       "files": [
         {
-          "path": "ui/color-picker.tsx",
+          "path": "registry/warsaw/ui/color-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/color-picker.tsx"
         }
@@ -437,7 +342,7 @@
       ],
       "files": [
         {
-          "path": "ui/combobox.tsx",
+          "path": "registry/warsaw/ui/combobox.tsx",
           "type": "registry:ui",
           "target": "components/ui/combobox.tsx"
         }
@@ -458,7 +363,7 @@
       ],
       "files": [
         {
-          "path": "ui/date-input.tsx",
+          "path": "registry/warsaw/ui/date-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/date-input.tsx"
         }
@@ -479,7 +384,7 @@
       ],
       "files": [
         {
-          "path": "ui/date-picker.tsx",
+          "path": "registry/warsaw/ui/date-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/date-picker.tsx"
         }
@@ -500,7 +405,7 @@
       ],
       "files": [
         {
-          "path": "ui/dialog.tsx",
+          "path": "registry/warsaw/ui/dialog.tsx",
           "type": "registry:ui",
           "target": "components/ui/dialog.tsx"
         }
@@ -521,7 +426,7 @@
       ],
       "files": [
         {
-          "path": "ui/drawer.tsx",
+          "path": "registry/warsaw/ui/drawer.tsx",
           "type": "registry:ui",
           "target": "components/ui/drawer.tsx"
         }
@@ -542,7 +447,7 @@
       ],
       "files": [
         {
-          "path": "ui/editable.tsx",
+          "path": "registry/warsaw/ui/editable.tsx",
           "type": "registry:ui",
           "target": "components/ui/editable.tsx"
         }
@@ -563,7 +468,7 @@
       ],
       "files": [
         {
-          "path": "ui/file-upload.tsx",
+          "path": "registry/warsaw/ui/file-upload.tsx",
           "type": "registry:ui",
           "target": "components/ui/file-upload.tsx"
         }
@@ -584,7 +489,7 @@
       ],
       "files": [
         {
-          "path": "ui/floating-panel.tsx",
+          "path": "registry/warsaw/ui/floating-panel.tsx",
           "type": "registry:ui",
           "target": "components/ui/floating-panel.tsx"
         }
@@ -605,7 +510,7 @@
       ],
       "files": [
         {
-          "path": "ui/hover-card.tsx",
+          "path": "registry/warsaw/ui/hover-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/hover-card.tsx"
         }
@@ -626,9 +531,47 @@
       ],
       "files": [
         {
-          "path": "ui/image-cropper.tsx",
+          "path": "registry/warsaw/ui/image-cropper.tsx",
           "type": "registry:ui",
           "target": "components/ui/image-cropper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Presentational kbd (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/kbd.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Presentational label (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
         }
       ]
     },
@@ -647,7 +590,7 @@
       ],
       "files": [
         {
-          "path": "ui/listbox.tsx",
+          "path": "registry/warsaw/ui/listbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/listbox.tsx"
         }
@@ -668,7 +611,7 @@
       ],
       "files": [
         {
-          "path": "ui/marquee.tsx",
+          "path": "registry/warsaw/ui/marquee.tsx",
           "type": "registry:ui",
           "target": "components/ui/marquee.tsx"
         }
@@ -689,7 +632,7 @@
       ],
       "files": [
         {
-          "path": "ui/menu.tsx",
+          "path": "registry/warsaw/ui/menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/menu.tsx"
         }
@@ -710,7 +653,7 @@
       ],
       "files": [
         {
-          "path": "ui/navigation-menu.tsx",
+          "path": "registry/warsaw/ui/navigation-menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/navigation-menu.tsx"
         }
@@ -731,7 +674,7 @@
       ],
       "files": [
         {
-          "path": "ui/number-input.tsx",
+          "path": "registry/warsaw/ui/number-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/number-input.tsx"
         }
@@ -752,7 +695,7 @@
       ],
       "files": [
         {
-          "path": "ui/pagination.tsx",
+          "path": "registry/warsaw/ui/pagination.tsx",
           "type": "registry:ui",
           "target": "components/ui/pagination.tsx"
         }
@@ -773,7 +716,7 @@
       ],
       "files": [
         {
-          "path": "ui/password-input.tsx",
+          "path": "registry/warsaw/ui/password-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/password-input.tsx"
         }
@@ -794,7 +737,7 @@
       ],
       "files": [
         {
-          "path": "ui/pin-input.tsx",
+          "path": "registry/warsaw/ui/pin-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/pin-input.tsx"
         }
@@ -815,7 +758,7 @@
       ],
       "files": [
         {
-          "path": "ui/popover.tsx",
+          "path": "registry/warsaw/ui/popover.tsx",
           "type": "registry:ui",
           "target": "components/ui/popover.tsx"
         }
@@ -836,7 +779,7 @@
       ],
       "files": [
         {
-          "path": "ui/presence.tsx",
+          "path": "registry/warsaw/ui/presence.tsx",
           "type": "registry:ui",
           "target": "components/ui/presence.tsx"
         }
@@ -857,7 +800,7 @@
       ],
       "files": [
         {
-          "path": "ui/progress.tsx",
+          "path": "registry/warsaw/ui/progress.tsx",
           "type": "registry:ui",
           "target": "components/ui/progress.tsx"
         }
@@ -878,7 +821,7 @@
       ],
       "files": [
         {
-          "path": "ui/qr-code.tsx",
+          "path": "registry/warsaw/ui/qr-code.tsx",
           "type": "registry:ui",
           "target": "components/ui/qr-code.tsx"
         }
@@ -899,7 +842,7 @@
       ],
       "files": [
         {
-          "path": "ui/radio-group.tsx",
+          "path": "registry/warsaw/ui/radio-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/radio-group.tsx"
         }
@@ -920,7 +863,7 @@
       ],
       "files": [
         {
-          "path": "ui/rating-group.tsx",
+          "path": "registry/warsaw/ui/rating-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/rating-group.tsx"
         }
@@ -941,7 +884,7 @@
       ],
       "files": [
         {
-          "path": "ui/scroll-area.tsx",
+          "path": "registry/warsaw/ui/scroll-area.tsx",
           "type": "registry:ui",
           "target": "components/ui/scroll-area.tsx"
         }
@@ -962,9 +905,28 @@
       ],
       "files": [
         {
-          "path": "ui/select.tsx",
+          "path": "registry/warsaw/ui/select.tsx",
           "type": "registry:ui",
           "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Presentational separator (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
         }
       ]
     },
@@ -983,9 +945,28 @@
       ],
       "files": [
         {
-          "path": "ui/signature-pad.tsx",
+          "path": "registry/warsaw/ui/signature-pad.tsx",
           "type": "registry:ui",
           "target": "components/ui/signature-pad.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Presentational skeleton (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
         }
       ]
     },
@@ -1004,9 +985,28 @@
       ],
       "files": [
         {
-          "path": "ui/slider.tsx",
+          "path": "registry/warsaw/ui/slider.tsx",
           "type": "registry:ui",
           "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Presentational spinner (no Zag).",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/warsaw/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
         }
       ]
     },
@@ -1025,7 +1025,7 @@
       ],
       "files": [
         {
-          "path": "ui/splitter.tsx",
+          "path": "registry/warsaw/ui/splitter.tsx",
           "type": "registry:ui",
           "target": "components/ui/splitter.tsx"
         }
@@ -1046,7 +1046,7 @@
       ],
       "files": [
         {
-          "path": "ui/steps.tsx",
+          "path": "registry/warsaw/ui/steps.tsx",
           "type": "registry:ui",
           "target": "components/ui/steps.tsx"
         }
@@ -1067,7 +1067,7 @@
       ],
       "files": [
         {
-          "path": "ui/switch.tsx",
+          "path": "registry/warsaw/ui/switch.tsx",
           "type": "registry:ui",
           "target": "components/ui/switch.tsx"
         }
@@ -1088,7 +1088,7 @@
       ],
       "files": [
         {
-          "path": "ui/tabs.tsx",
+          "path": "registry/warsaw/ui/tabs.tsx",
           "type": "registry:ui",
           "target": "components/ui/tabs.tsx"
         }
@@ -1109,7 +1109,7 @@
       ],
       "files": [
         {
-          "path": "ui/tags-input.tsx",
+          "path": "registry/warsaw/ui/tags-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/tags-input.tsx"
         }
@@ -1130,7 +1130,7 @@
       ],
       "files": [
         {
-          "path": "ui/timer.tsx",
+          "path": "registry/warsaw/ui/timer.tsx",
           "type": "registry:ui",
           "target": "components/ui/timer.tsx"
         }
@@ -1151,7 +1151,7 @@
       ],
       "files": [
         {
-          "path": "ui/toast.tsx",
+          "path": "registry/warsaw/ui/toast.tsx",
           "type": "registry:ui",
           "target": "components/ui/toast.tsx"
         }
@@ -1172,7 +1172,7 @@
       ],
       "files": [
         {
-          "path": "ui/toc.tsx",
+          "path": "registry/warsaw/ui/toc.tsx",
           "type": "registry:ui",
           "target": "components/ui/toc.tsx"
         }
@@ -1193,7 +1193,7 @@
       ],
       "files": [
         {
-          "path": "ui/toggle-group.tsx",
+          "path": "registry/warsaw/ui/toggle-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle-group.tsx"
         }
@@ -1214,7 +1214,7 @@
       ],
       "files": [
         {
-          "path": "ui/toggle.tsx",
+          "path": "registry/warsaw/ui/toggle.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle.tsx"
         }
@@ -1235,7 +1235,7 @@
       ],
       "files": [
         {
-          "path": "ui/tooltip.tsx",
+          "path": "registry/warsaw/ui/tooltip.tsx",
           "type": "registry:ui",
           "target": "components/ui/tooltip.tsx"
         }
@@ -1256,7 +1256,7 @@
       ],
       "files": [
         {
-          "path": "ui/tour.tsx",
+          "path": "registry/warsaw/ui/tour.tsx",
           "type": "registry:ui",
           "target": "components/ui/tour.tsx"
         }
@@ -1277,7 +1277,7 @@
       ],
       "files": [
         {
-          "path": "ui/tree-view.tsx",
+          "path": "registry/warsaw/ui/tree-view.tsx",
           "type": "registry:ui",
           "target": "components/ui/tree-view.tsx"
         }

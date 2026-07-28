@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/date-picker.tsx",
-      "content": "import * as machine from \"@zag-js/date-picker\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — date-picker.\n * @see https://zagjs.com/components/solid/date-picker\n *\n * Usage:\n * ```tsx\n * const datePicker = createDatePicker()\n * return (\n *   <datePicker.Root>\n *     ...\n *   </datePicker.Root>\n * )\n * ```\n */\nexport const createDatePicker = createMachineCompound(machine as never, {\n  scope: \"date-picker\",\n  parts: [\"clearTrigger\",\"content\",\"control\",\"input\",\"label\",\"monthSelect\",\"nextTrigger\",\"positioner\",\"presetTrigger\",\"prevTrigger\",\"rangeText\",\"root\",\"table\",\"tableBody\",\"tableCell\",\"tableCellTrigger\",\"tableHead\",\"tableHeader\",\"tableRow\",\"trigger\",\"view\",\"viewControl\",\"viewTrigger\",\"yearSelect\"] as const,\n  rootPart: \"root\",\n})\n\nexport type DatePickerCompound = ReturnType<typeof createDatePicker>\n",
+      "path": "registry/warsaw/ui/date-picker.tsx",
+      "content": "import * as machine from \"@zag-js/date-picker\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — date-picker.\n * @see https://zagjs.com/components/solid/date-picker\n *\n * Usage:\n * ```tsx\n * const datePicker = createDatePicker()\n * return (\n *   <datePicker.Root>\n *     ...\n *   </datePicker.Root>\n * )\n * ```\n */\nexport const createDatePicker = createMachineCompound(machine as never, {\n  scope: \"date-picker\",\n  parts: [\"clearTrigger\",\"content\",\"control\",\"input\",\"label\",\"monthSelect\",\"nextTrigger\",\"positioner\",\"presetTrigger\",\"prevTrigger\",\"rangeText\",\"root\",\"table\",\"tableBody\",\"tableCell\",\"tableCellTrigger\",\"tableHead\",\"tableHeader\",\"tableRow\",\"trigger\",\"view\",\"viewControl\",\"viewTrigger\",\"yearSelect\"] as const,\n  rootPart: \"root\",\n})\n\nexport type DatePickerCompound = ReturnType<typeof createDatePicker>\n",
       "type": "registry:ui",
       "target": "components/ui/date-picker.tsx"
     }

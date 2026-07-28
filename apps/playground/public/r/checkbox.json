@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/checkbox.tsx",
-      "content": "import * as machine from \"@zag-js/checkbox\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — checkbox.\n * @see https://zagjs.com/components/solid/checkbox\n *\n * Usage:\n * ```tsx\n * const checkbox = createCheckbox()\n * return (\n *   <checkbox.Root>\n *     ...\n *   </checkbox.Root>\n * )\n * ```\n */\nexport const createCheckbox = createMachineCompound(machine as never, {\n  scope: \"checkbox\",\n  parts: [\"root\",\"label\",\"control\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type CheckboxCompound = ReturnType<typeof createCheckbox>\n",
+      "path": "registry/warsaw/ui/checkbox.tsx",
+      "content": "import * as machine from \"@zag-js/checkbox\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — checkbox.\n * @see https://zagjs.com/components/solid/checkbox\n *\n * Usage:\n * ```tsx\n * const checkbox = createCheckbox()\n * return (\n *   <checkbox.Root>\n *     ...\n *   </checkbox.Root>\n * )\n * ```\n */\nexport const createCheckbox = createMachineCompound(machine as never, {\n  scope: \"checkbox\",\n  parts: [\"root\",\"label\",\"control\",\"indicator\"] as const,\n  rootPart: \"root\",\n})\n\nexport type CheckboxCompound = ReturnType<typeof createCheckbox>\n",
       "type": "registry:ui",
       "target": "components/ui/checkbox.tsx"
     }

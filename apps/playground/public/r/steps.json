@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/steps.tsx",
-      "content": "import * as machine from \"@zag-js/steps\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — steps.\n * @see https://zagjs.com/components/solid/steps\n *\n * Usage:\n * ```tsx\n * const steps = createSteps()\n * return (\n *   <steps.Root>\n *     ...\n *   </steps.Root>\n * )\n * ```\n */\nexport const createSteps = createMachineCompound(machine as never, {\n  scope: \"steps\",\n  parts: [\"root\",\"list\",\"item\",\"trigger\",\"indicator\",\"separator\",\"content\",\"nextTrigger\",\"prevTrigger\",\"progress\"] as const,\n  rootPart: \"root\",\n})\n\nexport type StepsCompound = ReturnType<typeof createSteps>\n",
+      "path": "registry/warsaw/ui/steps.tsx",
+      "content": "import * as machine from \"@zag-js/steps\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — steps.\n * @see https://zagjs.com/components/solid/steps\n *\n * Usage:\n * ```tsx\n * const steps = createSteps()\n * return (\n *   <steps.Root>\n *     ...\n *   </steps.Root>\n * )\n * ```\n */\nexport const createSteps = createMachineCompound(machine as never, {\n  scope: \"steps\",\n  parts: [\"root\",\"list\",\"item\",\"trigger\",\"indicator\",\"separator\",\"content\",\"nextTrigger\",\"prevTrigger\",\"progress\"] as const,\n  rootPart: \"root\",\n})\n\nexport type StepsCompound = ReturnType<typeof createSteps>\n",
       "type": "registry:ui",
       "target": "components/ui/steps.tsx"
     }

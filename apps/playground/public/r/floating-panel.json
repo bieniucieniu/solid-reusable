@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/floating-panel.tsx",
-      "content": "import * as machine from \"@zag-js/floating-panel\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — floating-panel.\n * @see https://zagjs.com/components/solid/floating-panel\n *\n * Usage:\n * ```tsx\n * const floatingPanel = createFloatingPanel()\n * return (\n *   <floatingPanel.Root>\n *     ...\n *   </floatingPanel.Root>\n * )\n * ```\n */\nexport const createFloatingPanel = createMachineCompound(machine as never, {\n  scope: \"floating-panel\",\n  parts: [\"trigger\",\"positioner\",\"content\",\"header\",\"body\",\"title\",\"resizeTrigger\",\"dragTrigger\",\"stageTrigger\",\"closeTrigger\",\"control\"] as const,\n  rootPart: undefined,\n})\n\nexport type FloatingPanelCompound = ReturnType<typeof createFloatingPanel>\n",
+      "path": "registry/warsaw/ui/floating-panel.tsx",
+      "content": "import * as machine from \"@zag-js/floating-panel\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — floating-panel.\n * @see https://zagjs.com/components/solid/floating-panel\n *\n * Usage:\n * ```tsx\n * const floatingPanel = createFloatingPanel()\n * return (\n *   <floatingPanel.Root>\n *     ...\n *   </floatingPanel.Root>\n * )\n * ```\n */\nexport const createFloatingPanel = createMachineCompound(machine as never, {\n  scope: \"floating-panel\",\n  parts: [\"trigger\",\"positioner\",\"content\",\"header\",\"body\",\"title\",\"resizeTrigger\",\"dragTrigger\",\"stageTrigger\",\"closeTrigger\",\"control\"] as const,\n  rootPart: undefined,\n})\n\nexport type FloatingPanelCompound = ReturnType<typeof createFloatingPanel>\n",
       "type": "registry:ui",
       "target": "components/ui/floating-panel.tsx"
     }

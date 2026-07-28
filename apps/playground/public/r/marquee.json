@@ -14,8 +14,8 @@
   ],
   "files": [
     {
-      "path": "ui/marquee.tsx",
-      "content": "import * as machine from \"@zag-js/marquee\"\nimport { createMachineCompound } from \"@/lib/zag/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — marquee.\n * @see https://zagjs.com/components/solid/marquee\n *\n * Usage:\n * ```tsx\n * const marquee = createMarquee()\n * return (\n *   <marquee.Root>\n *     ...\n *   </marquee.Root>\n * )\n * ```\n */\nexport const createMarquee = createMachineCompound(machine as never, {\n  scope: \"marquee\",\n  parts: [\"root\",\"viewport\",\"content\",\"edge\",\"item\"] as const,\n  rootPart: \"root\",\n})\n\nexport type MarqueeCompound = ReturnType<typeof createMarquee>\n",
+      "path": "registry/warsaw/ui/marquee.tsx",
+      "content": "import * as machine from \"@zag-js/marquee\"\nimport { createMachineCompound } from \"@/registry/warsaw/lib/create-machine-compound\"\n\n/**\n * Unstyled Zag placeholder — marquee.\n * @see https://zagjs.com/components/solid/marquee\n *\n * Usage:\n * ```tsx\n * const marquee = createMarquee()\n * return (\n *   <marquee.Root>\n *     ...\n *   </marquee.Root>\n * )\n * ```\n */\nexport const createMarquee = createMachineCompound(machine as never, {\n  scope: \"marquee\",\n  parts: [\"root\",\"viewport\",\"content\",\"edge\",\"item\"] as const,\n  rootPart: \"root\",\n})\n\nexport type MarqueeCompound = ReturnType<typeof createMarquee>\n",
       "type": "registry:ui",
       "target": "components/ui/marquee.tsx"
     }
