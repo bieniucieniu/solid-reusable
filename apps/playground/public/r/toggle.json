@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Toggle",
   "description": "Zag compound createToggle() — https://zagjs.com/components/solid/toggle",
-  "dependencies": [
-    "@zag-js/toggle",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/toggle", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/toggle.tsx",

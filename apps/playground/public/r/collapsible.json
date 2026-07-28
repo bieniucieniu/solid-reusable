@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Collapsible",
   "description": "Zag compound createCollapsible() — https://zagjs.com/components/solid/collapsible",
-  "dependencies": [
-    "@zag-js/collapsible",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/collapsible", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/collapsible.tsx",

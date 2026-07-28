@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Cascade Select",
   "description": "Zag compound createCascadeSelect() — https://zagjs.com/components/solid/cascade-select",
-  "dependencies": [
-    "@zag-js/cascade-select",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/cascade-select", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/cascade-select.tsx",

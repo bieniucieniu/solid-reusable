@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Date Picker",
   "description": "Zag compound createDatePicker() — https://zagjs.com/components/solid/date-picker",
-  "dependencies": [
-    "@zag-js/date-picker",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/date-picker", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/date-picker.tsx",

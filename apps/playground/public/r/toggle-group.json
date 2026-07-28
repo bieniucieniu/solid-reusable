@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Toggle Group",
   "description": "Zag compound createToggleGroup() — https://zagjs.com/components/solid/toggle-group",
-  "dependencies": [
-    "@zag-js/toggle-group",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/toggle-group", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/toggle-group.tsx",

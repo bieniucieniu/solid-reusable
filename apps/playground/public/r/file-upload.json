@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "File Upload",
   "description": "Zag compound createFileUpload() — https://zagjs.com/components/solid/file-upload",
-  "dependencies": [
-    "@zag-js/file-upload",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/file-upload", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/file-upload.tsx",

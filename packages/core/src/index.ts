@@ -5,10 +5,9 @@ export function cn(...inputs: Array<string | false | null | undefined>): string 
   return inputs.filter(Boolean).join(" ")
 }
 
-export type PolymorphicProps<E extends keyof JSX.IntrinsicElements> =
-  JSX.IntrinsicElements[E] & {
-    class?: string
-  }
+export type PolymorphicProps<E extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[E] & {
+  class?: string
+}
 
 /**
  * Solid 2.0 prep notes (do not remove):
