@@ -91,7 +91,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"] as ("as" | "children" | "item" | "persistFocus")[])
+      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -106,7 +106,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"] as ("as" | "children" | "item" | "persistFocus")[])
+      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -121,7 +121,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"] as ("as" | "children" | "item" | "persistFocus")[])
+      const [local, rest] = splitProps(props, ["as","children","item","persistFocus"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -136,7 +136,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
     ItemGroup<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -151,7 +151,7 @@ export function createSelect(options: CreateSelectOptions = {} as CreateSelectOp
     ItemGroupLabel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupLabelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","htmlFor"] as ("as" | "children" | "htmlFor")[])
+      const [local, rest] = splitProps(props, ["as","children","htmlFor"])
       return (
         <Dynamic
           component={local.as ?? "div"}

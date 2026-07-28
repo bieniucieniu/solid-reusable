@@ -65,7 +65,7 @@ export function createMarquee(options: CreateMarqueeOptions = {} as CreateMarque
     Content<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ContentProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -80,7 +80,7 @@ export function createMarquee(options: CreateMarqueeOptions = {} as CreateMarque
     Edge<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.EdgeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","side"] as ("as" | "children" | "side")[])
+      const [local, rest] = splitProps(props, ["as","children","side"])
       return (
         <Dynamic
           component={local.as ?? "div"}

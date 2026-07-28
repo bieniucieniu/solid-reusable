@@ -104,7 +104,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"] as ("as" | "children" | "index" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -119,7 +119,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
     ItemPreview<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"] as ("as" | "children" | "index" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -134,7 +134,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
     ItemInput<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"] as ("as" | "children" | "index" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "input"}
@@ -149,7 +149,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"] as ("as" | "children" | "index" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -164,7 +164,7 @@ export function createTagsInput(options: CreateTagsInputOptions = {} as CreateTa
     ItemDeleteTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"] as ("as" | "children" | "index" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","index","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}

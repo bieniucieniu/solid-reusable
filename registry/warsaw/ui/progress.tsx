@@ -104,7 +104,7 @@ export function createProgress(options: CreateProgressOptions = {} as CreateProg
     View<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ViewProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","state"] as ("as" | "children" | "state")[])
+      const [local, rest] = splitProps(props, ["as","children","state"])
       return (
         <Dynamic
           component={local.as ?? "div"}

@@ -117,7 +117,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
     ResizeTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ResizeTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","axis"] as ("as" | "children" | "axis")[])
+      const [local, rest] = splitProps(props, ["as","children","axis"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -145,7 +145,7 @@ export function createFloatingPanel(options: CreateFloatingPanelOptions = {} as 
     StageTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.StageTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","stage"] as ("as" | "children" | "stage")[])
+      const [local, rest] = splitProps(props, ["as","children","stage"])
       return (
         <Dynamic
           component={local.as ?? "button"}

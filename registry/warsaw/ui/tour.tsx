@@ -65,7 +65,7 @@ export function createTour(options: CreateTourOptions = {} as CreateTourOptions)
     ActionTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.StepActionTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","action"] as ("as" | "children" | "action")[])
+      const [local, rest] = splitProps(props, ["as","children","action"])
       return (
         <Dynamic
           component={local.as ?? "button"}

@@ -39,7 +39,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     Branch<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -54,7 +54,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchContent<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -69,7 +69,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchControl<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -84,7 +84,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchIndentGuide<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -99,7 +99,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -114,7 +114,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchText<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -129,7 +129,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     BranchTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -144,7 +144,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -159,7 +159,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -174,7 +174,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -202,7 +202,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     NodeCheckbox<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -217,7 +217,7 @@ export function createTreeView(options: CreateTreeViewOptions = {} as CreateTree
     NodeRenameInput<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.NodeProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","node","indexPath"] as ("as" | "children" | "node" | "indexPath")[])
+      const [local, rest] = splitProps(props, ["as","children","node","indexPath"])
       return (
         <Dynamic
           component={local.as ?? "input"}

@@ -78,7 +78,7 @@ export function createSignaturePad(options: CreateSignaturePadOptions = {} as Cr
     SegmentPath<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.SegmentPathProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","path"] as ("as" | "children" | "path")[])
+      const [local, rest] = splitProps(props, ["as","children","path"])
       return (
         <Dynamic
           component={local.as ?? "div"}
