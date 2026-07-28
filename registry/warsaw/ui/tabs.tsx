@@ -65,7 +65,7 @@ export function createTabs(options: CreateTabsOptions = {} as CreateTabsOptions)
     Trigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.TriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -80,7 +80,7 @@ export function createTabs(options: CreateTabsOptions = {} as CreateTabsOptions)
     Content<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ContentProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}

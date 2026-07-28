@@ -78,7 +78,7 @@ export function createClipboard(options: CreateClipboardOptions = {} as CreateCl
     Indicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.IndicatorProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","copied"] as ("as" | "children" | "copied")[])
+      const [local, rest] = splitProps(props, ["as","children","copied"])
       return (
         <Dynamic
           component={local.as ?? "div"}

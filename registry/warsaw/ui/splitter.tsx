@@ -52,7 +52,7 @@ export function createSplitter(options: CreateSplitterOptions = {} as CreateSpli
     Panel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.PanelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -67,7 +67,7 @@ export function createSplitter(options: CreateSplitterOptions = {} as CreateSpli
     ResizeTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ResizeTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id","disabled"] as ("as" | "children" | "id" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","id","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}

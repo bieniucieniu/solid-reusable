@@ -108,7 +108,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     Area<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.AreaProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -123,7 +123,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     AreaThumb<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.AreaProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -151,7 +151,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     AreaBackground<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.AreaProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"] as ("as" | "children" | "xChannel" | "yChannel")[])
+      const [local, rest] = splitProps(props, ["as","children","xChannel","yChannel"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -166,7 +166,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelSlider<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -181,7 +181,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelSliderLabel<Comp extends ValidComponent = "label">(
       props: DynamicAsProps<Comp, zag.ChannelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"])
       return (
         <Dynamic
           component={local.as ?? "label"}
@@ -196,7 +196,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelSliderTrack<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -211,7 +211,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelSliderThumb<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ChannelSliderProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"] as ("as" | "children" | "channel" | "orientation" | "format")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation","format"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -226,7 +226,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelSliderValueText<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ChannelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -241,7 +241,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     ChannelInput<Comp extends ValidComponent = "input">(
       props: DynamicAsProps<Comp, zag.ChannelInputProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","channel","orientation"] as ("as" | "children" | "channel" | "orientation")[])
+      const [local, rest] = splitProps(props, ["as","children","channel","orientation"])
       return (
         <Dynamic
           component={local.as ?? "input"}
@@ -256,7 +256,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     TransparencyGrid<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.TransparencyGridProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","size"] as ("as" | "children" | "size")[])
+      const [local, rest] = splitProps(props, ["as","children","size"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -284,7 +284,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     SwatchTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.SwatchTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled"] as ("as" | "children" | "value" | "disabled")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -299,7 +299,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     SwatchIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.SwatchProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"] as ("as" | "children" | "value" | "respectAlpha")[])
+      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -314,7 +314,7 @@ export function createColorPicker(options: CreateColorPickerOptions = {} as Crea
     Swatch<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.SwatchProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"] as ("as" | "children" | "value" | "respectAlpha")[])
+      const [local, rest] = splitProps(props, ["as","children","value","respectAlpha"])
       return (
         <Dynamic
           component={local.as ?? "div"}

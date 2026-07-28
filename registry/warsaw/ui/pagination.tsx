@@ -52,7 +52,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","value"] as ("as" | "children" | "type" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","type","value"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -67,7 +67,7 @@ export function createPagination(options: CreatePaginationOptions = {} as Create
     Ellipsis<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.EllipsisProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","index"] as ("as" | "children" | "index")[])
+      const [local, rest] = splitProps(props, ["as","children","index"])
       return (
         <Dynamic
           component={local.as ?? "div"}

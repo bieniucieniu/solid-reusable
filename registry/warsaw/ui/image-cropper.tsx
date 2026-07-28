@@ -91,7 +91,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
     Handle<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.HandleProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","position"] as ("as" | "children" | "position")[])
+      const [local, rest] = splitProps(props, ["as","children","position"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -106,7 +106,7 @@ export function createImageCropper(options: CreateImageCropperOptions = {} as Cr
     Grid<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.GridProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","axis"] as ("as" | "children" | "axis")[])
+      const [local, rest] = splitProps(props, ["as","children","axis"])
       return (
         <Dynamic
           component={local.as ?? "div"}

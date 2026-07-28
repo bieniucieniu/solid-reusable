@@ -52,7 +52,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     Dropzone<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.DropzoneProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","disableClick"] as ("as" | "children" | "disableClick")[])
+      const [local, rest] = splitProps(props, ["as","children","disableClick"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -67,7 +67,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -82,7 +82,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemDeleteTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -97,7 +97,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemGroup<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type"] as ("as" | "children" | "type")[])
+      const [local, rest] = splitProps(props, ["as","children","type"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -112,7 +112,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemName<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -127,7 +127,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemPreview<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -142,7 +142,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemPreviewImage<Comp extends ValidComponent = "img">(
       props: DynamicAsProps<Comp, zag.ItemPreviewImageProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file","url"] as ("as" | "children" | "type" | "file" | "url")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file","url"])
       return (
         <Dynamic
           component={local.as ?? "img"}
@@ -157,7 +157,7 @@ export function createFileUpload(options: CreateFileUploadOptions = {} as Create
     ItemSizeText<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type","file"] as ("as" | "children" | "type" | "file")[])
+      const [local, rest] = splitProps(props, ["as","children","type","file"])
       return (
         <Dynamic
           component={local.as ?? "div"}

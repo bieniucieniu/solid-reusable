@@ -78,7 +78,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type"] as ("as" | "children" | "type")[])
+      const [local, rest] = splitProps(props, ["as","children","type"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -93,7 +93,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
     ItemValue<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type"] as ("as" | "children" | "type")[])
+      const [local, rest] = splitProps(props, ["as","children","type"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -108,7 +108,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
     ItemLabel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","type"] as ("as" | "children" | "type")[])
+      const [local, rest] = splitProps(props, ["as","children","type"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -123,7 +123,7 @@ export function createTimer(options: CreateTimerOptions = {} as CreateTimerOptio
     ActionTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.ActionTriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","action"] as ("as" | "children" | "action")[])
+      const [local, rest] = splitProps(props, ["as","children","action"])
       return (
         <Dynamic
           component={local.as ?? "button"}

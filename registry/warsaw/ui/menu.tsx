@@ -91,7 +91,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     ContextTrigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.TriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -119,7 +119,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     Item<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","valueText","closeOnSelect"] as ("as" | "children" | "value" | "disabled" | "valueText" | "closeOnSelect")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","valueText","closeOnSelect"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -134,7 +134,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     ItemGroup<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","id"] as ("as" | "children" | "id")[])
+      const [local, rest] = splitProps(props, ["as","children","id"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -149,7 +149,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     ItemGroupLabel<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemGroupLabelProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","htmlFor"] as ("as" | "children" | "htmlFor")[])
+      const [local, rest] = splitProps(props, ["as","children","htmlFor"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -164,7 +164,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     ItemIndicator<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.ItemBaseProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","checked","valueText"] as ("as" | "children" | "value" | "disabled" | "checked" | "valueText")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","checked","valueText"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -179,7 +179,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     ItemText<Comp extends ValidComponent = "span">(
       props: DynamicAsProps<Comp, zag.ItemBaseProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value","disabled","checked","valueText"] as ("as" | "children" | "value" | "disabled" | "checked" | "valueText")[])
+      const [local, rest] = splitProps(props, ["as","children","value","disabled","checked","valueText"])
       return (
         <Dynamic
           component={local.as ?? "span"}
@@ -207,7 +207,7 @@ export function createMenu(options: CreateMenuOptions = {} as CreateMenuOptions)
     Trigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.TriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "button"}

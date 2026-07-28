@@ -39,7 +39,7 @@ export function createToast(options: CreateToastOptions = {} as CreateToastOptio
     Group<Comp extends ValidComponent = "div">(
       props: DynamicAsProps<Comp, zag.GroupProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","label"] as ("as" | "children" | "label")[])
+      const [local, rest] = splitProps(props, ["as","children","label"])
       return (
         <Dynamic
           component={local.as ?? "div"}

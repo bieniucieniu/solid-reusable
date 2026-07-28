@@ -48,7 +48,7 @@ export function createTooltip(options: CreateTooltipOptions = {} as CreateToolti
     Trigger<Comp extends ValidComponent = "button">(
       props: DynamicAsProps<Comp, zag.TriggerProps>,
     ) {
-      const [local, rest] = splitProps(props, ["as","children","value"] as ("as" | "children" | "value")[])
+      const [local, rest] = splitProps(props, ["as","children","value"])
       return (
         <Dynamic
           component={local.as ?? "button"}
