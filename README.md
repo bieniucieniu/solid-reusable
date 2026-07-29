@@ -6,7 +6,8 @@ SolidJS **1.9** component system (prep for **2.0**). Headless via **Zag.js** (pl
 
 | Package | Role |
 |---|---|
-| `@solid-reusable/core` | `cn`, shared types |
+| `@solid-reusable/core` | Shared types |
+| `registry/warsaw/lib/utils` | `cn` (clsx + tailwind-merge, shadcn-style) |
 | `@solid-reusable/provider` | Headless provider interface |
 | `@solid-reusable/provider-zag` | Zag provider meta (pluggable) |
 | `@solid-reusable/ui` | Public comps (re-exports `@/registry/warsaw`) |

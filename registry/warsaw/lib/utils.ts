@@ -1,8 +1,9 @@
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 import type { JSX } from "solid-js"
 
-/** Merge class strings — styling layer plugs into this later. */
-export function cn(...inputs: Array<string | false | null | undefined>): string {
-  return inputs.filter(Boolean).join(" ")
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
 
 export type PolymorphicProps<E extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[E] & {

@@ -1,10 +1,5 @@
 import type { JSX } from "solid-js"
 
-/** Merge class strings — styling layer plugs into this later. */
-export function cn(...inputs: Array<string | false | null | undefined>): string {
-  return inputs.filter(Boolean).join(" ")
-}
-
 export type PolymorphicProps<E extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[E] & {
   class?: string
 }
