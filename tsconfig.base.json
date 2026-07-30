@@ -16,6 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
+      "~/*": ["apps/playground/src/*"],
       "@/registry/*": ["registry/*"],
       "@components/*": ["registry/warsaw/*"],
       "@solid-reusable/core": ["packages/core/src/index.ts"],

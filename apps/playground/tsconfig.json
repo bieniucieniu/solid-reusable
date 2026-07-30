@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    "types": ["vite/client", "node"],
+    "types": ["vinxi/types/client", "node"],
     "baseUrl": "../..",
     "paths": {
       "~/*": ["apps/playground/src/*"],
@@ -15,5 +15,5 @@
       "@solid-reusable/provider-zag": ["packages/provider-zag/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "vite.config.ts", "../../registry/warsaw/**/*"]
+  "include": ["src/**/*", "app.config.ts", "../../registry/warsaw/**/*"]
 }

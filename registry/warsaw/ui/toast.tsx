@@ -1,7 +1,5 @@
-import type { Machine } from "@zag-js/core"
 import { normalizeProps, useMachine } from "@zag-js/solid"
 import * as zag from "@zag-js/toast"
-import type { ToastMachine, ToastSchema } from "node_modules/@zag-js/toast/dist/toast.types.mjs"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"

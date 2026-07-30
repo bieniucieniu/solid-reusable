@@ -17,6 +17,8 @@
     "@solid-reusable/core": "workspace:*",
     "@solid-reusable/provider": "workspace:*",
     "@solid-reusable/provider-zag": "workspace:*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1",
     "@zag-js/accordion": "^1.42.0",
     "@zag-js/angle-slider": "^1.42.0",
     "@zag-js/async-list": "^1.42.0",

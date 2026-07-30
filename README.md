@@ -6,12 +6,13 @@ SolidJS **1.9** component system (prep for **2.0**). Headless via **Zag.js** (pl
 
 | Package | Role |
 |---|---|
-| `@solid-reusable/core` | `cn`, shared types |
+| `@solid-reusable/core` | Shared types |
+| `registry/warsaw/lib/utils` | `cn` (clsx + tailwind-merge, shadcn-style) |
 | `@solid-reusable/provider` | Headless provider interface |
 | `@solid-reusable/provider-zag` | Zag provider meta (pluggable) |
 | `@solid-reusable/ui` | Public comps (re-exports `@/registry/warsaw`) |
 | `registry/warsaw` | Style source (`@/registry/warsaw/...`) |
-| `apps/playground` | Vite demos + serves `/r/*.json` |
+| `apps/playground` | SolidStart demos (file routes) + serves `/r/*.json` |
 
 ## Patterns
 
@@ -48,6 +49,8 @@ pnpm build:registry
 pnpm dev
 ```
 
+Playground (SolidStart): `/` catalog, `/components/{name}` per demo. Registry JSON still at `/r/*.json`.
+
 Edit comps in `registry/warsaw/` by hand. Then `pnpm build:registry`.
 
 ### TS aliases
@@ -58,7 +61,7 @@ Edit comps in `registry/warsaw/` by hand. Then `pnpm build:registry`.
 | `@components/*` | `registry/warsaw/*` |
 | `@solid-reusable/*` | `packages/*/src` |
 
-Root `tsconfig.json` + Vite `resolve.alias` stay in sync. `solid-js` / `@zag-js/solid` are workspace peer/dev deps; machine packages live on `@solid-reusable/ui`.
+Root `tsconfig.json` + SolidStart/Vite `resolve.alias` stay in sync. `solid-js` / `@zag-js/solid` are workspace peer/dev deps; machine packages live on `@solid-reusable/ui`.
 
 ## Registry (shadcn CLI)
 

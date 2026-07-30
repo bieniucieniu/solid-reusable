@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Serif", ui-serif, Georgia, serif;
+  --color-canvas: #f4f7f6;
+  --color-panel: #ffffff;
+  --color-ink: #1c1917;
+  --color-mute: #78716c;
+  --color-line: #d6d3d1;
+  --color-brand: #0f766e;
+  --color-brand-soft: #ccfbf1;
+}
+
+@layer base {
+  html {
+    @apply antialiased text-ink bg-canvas font-sans;
+  }
+
+  body {
+    @apply m-0 min-h-screen;
+    background-image:
+      radial-gradient(900px 420px at 8% -8%, color-mix(in oklab, var(--color-brand-soft) 70%, transparent), transparent 60%),
+      radial-gradient(700px 360px at 100% 0%, color-mix(in oklab, #dbeafe 55%, transparent), transparent 55%);
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  code {
+    @apply rounded bg-stone-100 px-1 py-0.5 text-[0.85em];
+  }
+}
+
+@layer components {
+  .demo-btn {
+    @apply inline-flex cursor-pointer items-center justify-center rounded-md border border-line bg-white px-3 py-1.5 text-sm text-ink transition hover:bg-stone-50;
+  }
+
+  .demo-input {
+    @apply rounded-md border border-line bg-white px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand;
+  }
+
+  .demo-panel {
+    @apply rounded-lg border border-line bg-panel p-3 shadow-sm;
+  }
+
+  .demo-overlay {
+    @apply fixed inset-0 bg-stone-950/35;
+  }
+
+  .demo-popover {
+    @apply rounded-lg border border-line bg-panel p-3 shadow-md;
+  }
+}

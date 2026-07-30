@@ -119,8 +119,8 @@ const items = []
 const utilsItem = item({
   name: "utils",
   type: "registry:lib",
-  description: "cn helper",
-  dependencies: [],
+  description: "cn helper (clsx + tailwind-merge)",
+  dependencies: ["clsx", "tailwind-merge"],
   files: [
     {
       path: `registry/${STYLE}/lib/utils.ts`,
@@ -135,6 +135,7 @@ items.push({
   name: "utils",
   type: "registry:lib",
   description: utilsItem.description,
+  dependencies: utilsItem.dependencies,
   files: utilsItem.files.map(({ path, type, target }) => ({ path, type, target })),
 })
 
