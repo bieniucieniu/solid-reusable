@@ -15,10 +15,7 @@ export default function RadioGroupDemo() {
       <For each={options}>
         {(opt) => (
           <radio.Item value={opt.value} class="flex items-center gap-2">
-            <radio.ItemControl
-              value={opt.value}
-              class="size-4 rounded-full border border-line"
-            />
+            <radio.ItemControl value={opt.value} class="size-4 rounded-full border border-line" />
             <radio.ItemText value={opt.value} class="text-sm">
               {opt.label}
             </radio.ItemText>

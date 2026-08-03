@@ -16,7 +16,7 @@ export default function AsyncListDemo() {
       <ul class="list-disc space-y-1 pl-5 text-sm">
         <For each={list.api.items}>{(item) => <li>{item}</li>}</For>
       </ul>
-      <button type="button" class="demo-btn w-fit" onClick={() => list.api.reload()}>
+      <button type="button" class="w-fit" onClick={() => list.api.reload()}>
         Reload
       </button>
     </div>

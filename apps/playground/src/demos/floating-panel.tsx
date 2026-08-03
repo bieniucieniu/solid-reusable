@@ -7,12 +7,12 @@ export default function FloatingPanelDemo() {
   })
   return (
     <panel.Root>
-      <panel.Trigger class="demo-btn">Toggle panel</panel.Trigger>
+      <panel.Trigger>Toggle panel</panel.Trigger>
       <panel.Content class="overflow-hidden rounded-lg border border-line bg-panel shadow-lg">
         <panel.DragTrigger>
           <panel.Header class="flex items-center justify-between border-b border-line px-3 py-2">
             <panel.Title class="text-sm font-medium">Floating</panel.Title>
-            <panel.CloseTrigger class="demo-btn px-2 text-xs">×</panel.CloseTrigger>
+            <panel.CloseTrigger class="px-2 text-xs">×</panel.CloseTrigger>
           </panel.Header>
         </panel.DragTrigger>
         <panel.Body class="p-3 text-sm">Drag me around.</panel.Body>

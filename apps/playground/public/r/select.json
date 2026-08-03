@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Select",
   "description": "Zag compound createSelect() — https://zagjs.com/components/solid/select",
-  "dependencies": [
-    "@zag-js/select",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/select", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/select.tsx",

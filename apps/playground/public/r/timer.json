@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Timer",
   "description": "Zag compound createTimer() — https://zagjs.com/components/solid/timer",
-  "dependencies": [
-    "@zag-js/timer",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/timer", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/timer.tsx",

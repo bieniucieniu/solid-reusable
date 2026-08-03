@@ -6,13 +6,13 @@ export default function EditableDemo() {
     <editable.Root class="grid max-w-xs gap-1.5">
       <editable.Label class="text-sm font-medium">Name</editable.Label>
       <editable.Area>
-        <editable.Input class="demo-input w-full" />
+        <editable.Input class="w-full" />
         <editable.Preview class="rounded-md border border-dashed border-line px-2.5 py-1.5 text-sm" />
       </editable.Area>
       <editable.Control class="flex gap-1.5">
-        <editable.EditTrigger class="demo-btn">Edit</editable.EditTrigger>
-        <editable.SubmitTrigger class="demo-btn">Save</editable.SubmitTrigger>
-        <editable.CancelTrigger class="demo-btn">Cancel</editable.CancelTrigger>
+        <editable.EditTrigger>Edit</editable.EditTrigger>
+        <editable.SubmitTrigger>Save</editable.SubmitTrigger>
+        <editable.CancelTrigger>Cancel</editable.CancelTrigger>
       </editable.Control>
     </editable.Root>
   )

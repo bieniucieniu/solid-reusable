@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Dialog",
   "description": "Zag compound createDialog() — https://zagjs.com/components/solid/dialog",
-  "dependencies": [
-    "@zag-js/dialog",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/dialog", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/dialog.tsx",

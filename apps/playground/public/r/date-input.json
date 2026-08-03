@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Date Input",
   "description": "Zag compound createDateInput() — https://zagjs.com/components/solid/date-input",
-  "dependencies": [
-    "@zag-js/date-input",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/date-input", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/date-input.tsx",

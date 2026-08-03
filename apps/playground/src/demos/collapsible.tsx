@@ -4,7 +4,7 @@ export default function CollapsibleDemo() {
   const collapsible = createCollapsible()
   return (
     <collapsible.Root class="max-w-sm">
-      <collapsible.Trigger class="demo-btn inline-flex items-center gap-1.5">
+      <collapsible.Trigger class="inline-flex items-center gap-1.5">
         Toggle
         <collapsible.Indicator>+</collapsible.Indicator>
       </collapsible.Trigger>

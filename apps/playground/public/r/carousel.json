@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Carousel",
   "description": "Zag compound createCarousel() — https://zagjs.com/components/solid/carousel",
-  "dependencies": [
-    "@zag-js/carousel",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/carousel", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/carousel.tsx",

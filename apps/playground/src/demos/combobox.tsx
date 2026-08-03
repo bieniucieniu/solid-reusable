@@ -18,7 +18,7 @@ export default function ComboboxDemo() {
     <combobox.Root class="grid max-w-xs gap-1.5">
       <combobox.Label class="text-sm font-medium">Fruit</combobox.Label>
       <combobox.Control class="flex gap-1">
-        <combobox.Input placeholder="Search…" class="demo-input flex-1" />
+        <combobox.Input placeholder="Search…" class="flex-1" />
         <combobox.Trigger class="demo-btn px-2">▾</combobox.Trigger>
       </combobox.Control>
       <combobox.Content class="demo-popover p-1">

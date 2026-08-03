@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Number Input",
   "description": "Zag compound createNumberInput() — https://zagjs.com/components/solid/number-input",
-  "dependencies": [
-    "@zag-js/number-input",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/number-input", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/number-input.tsx",

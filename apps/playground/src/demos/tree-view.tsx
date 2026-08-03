@@ -67,7 +67,11 @@ export default function TreeViewDemo() {
                 </tree.BranchContent>
               </tree.Branch>
             ) : (
-              <tree.Item node={node} indexPath={[i()]} class="rounded px-1.5 py-1 hover:bg-brand-soft">
+              <tree.Item
+                node={node}
+                indexPath={[i()]}
+                class="rounded px-1.5 py-1 hover:bg-brand-soft"
+              >
                 <tree.ItemText node={node} indexPath={[i()]}>
                   {node.name}
                 </tree.ItemText>

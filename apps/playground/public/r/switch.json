@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Switch",
   "description": "Zag compound createSwitch() — https://zagjs.com/components/solid/switch",
-  "dependencies": [
-    "@zag-js/switch",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/switch", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/switch.tsx",

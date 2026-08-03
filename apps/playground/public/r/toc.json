@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Toc",
   "description": "Zag compound createToc() — https://zagjs.com/components/solid/toc",
-  "dependencies": [
-    "@zag-js/toc",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/toc", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/toc.tsx",

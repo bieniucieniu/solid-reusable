@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Slider",
   "description": "Zag compound createSlider() — https://zagjs.com/components/solid/slider",
-  "dependencies": [
-    "@zag-js/slider",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/slider", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/slider.tsx",

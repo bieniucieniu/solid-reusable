@@ -8,8 +8,8 @@ export default function CarouselDemo() {
   return (
     <carousel.Root class="grid max-w-sm gap-2">
       <carousel.Control class="flex gap-1.5">
-        <carousel.PrevTrigger class="demo-btn">Prev</carousel.PrevTrigger>
-        <carousel.NextTrigger class="demo-btn">Next</carousel.NextTrigger>
+        <carousel.PrevTrigger>Prev</carousel.PrevTrigger>
+        <carousel.NextTrigger>Next</carousel.NextTrigger>
       </carousel.Control>
       <carousel.ItemGroup class="overflow-hidden rounded-lg border border-line">
         <Index each={slides}>

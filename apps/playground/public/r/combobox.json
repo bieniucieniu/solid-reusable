@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Combobox",
   "description": "Zag compound createCombobox() — https://zagjs.com/components/solid/combobox",
-  "dependencies": [
-    "@zag-js/combobox",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/combobox", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/combobox.tsx",

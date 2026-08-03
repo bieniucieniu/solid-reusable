@@ -23,11 +23,7 @@ export function Shell(props: ParentProps) {
   )
 }
 
-function NavGroup(props: {
-  title: string
-  items: CatalogItem[]
-  active: string | undefined
-}) {
+function NavGroup(props: { title: string; items: CatalogItem[]; active: string | undefined }) {
   return (
     <div class="mt-4">
       <h2 class="text-mute mb-1.5 text-[0.7rem] font-medium tracking-[0.08em] uppercase">

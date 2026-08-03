@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Accordion",
   "description": "Zag compound createAccordion() — https://zagjs.com/components/solid/accordion",
-  "dependencies": [
-    "@zag-js/accordion",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/accordion", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/accordion.tsx",

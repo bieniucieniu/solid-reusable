@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Pin Input",
   "description": "Zag compound createPinInput() — https://zagjs.com/components/solid/pin-input",
-  "dependencies": [
-    "@zag-js/pin-input",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/pin-input", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/pin-input.tsx",

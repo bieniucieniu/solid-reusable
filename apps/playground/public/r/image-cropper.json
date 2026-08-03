@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Image Cropper",
   "description": "Zag compound createImageCropper() — https://zagjs.com/components/solid/image-cropper",
-  "dependencies": [
-    "@zag-js/image-cropper",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/image-cropper", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/image-cropper.tsx",

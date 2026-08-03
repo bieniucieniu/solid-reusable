@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Radio Group",
   "description": "Zag compound createRadioGroup() — https://zagjs.com/components/solid/radio-group",
-  "dependencies": [
-    "@zag-js/radio-group",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/radio-group", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/radio-group.tsx",

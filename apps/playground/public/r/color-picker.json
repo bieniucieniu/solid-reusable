@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Color Picker",
   "description": "Zag compound createColorPicker() — https://zagjs.com/components/solid/color-picker",
-  "dependencies": [
-    "@zag-js/color-picker",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/color-picker", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/color-picker.tsx",

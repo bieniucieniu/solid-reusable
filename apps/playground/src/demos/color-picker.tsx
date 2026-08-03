@@ -7,7 +7,7 @@ export default function ColorPickerDemo() {
     <picker.Root class="grid max-w-xs gap-2">
       <picker.Label class="text-sm font-medium">Color</picker.Label>
       <picker.Control class="flex gap-1.5">
-        <picker.ChannelInput channel="hex" class="demo-input flex-1" />
+        <picker.ChannelInput channel="hex" class="flex-1" />
         <picker.Trigger
           class="size-8 rounded-md border border-line"
           style={{ background: picker.api.valueAsString }}

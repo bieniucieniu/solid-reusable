@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Qr Code",
   "description": "Zag compound createQrCode() — https://zagjs.com/components/solid/qr-code",
-  "dependencies": [
-    "@zag-js/qr-code",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/qr-code", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/qr-code.tsx",

@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Steps",
   "description": "Zag compound createSteps() — https://zagjs.com/components/solid/steps",
-  "dependencies": [
-    "@zag-js/steps",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/steps", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/steps.tsx",

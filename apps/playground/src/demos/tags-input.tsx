@@ -18,7 +18,11 @@ export default function TagsInputDemo() {
                 <tags.ItemText index={index} value={value()}>
                   {value()}
                 </tags.ItemText>
-                <tags.ItemDeleteTrigger index={index} value={value()} class="text-mute hover:text-ink">
+                <tags.ItemDeleteTrigger
+                  index={index}
+                  value={value()}
+                  class="text-mute hover:text-ink"
+                >
                   ×
                 </tags.ItemDeleteTrigger>
               </tags.ItemPreview>

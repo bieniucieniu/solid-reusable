@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Signature Pad",
   "description": "Zag compound createSignaturePad() — https://zagjs.com/components/solid/signature-pad",
-  "dependencies": [
-    "@zag-js/signature-pad",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/signature-pad", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/signature-pad.tsx",

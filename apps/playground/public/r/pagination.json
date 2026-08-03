@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Pagination",
   "description": "Zag compound createPagination() — https://zagjs.com/components/solid/pagination",
-  "dependencies": [
-    "@zag-js/pagination",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/pagination", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/pagination.tsx",

@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Rating Group",
   "description": "Zag compound createRatingGroup() — https://zagjs.com/components/solid/rating-group",
-  "dependencies": [
-    "@zag-js/rating-group",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/rating-group", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/rating-group.tsx",

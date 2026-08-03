@@ -38,12 +38,12 @@ export default function CascadeSelectDemo() {
     <select.Root class="grid max-w-sm gap-1.5">
       <select.Label class="text-sm font-medium">Category</select.Label>
       <select.Control>
-        <select.Trigger class="demo-btn flex w-full justify-between">
+        <select.Trigger class="flex w-full justify-between">
           <select.ValueText>{select.api.valueAsString || "Select…"}</select.ValueText>
           <select.Indicator>▾</select.Indicator>
         </select.Trigger>
       </select.Control>
-      <select.Content class="demo-popover flex gap-2">
+      <select.Content class="flex gap-2">
         <For each={roots()}>
           {(item, i) => (
             <div class="min-w-32">
@@ -61,11 +61,7 @@ export default function CascadeSelectDemo() {
                       value={value}
                       class="hover:bg-brand-soft cursor-pointer rounded px-2 py-1.5 text-sm"
                     >
-                      <select.ItemText
-                        item={child as never}
-                        indexPath={indexPath}
-                        value={value}
-                      >
+                      <select.ItemText item={child as never} indexPath={indexPath} value={value}>
                         {child.label}
                       </select.ItemText>
                     </select.Item>

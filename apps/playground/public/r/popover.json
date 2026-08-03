@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Popover",
   "description": "Zag compound createPopover() — https://zagjs.com/components/solid/popover",
-  "dependencies": [
-    "@zag-js/popover",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/popover", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/popover.tsx",

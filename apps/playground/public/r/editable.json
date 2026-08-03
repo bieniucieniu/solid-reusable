@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Editable",
   "description": "Zag compound createEditable() — https://zagjs.com/components/solid/editable",
-  "dependencies": [
-    "@zag-js/editable",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/editable", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/editable.tsx",

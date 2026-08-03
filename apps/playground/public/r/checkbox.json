@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Checkbox",
   "description": "Zag compound createCheckbox() — https://zagjs.com/components/solid/checkbox",
-  "dependencies": [
-    "@zag-js/checkbox",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/checkbox", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/checkbox.tsx",

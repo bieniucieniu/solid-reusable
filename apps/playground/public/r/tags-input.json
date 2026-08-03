@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Tags Input",
   "description": "Zag compound createTagsInput() — https://zagjs.com/components/solid/tags-input",
-  "dependencies": [
-    "@zag-js/tags-input",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/tags-input", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/tags-input.tsx",

@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Floating Panel",
   "description": "Zag compound createFloatingPanel() — https://zagjs.com/components/solid/floating-panel",
-  "dependencies": [
-    "@zag-js/floating-panel",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/floating-panel", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/floating-panel.tsx",

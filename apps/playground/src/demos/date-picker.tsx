@@ -7,7 +7,7 @@ export default function DatePickerDemo() {
     <picker.Root class="grid max-w-xs gap-2">
       <picker.Label class="text-sm font-medium">Date</picker.Label>
       <picker.Control class="flex gap-1.5">
-        <picker.Input index={0} class="demo-input flex-1" />
+        <picker.Input index={0} class="flex-1" />
         <picker.Trigger class="demo-btn px-2">📅</picker.Trigger>
       </picker.Control>
       <picker.Content class="demo-popover">
@@ -24,7 +24,9 @@ export default function DatePickerDemo() {
               <picker.TableRow>
                 <Index each={picker.api.weekDays}>
                   {(d) => (
-                    <picker.TableHeader class="text-mute p-1 text-xs">{d().short}</picker.TableHeader>
+                    <picker.TableHeader class="text-mute p-1 text-xs">
+                      {d().short}
+                    </picker.TableHeader>
                   )}
                 </Index>
               </picker.TableRow>

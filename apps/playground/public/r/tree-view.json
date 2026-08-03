@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Tree View",
   "description": "Zag compound createTreeView() — https://zagjs.com/components/solid/tree-view",
-  "dependencies": [
-    "@zag-js/tree-view",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/tree-view", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/tree-view.tsx",

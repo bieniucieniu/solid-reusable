@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Tour",
   "description": "Zag compound createTour() — https://zagjs.com/components/solid/tour",
-  "dependencies": [
-    "@zag-js/tour",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/tour", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/tour.tsx",

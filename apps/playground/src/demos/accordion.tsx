@@ -16,7 +16,7 @@ export default function AccordionDemo() {
           <accordion.Item value={item.value} class="overflow-hidden rounded-lg border border-line">
             <accordion.ItemTrigger
               value={item.value}
-              class="demo-btn flex w-full justify-between rounded-none border-0 bg-stone-50"
+              class="flex w-full justify-between rounded-none border-0 bg-stone-50"
             >
               {item.title}
               <accordion.ItemIndicator value={item.value}>+</accordion.ItemIndicator>

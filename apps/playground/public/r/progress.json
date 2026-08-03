@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Progress",
   "description": "Zag compound createProgress() — https://zagjs.com/components/solid/progress",
-  "dependencies": [
-    "@zag-js/progress",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/progress", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/progress.tsx",

@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Async List",
   "description": "Zag compound createAsyncList() — https://zagjs.com/components/solid/async-list",
-  "dependencies": [
-    "@zag-js/async-list",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/async-list", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/async-list.tsx",

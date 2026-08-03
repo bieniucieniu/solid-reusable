@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Marquee",
   "description": "Zag compound createMarquee() — https://zagjs.com/components/solid/marquee",
-  "dependencies": [
-    "@zag-js/marquee",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/marquee", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/marquee.tsx",

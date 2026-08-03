@@ -4,14 +4,8 @@
   "type": "registry:ui",
   "title": "Navigation Menu",
   "description": "Zag compound createNavigationMenu() — https://zagjs.com/components/solid/navigation-menu",
-  "dependencies": [
-    "@zag-js/navigation-menu",
-    "@zag-js/solid",
-    "solid-js"
-  ],
-  "registryDependencies": [
-    "dynamic-as"
-  ],
+  "dependencies": ["@zag-js/navigation-menu", "@zag-js/solid", "solid-js"],
+  "registryDependencies": ["dynamic-as"],
   "files": [
     {
       "path": "registry/warsaw/ui/navigation-menu.tsx",
