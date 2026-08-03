@@ -1,6 +1,6 @@
 import { normalizeProps, useMachine } from "@zag-js/solid"
 import * as zag from "@zag-js/tooltip"
-import { createMemo, Show, splitProps } from "solid-js"
+import { createMemo, createUniqueId, Show, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
 import { cn } from "@/registry/warsaw/lib/utils"
@@ -22,7 +22,12 @@ import { cn } from "@/registry/warsaw/lib/utils"
  * ```
  */
 export function createTooltip(options?: ZagMachineProps<zag.Machine>) {
-  const service = useMachine(zag.machine, options)
+  const fallbackid = createUniqueId()
+  const service = useMachine(zag.machine, (...args) => {
+    const opt = typeof options === "function" ? options(...args) : (options ?? {})
+    opt.id ??= fallbackid
+    return opt
+  })
   const api = createMemo(() => zag.connect(service, normalizeProps))
 
   return {

@@ -79,7 +79,7 @@ export function createTour(options?: ZagMachineProps<zag.Machine>) {
               {...api().getContentProps()}
               {...rest}
               class={cn(
-                /* styled */ "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 w-72",
+                /* styled */ "z-50 rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
                 local.class
               )}
             />
@@ -105,7 +105,7 @@ export function createTour(options?: ZagMachineProps<zag.Machine>) {
           component={local.as ?? "p"}
           {...api().getDescriptionProps()}
           {...rest}
-          class={cn(/* styled */ "text-sm text-muted-foreground", local.class)}
+          class={cn(/* styled */ "text-sm text-muted-foreground mb-3", local.class)}
         />
       )
     },

@@ -3,6 +3,7 @@ import { X } from "lucide-solid"
 
 export default function ToastDemo() {
   const toast = createToast({
+    id: "aa",
     type: "info",
     title: "Saved",
     description: "Your changes were stored.",
