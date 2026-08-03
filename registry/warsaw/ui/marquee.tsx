@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag marquee compound. Call inside a Solid component setup (uses useMachine).
@@ -26,20 +27,28 @@ export function createMarquee(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "relative flex overflow-hidden", local.class)}
+        />
+      )
     },
     Viewport(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as"])
       return <Dynamic component={local.as ?? "div"} {...api().getViewportProps()} {...rest} />
     },
     Content(props: DynamicAsProps<"div", zag.ContentProps>) {
-      const [local, rest] = splitProps(props, ["as", "index"])
+      const [local, rest] = splitProps(props, ["as", "index", "class"])
       return (
         <Dynamic
           component={local.as ?? "div"}
           {...api().getContentProps({ index: local.index })}
           {...rest}
+          class={cn(/* styled */ "flex shrink-0 justify-around gap-4", local.class)}
         />
       )
     },
@@ -54,8 +63,15 @@ export function createMarquee(options?: ZagMachineProps<zag.Machine>) {
       )
     },
     Item(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getItemProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getItemProps()}
+          {...rest}
+          class={cn(/* styled */ "flex items-center", local.class)}
+        />
+      )
     },
 
     /** Connected Zag API (accessor). */

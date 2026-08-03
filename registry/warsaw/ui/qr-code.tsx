@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag qr-code compound. Call inside a Solid component setup (uses useMachine).
@@ -26,16 +27,37 @@ export function createQrCode(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "flex flex-col gap-2 items-start", local.class)}
+        />
+      )
     },
     Frame(props: DynamicAsProps<"svg", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "svg"} {...api().getFrameProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "svg"}
+          {...api().getFrameProps()}
+          {...rest}
+          class={cn(/* styled */ "rounded-md border bg-background p-2", local.class)}
+        />
+      )
     },
     Pattern(props: DynamicAsProps<"path", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "path"} {...api().getPatternProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "path"}
+          {...api().getPatternProps()}
+          {...rest}
+          class={cn(/* styled */ "fill-foreground", local.class)}
+        />
+      )
     },
     Overlay(props: DynamicAsProps<"div", {}>) {
       const [local, rest] = splitProps(props, ["as"])

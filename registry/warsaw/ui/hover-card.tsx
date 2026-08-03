@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, Show, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag hover-card compound. Call inside a Solid component setup (uses useMachine).
@@ -40,21 +41,33 @@ export function createHoverCard(options?: ZagMachineProps<zag.Machine>) {
       return <Dynamic component={local.as ?? "div"} {...api().getArrowTipProps()} {...rest} />
     },
     Trigger(props: DynamicAsProps<"button", zag.TriggerProps>) {
-      const [local, rest] = splitProps(props, ["as", "value"])
+      const [local, rest] = splitProps(props, ["as", "value", "class"])
       return (
         <Dynamic
           component={local.as ?? "button"}
           {...api().getTriggerProps({ value: local.value })}
           {...rest}
+          class={cn(
+            /* styled */ "text-primary font-medium underline-offset-4 hover:underline",
+            local.class
+          )}
         />
       )
     },
     Content(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
+      const [local, rest] = splitProps(props, ["as", "class"])
       return (
         <Show when={api().open}>
           <div {...api().getPositionerProps()}>
-            <Dynamic component={local.as ?? "div"} {...api().getContentProps()} {...rest} />
+            <Dynamic
+              component={local.as ?? "div"}
+              {...api().getContentProps()}
+              {...rest}
+              class={cn(
+                /* styled */ "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+                local.class
+              )}
+            />
           </div>
         </Show>
       )

@@ -8,7 +8,7 @@ export default function DialogDemo() {
       <dialog.Backdrop />
       <dialog.Content>
         <dialog.Title>Edit profile</dialog.Title>
-        <dialog.Description>Unstyled dialog demo.</dialog.Description>
+        <dialog.Description>Make changes to your profile here.</dialog.Description>
         <dialog.CloseTrigger class="w-fit">Close</dialog.CloseTrigger>
       </dialog.Content>
     </dialog.Root>

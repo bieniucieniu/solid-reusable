@@ -24,9 +24,7 @@ export default function StepsDemo() {
         </For>
       </steps.List>
       <For each={items}>
-        {(item, i) => (
-          <steps.Content index={i()}>Step: {item.title}</steps.Content>
-        )}
+        {(item, i) => <steps.Content index={i()}>Step: {item.title}</steps.Content>}
       </For>
       <div class="flex gap-1.5">
         <steps.PrevTrigger>Back</steps.PrevTrigger>

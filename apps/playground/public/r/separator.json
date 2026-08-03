@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/separator.tsx",
-      "content": "import type { JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SeparatorProps = JSX.HTMLAttributes<HTMLDivElement> & {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\n/** Presentational — no Zag, no createX. */\nexport function Separator(props: SeparatorProps) {\n  return (\n    <div\n      role=\"separator\"\n      data-scope=\"separator\"\n      data-orientation={props.orientation ?? \"horizontal\"}\n      {...props}\n      class={cn(props.class)}\n    />\n  )\n}\n",
+      "content": "import type { JSX } from \"solid-js\"\nimport { splitProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SeparatorProps = JSX.HTMLAttributes<HTMLDivElement> & {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\n/** Presentational — no Zag, no createX. */\nexport function Separator(props: SeparatorProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"orientation\"])\n  const orientation = () => local.orientation ?? \"horizontal\"\n  return (\n    <div\n      role=\"separator\"\n      data-slot=\"separator\"\n      data-scope=\"separator\"\n      data-orientation={orientation()}\n      class={cn(\n        \"shrink-0 bg-border\",\n        orientation() === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        local.class\n      )}\n      {...rest}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/separator.tsx"
     }

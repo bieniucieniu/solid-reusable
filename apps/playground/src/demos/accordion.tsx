@@ -4,7 +4,7 @@ import { For } from "solid-js"
 
 const items = [
   { value: "a", title: "Is it accessible?", body: "Yes. WAI-ARIA compliant via Zag." },
-  { value: "b", title: "Is it unstyled?", body: "Yes. Style with Tailwind." },
+  { value: "b", title: "Is it styled?", body: "Yes. New York–style defaults via Tailwind." },
   { value: "c", title: "Can it be animated?", body: "Yes. Animate height / opacity." },
 ]
 

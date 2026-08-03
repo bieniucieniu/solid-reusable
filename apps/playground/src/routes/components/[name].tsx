@@ -9,7 +9,10 @@ export default function ComponentDemoPage() {
   const demo = () => DEMOS[params.name] as Component | undefined
 
   return (
-    <Show when={demo()} fallback={<p class="text-mute">No demo for “{params.name}”.</p>}>
+    <Show
+      when={demo()}
+      fallback={<p class="text-muted-foreground">No demo for “{params.name}”.</p>}
+    >
       {(demo) => {
         return <DemoFrame name={params.name}>{createDynamic(demo, {})}</DemoFrame>
       }}

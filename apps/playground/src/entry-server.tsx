@@ -10,7 +10,10 @@ export default createHandler(() => (
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>solid-reusable playground</title>
           <link rel="preconnect" href="https://fonts.bunny.net" />
-          <link href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,600|ibm-plex-serif:600" rel="stylesheet" />
+          <link
+            href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,600|ibm-plex-serif:600"
+            rel="stylesheet"
+          />
           {assets}
         </head>
         <body>

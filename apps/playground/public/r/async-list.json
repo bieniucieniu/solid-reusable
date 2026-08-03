@@ -10,12 +10,13 @@
     "solid-js"
   ],
   "registryDependencies": [
-    "dynamic-as"
+    "dynamic-as",
+    "utils"
   ],
   "files": [
     {
       "path": "registry/warsaw/ui/async-list.tsx",
-      "content": "import * as zag from \"@zag-js/async-list\"\nimport { useMachine } from \"@zag-js/solid\"\nimport { createMemo } from \"solid-js\"\nimport type { ZagMachineProps } from \"@/registry/warsaw/lib/dynamic-as\"\n\n/**\n * Zag async-list compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/async-list\n *\n * ```tsx\n * import { createAsyncList } from \"@components/ui/async-list\"\n *\n * const asyncList = createAsyncList({})\n * // use asyncList.api\n * ```\n */\nexport function createAsyncList<T, C>(options?: ZagMachineProps<zag.Machine<T, C>>) {\n  const service = useMachine(zag.machine, options)\n  const api = createMemo(() => zag.connect(service))\n\n  return {\n    /** Connected Zag API (accessor). */\n    get api() {\n      return api()\n    },\n  }\n}\n\nexport type AsyncListCompound = ReturnType<typeof createAsyncList>\n",
+      "content": "import * as zag from \"@zag-js/async-list\"\nimport { useMachine } from \"@zag-js/solid\"\nimport { createMemo } from \"solid-js\"\nimport type { ZagMachineProps } from \"@/registry/warsaw/lib/dynamic-as\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\n/**\n * Zag async-list compound. Call inside a Solid component setup (uses useMachine).\n *\n * @see https://zagjs.com/components/solid/async-list\n *\n * ```tsx\n * import { createAsyncList } from \"@components/ui/async-list\"\n *\n * const asyncList = createAsyncList({})\n * // use asyncList.api\n * ```\n */\nexport function createAsyncList<T, C>(options?: ZagMachineProps<zag.Machine<T, C>>) {\n  const service = useMachine(zag.machine, options)\n  const api = createMemo(() => zag.connect(service))\n\n  return {\n    /** Connected Zag API (accessor). */\n    get api() {\n      return api()\n    },\n  }\n}\n\nexport type AsyncListCompound = ReturnType<typeof createAsyncList>\n",
       "type": "registry:ui",
       "target": "components/ui/async-list.tsx"
     }
