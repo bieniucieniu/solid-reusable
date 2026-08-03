@@ -1,5 +1,6 @@
 import { createListbox } from "@solid-reusable/ui"
 import * as zag from "@zag-js/listbox"
+import { Check } from "lucide-solid"
 import { Index } from "solid-js"
 
 const collection = zag.collection({
@@ -9,17 +10,16 @@ const collection = zag.collection({
 export default function ListboxDemo() {
   const listbox = createListbox({ collection })
   return (
-    <listbox.Root class="grid max-w-xs gap-1.5">
-      <listbox.Label class="text-sm font-medium">Mailbox</listbox.Label>
-      <listbox.Content class="rounded-lg border border-line bg-white p-1">
+    <listbox.Root class="max-w-xs">
+      <listbox.Label>Mailbox</listbox.Label>
+      <listbox.Content>
         <Index each={collection.items}>
           {(item) => (
-            <listbox.Item
-              item={item()}
-              class="flex cursor-pointer justify-between rounded px-2.5 py-1.5 text-sm hover:bg-brand-soft"
-            >
+            <listbox.Item item={item()}>
               <listbox.ItemText item={item()}>{item()}</listbox.ItemText>
-              <listbox.ItemIndicator item={item()}>✓</listbox.ItemIndicator>
+              <listbox.ItemIndicator item={item()}>
+                <Check />
+              </listbox.ItemIndicator>
             </listbox.Item>
           )}
         </Index>
