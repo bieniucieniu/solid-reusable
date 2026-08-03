@@ -3,6 +3,7 @@ import * as zag from "@zag-js/tree-view"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag tree-view compound. Call inside a Solid component setup (uses useMachine).
@@ -26,19 +27,43 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "text-sm", local.class)}
+        />
+      )
     },
     Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "label"} {...api().getLabelProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "label"}
+          {...api().getLabelProps()}
+          {...rest}
+          class={cn(
+            /* styled */ "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            local.class
+          )}
+        />
+      )
     },
     Tree(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getTreeProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getTreeProps()}
+          {...rest}
+          class={cn(/* styled */ "space-y-0.5", local.class)}
+        />
+      )
     },
     Item(props: DynamicAsProps<"div", zag.NodeProps>) {
-      const [local, rest] = splitProps(props, ["as", "node", "indexPath"])
+      const [local, rest] = splitProps(props, ["as", "node", "indexPath", "class"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -47,6 +72,7 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
             indexPath: local.indexPath,
           })}
           {...rest}
+          class={cn(/* styled */ "rounded px-1.5 py-1 hover:bg-accent", local.class)}
         />
       )
     },
@@ -116,7 +142,7 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
       )
     },
     BranchTrigger(props: DynamicAsProps<"button", zag.NodeProps>) {
-      const [local, rest] = splitProps(props, ["as", "node", "indexPath"])
+      const [local, rest] = splitProps(props, ["as", "node", "indexPath", "class"])
       return (
         <Dynamic
           component={local.as ?? "button"}
@@ -125,11 +151,12 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
             indexPath: local.indexPath,
           })}
           {...rest}
+          class={cn(/* styled */ "size-4", local.class)}
         />
       )
     },
     BranchControl(props: DynamicAsProps<"div", zag.NodeProps>) {
-      const [local, rest] = splitProps(props, ["as", "node", "indexPath"])
+      const [local, rest] = splitProps(props, ["as", "node", "indexPath", "class"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -138,11 +165,15 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
             indexPath: local.indexPath,
           })}
           {...rest}
+          class={cn(
+            /* styled */ "flex items-center gap-1.5 rounded px-1.5 py-1 hover:bg-accent cursor-pointer",
+            local.class
+          )}
         />
       )
     },
     BranchContent(props: DynamicAsProps<"div", zag.NodeProps>) {
-      const [local, rest] = splitProps(props, ["as", "node", "indexPath"])
+      const [local, rest] = splitProps(props, ["as", "node", "indexPath", "class"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -151,6 +182,7 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
             indexPath: local.indexPath,
           })}
           {...rest}
+          class={cn(/* styled */ "pl-4", local.class)}
         />
       )
     },
@@ -168,7 +200,7 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
       )
     },
     BranchIndentGuide(props: DynamicAsProps<"div", zag.NodeProps>) {
-      const [local, rest] = splitProps(props, ["as", "node", "indexPath"])
+      const [local, rest] = splitProps(props, ["as", "node", "indexPath", "class"])
       return (
         <Dynamic
           component={local.as ?? "div"}
@@ -177,6 +209,7 @@ export function createTreeView<T>(options?: ZagMachineProps<zag.Machine<T>>) {
             indexPath: local.indexPath,
           })}
           {...rest}
+          class={cn(/* styled */ "border-l border-border ml-2", local.class)}
         />
       )
     },

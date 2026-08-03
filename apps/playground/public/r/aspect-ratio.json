@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/aspect-ratio.tsx",
-      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  return (\n    <div\n      data-scope=\"aspect-ratio\"\n      {...props}\n      style={{\n        ...(typeof props.style === \"object\" && props.style ? props.style : {}),\n        \"aspect-ratio\": String(props.ratio ?? 16 / 9),\n      }}\n      class={cn(props.class)}\n    />\n  )\n}\n",
+      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { splitProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type AspectRatioProps = ParentProps<JSX.HTMLAttributes<HTMLDivElement> & { ratio?: number }>\n\n/** Presentational — no Zag, no createX. */\nexport function AspectRatio(props: AspectRatioProps) {\n  const [local, rest] = splitProps(props, [\"class\", \"ratio\", \"style\"])\n  return (\n    <div\n      data-slot=\"aspect-ratio\"\n      data-scope=\"aspect-ratio\"\n      style={{\n        ...(typeof local.style === \"object\" && local.style ? local.style : {}),\n        \"aspect-ratio\": String(local.ratio ?? 16 / 9),\n      }}\n      class={cn(\"relative w-full\", local.class)}\n      {...rest}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
     }

@@ -9,9 +9,12 @@ export {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardAction,
   CardContent,
   CardFooter,
 } from "@/registry/warsaw/ui/card"
+export { buttonVariants } from "@/registry/warsaw/ui/button"
+export { badgeVariants } from "@/registry/warsaw/ui/badge"
 export { Kbd } from "@/registry/warsaw/ui/kbd"
 export { Label } from "@/registry/warsaw/ui/label"
 export { Separator } from "@/registry/warsaw/ui/separator"

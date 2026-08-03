@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag date-input compound. Call inside a Solid component setup (uses useMachine).
@@ -26,22 +27,43 @@ export function createDateInput(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "flex flex-col gap-1.5", local.class)}
+        />
+      )
     },
     Label(props: DynamicAsProps<"label", zag.LabelProps>) {
-      const [local, rest] = splitProps(props, ["as", "index"])
+      const [local, rest] = splitProps(props, ["as", "index", "class"])
       return (
         <Dynamic
           component={local.as ?? "label"}
           {...api().getLabelProps({ index: local.index })}
           {...rest}
+          class={cn(
+            /* styled */ "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            local.class
+          )}
         />
       )
     },
     Control(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getControlProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getControlProps()}
+          {...rest}
+          class={cn(
+            /* styled */ "inline-flex h-9 items-center rounded-md border border-input bg-transparent px-3 text-sm shadow-xs",
+            local.class
+          )}
+        />
+      )
     },
     SegmentGroup(props: DynamicAsProps<"div", zag.SegmentGroupProps>) {
       const [local, rest] = splitProps(props, ["as", "index"])

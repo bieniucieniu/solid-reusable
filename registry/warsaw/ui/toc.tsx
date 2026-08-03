@@ -3,6 +3,7 @@ import * as zag from "@zag-js/toc"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag toc compound. Call inside a Solid component setup (uses useMachine).
@@ -26,16 +27,30 @@ export function createToc(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "relative text-sm", local.class)}
+        />
+      )
     },
     Title(props: DynamicAsProps<"h2", {}>) {
       const [local, rest] = splitProps(props, ["as"])
       return <Dynamic component={local.as ?? "h2"} {...api().getTitleProps()} {...rest} />
     },
     List(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getListProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getListProps()}
+          {...rest}
+          class={cn(/* styled */ "space-y-1", local.class)}
+        />
+      )
     },
     Item(props: DynamicAsProps<"div", zag.ItemProps>) {
       const [local, rest] = splitProps(props, ["as", "item"])
@@ -48,18 +63,29 @@ export function createToc(options?: ZagMachineProps<zag.Machine>) {
       )
     },
     Link(props: DynamicAsProps<"a", zag.ItemProps>) {
-      const [local, rest] = splitProps(props, ["as", "item"])
+      const [local, rest] = splitProps(props, ["as", "item", "class"])
       return (
         <Dynamic
           component={local.as ?? "a"}
           {...api().getLinkProps({ item: local.item })}
           {...rest}
+          class={cn(
+            /* styled */ "text-muted-foreground hover:text-foreground data-[current]:text-foreground data-[current]:font-medium",
+            local.class
+          )}
         />
       )
     },
     Indicator(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getIndicatorProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getIndicatorProps()}
+          {...rest}
+          class={cn(/* styled */ "absolute left-0 w-0.5 bg-foreground", local.class)}
+        />
+      )
     },
 
     /** Connected Zag API (accessor). */

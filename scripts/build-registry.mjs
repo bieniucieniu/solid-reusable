@@ -167,17 +167,34 @@ for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
   const abs = join(uiDir, file)
   const path = `registry/${STYLE}/ui/${name}.tsx`
 
+  const source = read(abs)
+  const needsCva = source.includes("class-variance-authority")
+  const needsLucide = source.includes("lucide-solid")
+  const needsUtils =
+    source.includes("@/registry/warsaw/lib/utils") || source.includes('from "@/lib/utils"')
+
   if (ZAG_MACHINES.has(name)) {
     const pascal = name
       .split("-")
       .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
       .join("")
+    const dependencies = [`@zag-js/${name}`, "@zag-js/solid", "solid-js"]
+    if (needsCva) dependencies.push("class-variance-authority")
+    if (needsLucide) dependencies.push("lucide-solid")
+    const registryDependencies = ["dynamic-as"]
+    if (needsUtils) registryDependencies.push("utils")
+    if (
+      source.includes('from "@/registry/warsaw/ui/button"') ||
+      source.includes("buttonVariants")
+    ) {
+      registryDependencies.push("button")
+    }
     const registryItem = item({
       name,
       type: "registry:ui",
       description: `Zag compound create${pascal}() — https://zagjs.com/components/solid/${name}`,
-      dependencies: [`@zag-js/${name}`, "@zag-js/solid", "solid-js"],
-      registryDependencies: ["dynamic-as"],
+      dependencies,
+      registryDependencies,
       files: [
         {
           path,
@@ -201,11 +218,14 @@ for (const file of readdirSync(uiDir).filter((f) => f.endsWith(".tsx"))) {
   }
 
   const meta = plainMeta[name] ?? { description: `Presentational ${name}` }
+  const dependencies = ["solid-js"]
+  if (needsCva) dependencies.push("class-variance-authority")
+  if (needsLucide) dependencies.push("lucide-solid")
   const registryItem = item({
     name,
     type: "registry:ui",
     description: meta.description,
-    dependencies: ["solid-js"],
+    dependencies,
     registryDependencies: ["utils"],
     files: [
       {

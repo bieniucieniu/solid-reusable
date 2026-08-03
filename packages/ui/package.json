@@ -17,8 +17,6 @@
     "@solid-reusable/core": "workspace:*",
     "@solid-reusable/provider": "workspace:*",
     "@solid-reusable/provider-zag": "workspace:*",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1",
     "@zag-js/accordion": "^1.42.0",
     "@zag-js/angle-slider": "^1.42.0",
     "@zag-js/async-list": "^1.42.0",
@@ -70,15 +68,19 @@
     "@zag-js/toggle-group": "^1.42.0",
     "@zag-js/tooltip": "^1.42.0",
     "@zag-js/tour": "^1.42.0",
-    "@zag-js/tree-view": "^1.42.0"
+    "@zag-js/tree-view": "^1.42.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-solid": "^1.28.0",
+    "tailwind-merge": "^3.3.1"
   },
   "peerDependencies": {
-    "solid-js": "^1.9.0",
-    "@zag-js/solid": "^1.42.0"
+    "@zag-js/solid": "^1.42.0",
+    "solid-js": "^1.9.0"
   },
   "devDependencies": {
-    "solid-js": "^1.9.14",
     "@zag-js/solid": "^1.42.0",
+    "solid-js": "^1.9.14",
     "typescript": "^5.8.3"
   }
 }

@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag progress compound. Call inside a Solid component setup (uses useMachine).
@@ -26,24 +27,65 @@ export function createProgress(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(
+            /* styled */ "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
+            local.class
+          )}
+        />
+      )
     },
     Label(props: DynamicAsProps<"label", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "label"} {...api().getLabelProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "label"}
+          {...api().getLabelProps()}
+          {...rest}
+          class={cn(
+            /* styled */ "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            local.class
+          )}
+        />
+      )
     },
     Track(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getTrackProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getTrackProps()}
+          {...rest}
+          class={cn(/* styled */ "h-full w-full", local.class)}
+        />
+      )
     },
     ValueText(props: DynamicAsProps<"span", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "span"} {...api().getValueTextProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "span"}
+          {...api().getValueTextProps()}
+          {...rest}
+          class={cn(/* styled */ "text-sm text-muted-foreground", local.class)}
+        />
+      )
     },
     Range(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRangeProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRangeProps()}
+          {...rest}
+          class={cn(/* styled */ "h-full w-full flex-1 bg-primary transition-all", local.class)}
+        />
+      )
     },
     View(props: DynamicAsProps<"div", zag.ViewProps>) {
       const [local, rest] = splitProps(props, ["as", "state"])

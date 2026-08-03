@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/skeleton.tsx",
-      "content": "import type { JSX } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SkeletonProps = JSX.HTMLAttributes<HTMLDivElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Skeleton(props: SkeletonProps) {\n  return <div data-scope=\"skeleton\" {...props} class={cn(props.class)} />\n}\n",
+      "content": "import type { JSX } from \"solid-js\"\nimport { splitProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type SkeletonProps = JSX.HTMLAttributes<HTMLDivElement>\n\n/** Presentational — no Zag, no createX. */\nexport function Skeleton(props: SkeletonProps) {\n  const [local, rest] = splitProps(props, [\"class\"])\n  return (\n    <div\n      data-slot=\"skeleton\"\n      data-scope=\"skeleton\"\n      class={cn(\"animate-pulse rounded-md bg-accent\", local.class)}\n      {...rest}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/skeleton.tsx"
     }

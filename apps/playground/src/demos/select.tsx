@@ -1,5 +1,6 @@
 import { createSelect } from "@solid-reusable/ui"
 import * as zag from "@zag-js/select"
+import { Check, ChevronsUpDown } from "lucide-solid"
 import { Index } from "solid-js"
 
 const collection = zag.collection({
@@ -9,24 +10,25 @@ const collection = zag.collection({
 export default function SelectDemo() {
   const select = createSelect({ collection })
   return (
-    <select.Root class="grid max-w-xs gap-1.5">
-      <select.Label class="text-sm font-medium">Fruit</select.Label>
+    <select.Root class="max-w-xs">
+      <select.Label>Fruit</select.Label>
       <select.Control>
-        <select.Trigger class="demo-btn flex w-full justify-between">
+        <select.Trigger>
           <select.ValueText>{select.api.valueAsString || "Select…"}</select.ValueText>
-          <select.Indicator>▾</select.Indicator>
+          <select.Indicator>
+            <ChevronsUpDown />
+          </select.Indicator>
         </select.Trigger>
       </select.Control>
-      <select.Content class="demo-popover mt-1 p-1">
+      <select.Content>
         <select.List>
           <Index each={collection.items}>
             {(item) => (
-              <select.Item
-                item={item()}
-                class="flex cursor-pointer justify-between rounded px-2 py-1.5 text-sm hover:bg-brand-soft"
-              >
+              <select.Item item={item()}>
                 <select.ItemText item={item()}>{item()}</select.ItemText>
-                <select.ItemIndicator item={item()}>✓</select.ItemIndicator>
+                <select.ItemIndicator item={item()}>
+                  <Check />
+                </select.ItemIndicator>
               </select.Item>
             )}
           </Index>

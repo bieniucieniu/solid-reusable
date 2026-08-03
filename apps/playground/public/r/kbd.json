@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/warsaw/ui/kbd.tsx",
-      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type KbdProps = ParentProps<JSX.HTMLAttributes<HTMLElement>>\n\n/** Presentational — no Zag, no createX. */\nexport function Kbd(props: KbdProps) {\n  return <kbd data-scope=\"kbd\" {...props} class={cn(props.class)} />\n}\n",
+      "content": "import type { JSX, ParentProps } from \"solid-js\"\nimport { splitProps } from \"solid-js\"\nimport { cn } from \"@/registry/warsaw/lib/utils\"\n\nexport type KbdProps = ParentProps<JSX.HTMLAttributes<HTMLElement>>\n\n/** Presentational — no Zag, no createX. */\nexport function Kbd(props: KbdProps) {\n  const [local, rest] = splitProps(props, [\"class\"])\n  return (\n    <kbd\n      data-slot=\"kbd\"\n      data-scope=\"kbd\"\n      class={cn(\n        \"pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-3\",\n        local.class\n      )}\n      {...rest}\n    />\n  )\n}\n",
       "type": "registry:ui",
       "target": "components/ui/kbd.tsx"
     }

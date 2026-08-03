@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, splitProps } from "solid-js"
 import { Dynamic } from "solid-js/web"
 import type { DynamicAsProps, ZagMachineProps } from "@/registry/warsaw/lib/dynamic-as"
+import { cn } from "@/registry/warsaw/lib/utils"
 
 /**
  * Zag image-cropper compound. Call inside a Solid component setup (uses useMachine).
@@ -26,20 +27,48 @@ export function createImageCropper(options?: ZagMachineProps<zag.Machine>) {
 
   return {
     Root(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getRootProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getRootProps()}
+          {...rest}
+          class={cn(/* styled */ "relative overflow-hidden rounded-md border", local.class)}
+        />
+      )
     },
     Viewport(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getViewportProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getViewportProps()}
+          {...rest}
+          class={cn(/* styled */ "relative", local.class)}
+        />
+      )
     },
     Image(props: DynamicAsProps<"img", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "img"} {...api().getImageProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "img"}
+          {...api().getImageProps()}
+          {...rest}
+          class={cn(/* styled */ "max-w-full", local.class)}
+        />
+      )
     },
     Selection(props: DynamicAsProps<"div", {}>) {
-      const [local, rest] = splitProps(props, ["as"])
-      return <Dynamic component={local.as ?? "div"} {...api().getSelectionProps()} {...rest} />
+      const [local, rest] = splitProps(props, ["as", "class"])
+      return (
+        <Dynamic
+          component={local.as ?? "div"}
+          {...api().getSelectionProps()}
+          {...rest}
+          class={cn(/* styled */ "border-2 border-primary", local.class)}
+        />
+      )
     },
     Handle(props: DynamicAsProps<"div", zag.HandleProps>) {
       const [local, rest] = splitProps(props, ["as", "position"])

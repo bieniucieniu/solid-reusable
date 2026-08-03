@@ -45,7 +45,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -66,7 +67,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -106,7 +108,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -127,7 +130,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -143,7 +147,8 @@
       "title": "Badge",
       "description": "Presentational badge (no Zag).",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "utils"
@@ -162,7 +167,8 @@
       "title": "Button",
       "description": "Presentational button (no Zag).",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "utils"
@@ -205,7 +211,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -226,7 +233,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -247,7 +255,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -268,7 +277,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -289,7 +299,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -310,7 +321,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -331,7 +343,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -352,7 +365,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -373,7 +387,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -394,7 +409,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -415,7 +431,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -436,7 +453,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -457,7 +475,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -478,7 +497,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -499,7 +519,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -520,7 +541,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -579,7 +601,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -600,7 +623,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -621,7 +645,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -642,7 +667,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -663,7 +689,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -684,7 +711,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -705,7 +733,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -726,7 +755,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -747,7 +777,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -789,7 +820,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -810,7 +842,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -831,7 +864,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -852,7 +886,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -873,7 +908,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -894,7 +930,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -934,7 +971,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -974,7 +1012,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -990,7 +1029,8 @@
       "title": "Spinner",
       "description": "Presentational spinner (no Zag).",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "utils"
@@ -1014,7 +1054,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1035,7 +1076,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1056,7 +1098,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1077,7 +1120,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1098,7 +1142,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1119,7 +1164,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1140,7 +1186,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1161,7 +1208,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1182,7 +1230,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1203,7 +1252,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1224,7 +1274,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1245,7 +1296,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
@@ -1266,7 +1318,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "dynamic-as"
+        "dynamic-as",
+        "utils"
       ],
       "files": [
         {
