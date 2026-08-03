@@ -1,5 +1,6 @@
 import { useParams } from "@solidjs/router"
-import { Show, type Component } from "solid-js"
+import { type Component, Show } from "solid-js"
+import { createDynamic } from "solid-js/web"
 import { DemoFrame } from "~/components/Shell"
 import { DEMOS } from "~/demos"
 
@@ -9,13 +10,8 @@ export default function ComponentDemoPage() {
 
   return (
     <Show when={demo()} fallback={<p class="text-mute">No demo for “{params.name}”.</p>}>
-      {(Demo) => {
-        const C = Demo()
-        return (
-          <DemoFrame name={params.name}>
-            <C />
-          </DemoFrame>
-        )
+      {(demo) => {
+        return <DemoFrame name={params.name}>{createDynamic(demo, {})}</DemoFrame>
       }}
     </Show>
   )
