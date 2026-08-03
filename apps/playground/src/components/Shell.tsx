@@ -53,7 +53,19 @@ function NavGroup(props: {
 }
 
 export function DemoFrame(props: ParentProps & { name: string }) {
-  const item = (): CatalogItem | undefined => CATALOG.find((c) => c.name === props.name)
+  const index = () => CATALOG.findIndex((c) => c.name === props.name)
+  const item = (): CatalogItem | undefined => {
+    const i = index()
+    return i >= 0 ? CATALOG[i] : undefined
+  }
+  const prev = () => {
+    const i = index()
+    return i > 0 ? CATALOG[i - 1] : undefined
+  }
+  const next = () => {
+    const i = index()
+    return i >= 0 && i < CATALOG.length - 1 ? CATALOG[i + 1] : undefined
+  }
 
   return (
     <Show when={item()} fallback={<p class="text-mute">Unknown component.</p>}>
@@ -65,6 +77,46 @@ export function DemoFrame(props: ParentProps & { name: string }) {
             <code>@components/ui/{c().name}</code>
           </p>
           <div class="grid gap-3">{props.children}</div>
+          <nav class="border-line mt-6 flex items-center justify-between gap-3 border-t pt-4">
+            <Show
+              when={prev()}
+              fallback={<span class="text-mute text-sm opacity-40">← Prev</span>}
+            >
+              {(p) => (
+                <A
+                  href={`/components/${p().name}`}
+                  class="demo-btn hover:border-brand hover:text-brand gap-1.5"
+                >
+                  <span aria-hidden="true">←</span>
+                  <span>
+                    <span class="text-mute block text-[0.65rem] leading-none tracking-wide uppercase">
+                      Prev
+                    </span>
+                    {p().title}
+                  </span>
+                </A>
+              )}
+            </Show>
+            <Show
+              when={next()}
+              fallback={<span class="text-mute text-sm opacity-40">Next →</span>}
+            >
+              {(n) => (
+                <A
+                  href={`/components/${n().name}`}
+                  class="demo-btn hover:border-brand hover:text-brand ml-auto gap-1.5 text-right"
+                >
+                  <span>
+                    <span class="text-mute block text-[0.65rem] leading-none tracking-wide uppercase">
+                      Next
+                    </span>
+                    {n().title}
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </A>
+              )}
+            </Show>
+          </nav>
         </article>
       )}
     </Show>
