@@ -13,7 +13,9 @@
     "dev": "pnpm --filter @solid-reusable/playground dev",
     "start": "pnpm --filter @solid-reusable/playground start",
     "build": "pnpm --filter @solid-reusable/core --filter @solid-reusable/provider --filter @solid-reusable/provider-zag build",
+    "build:playground": "pnpm --filter @solid-reusable/playground build",
     "build:registry": "node scripts/build-registry.mjs",
+    "prepare:pages": "node scripts/prepare-pages.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "registry:build": "pnpm build:registry"
   },

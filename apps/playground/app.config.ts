@@ -6,10 +6,18 @@ import { fileURLToPath } from "node:url"
 const root = dirname(fileURLToPath(import.meta.url))
 const workspace = resolve(root, "../..")
 
+/** GitHub Pages subpath, e.g. `/solid-reusable/`. Local/default: unset → `/`. */
+const basePath = process.env.BASE_PATH
+
 export default defineConfig({
   // Zag useMachine demos — CSR playground
   ssr: false,
+  server: {
+    preset: "static",
+    ...(basePath ? { baseURL: basePath } : {}),
+  },
   vite: {
+    ...(basePath ? { base: basePath } : {}),
     plugins: [tailwindcss()],
     resolve: {
       alias: {
